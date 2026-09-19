@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Αρτοποιείο Μεσαγρός</title>
+<style>
+:root{--ink:#2b2119;--cream:#fffaf1;--paper:#fff;--accent:#9a5b2d;--muted:#75675c}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
+header{padding:34px 18px;text-align:center;background:#f1dfc5;border-bottom:1px solid #e1c8a8}
+.logo{font-size:30px;font-weight:800;letter-spacing:1px}.sub{margin-top:7px;color:var(--muted)}
+nav{position:sticky;top:0;z-index:5;background:#fff;display:flex;gap:8px;overflow:auto;padding:10px;border-bottom:1px solid #eee}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);background:#f7eee3;padding:9px 13px;border-radius:20px;font-size:14px}
+.container{max-width:1050px;margin:auto;padding:22px 15px 90px}
+.hero{background:#fff;border-radius:18px;padding:25px;text-align:center;box-shadow:0 5px 20px #0000000b;margin-bottom:25px}
+.hero h1{margin:0 0 8px}.hero p{color:var(--muted)}
+.cta{display:inline-block;margin:7px;padding:12px 18px;border-radius:25px;text-decoration:none;font-weight:bold}
+.primary{background:var(--accent);color:white}.secondary{background:#f0e2d0;color:var(--ink)}
+section{margin:28px 0} h2{font-size:24px;border-bottom:2px solid #ead7bf;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.card{background:var(--paper);border-radius:15px;overflow:hidden;box-shadow:0 4px 15px #0000000a;border:1px solid #eee4d8}
+.photo{height:145px;background:#eee0cc;display:flex;align-items:center;justify-content:center;font-size:48px}
+.card .body{padding:14px}.card h3{margin:0 0 5px;font-size:18px}.desc{color:var(--muted);font-size:14px;min-height:35px}.price{font-weight:800;margin-top:10px;color:var(--accent)}
+footer{text-align:center;background:#2b2119;color:white;padding:25px 15px}.small{font-size:13px;color:#e7d9ca}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</div>
+  <div class="sub">Μεσαγρός Γέρας • Φρέσκα κάθε μέρα</div>
+</header>
+
+<nav>
+  <a href="#psomi">Ψωμιά</a><a href="#koulouria">Κουλούρια</a><a href="#pites">Πίτες</a>
+  <a href="#mpiskota">Μπισκότα</a><a href="#tsoureki">Τσουρέκια</a><a href="#sandwich">Σάντουιτς</a><a href="#glyka">Γλυκά</a>
+</nav>
+
+<main class="container">
+  <div class="hero">
+    <h1>Καλώς ήρθατε στον Μεσαγρό!</h1>
+    <p>Δείτε τον κατάλογό μας και επικοινωνήστε μαζί μας για παραγγελίες και delivery.</p>
+    <a class="cta primary" href="tel:2251085183">📞 Delivery 2251085183</a>
+    <a class="cta secondary" href="https://www.facebook.com/" target="_blank">Facebook</a>
+  </div>
+
+  <section id="psomi"><h2>🥖 Ψωμιά</h2><div class="grid">
+    <article class="card"><div class="photo">🥖</div><div class="body"><h3>Σταρένιο ψωμί</h3><div class="desc">Φρέσκο ψωμί • 320g καθαρό βάρος</div></div></article>
+    <article class="card"><div class="photo">🍞</div><div class="body"><h3>Χωριάτικο ψωμί</h3><div class="desc">Παραδοσιακό ψωμί</div></div></article>
+    <article class="card"><div class="photo">🍞</div><div class="body"><h3>Ψωμί τοστ</h3><div class="desc">Μαλακό ψωμί για τοστ</div></div></article>
+  </div></section>
+
+  <section id="koulouria"><h2>🥨 Κουλούρια</h2><div class="grid">
+    <article class="card"><div class="photo">🥨</div><div class="body"><h3>Κουλούρι απλό</h3></div></article>
+    <article class="card"><div class="photo">🥨</div><div class="body"><h3>Κουλούρι πιο τραγανό</h3></div></article>
+    <article class="card"><div class="photo">🥨</div><div class="body"><h3>Κουλούρι διπλό</h3></div></article>
+    <article class="card"><div class="photo">🥪</div><div class="body"><h3>Κουλούρι σάντουιτς</h3></div></article>
+    <article class="card"><div class="photo">🍫</div><div class="body"><h3>Κουλούρι γεμιστό με σοκολάτα</h3></div></article>
+    <article class="card"><div class="photo">🧀</div><div class="body"><h3>Κουλούρι γεμιστό με ζαμπόν & τυρί</h3></div></article>
+  </div></section>
+
+  <section id="pites"><h2>🥐 Πίτες & Σφολιάτες</h2><div class="grid">
+    <article class="card"><div class="photo">🧀</div><div class="body"><h3>Τυρόπιτα</h3></div></article>
+    <article class="card"><div class="photo">🥬</div><div class="body"><h3>Σπανακόπιτα</h3></div></article>
+    <article class="card"><div class="photo">🌭</div><div class="body"><h3>Λουκανικόπιτα</h3></div></article>
+    <article class="card"><div class="photo">🥐</div><div class="body"><h3>Μπουγάτσες / Σφολιάτες</h3></div></article>
+  </div></section>
+
+  <section id="mpiskota"><h2>🍪 Μπισκότα</h2><div class="grid">
+    <article class="card"><div class="photo">🍪</div><div class="body"><h3>Μπισκότα βανίλια</h3></div></article>
+    <article class="card"><div class="photo">🍪</div><div class="body"><h3>Μπισκότα κακάο</h3></div></article>
+    <article class="card"><div class="photo">🍪</div><div class="body"><h3>Cookie bites χωρίς ζάχαρη</h3></div></article>
+    <article class="card"><div class="photo">🍫</div><div class="body"><h3>Βουτυρένια μπισκότα με σοκολάτα γάλακτος</h3></div></article>
+  </div></section>
+
+  <section id="tsoureki"><h2>🍞 Τσουρέκια</h2><div class="grid">
+    <article class="card"><div class="photo">🍞</div><div class="body"><h3>Τσουρέκι</h3></div></article>
+    <article class="card"><div class="photo">🍯</div><div class="body"><h3>Μελωμένο τσουρέκι</h3><div class="desc">Ιδανικό και για το έθιμο με το προσκλητήριο γάμου</div></div></article>
+  </div></section>
+
+  <section id="sandwich"><h2>🥪 Σάντουιτς & Σνακ</h2><div class="grid">
+    <article class="card"><div class="photo">🥪</div><div class="body"><h3>Σάντουιτς</h3></div></article>
+    <article class="card"><div class="photo">🌭</div><div class="body"><h3>Ψωμάκια burger & hot dog</h3></div></article>
+  </div></section>
+
+  <section id="glyka"><h2>🍰 Γλυκά & Ειδικές παραγγελίες</h2><div class="grid">
+    <article class="card"><div class="photo">🍰</div><div class="body"><h3>Cheesecake</h3></div></article>
+    <article class="card"><div class="photo">🍫</div><div class="body"><h3>Chocolate mousse</h3></div></article>
+    <article class="card"><div class="photo">🥐</div><div class="body"><h3>Mille-feuille</h3></div></article>
+    <article class="card"><div class="photo">🍯</div><div class="body"><h3>Φανουρόπιτα</h3></div></article>
+    <article class="card"><div class="photo">🍯</div><div class="body"><h3>Σαραγλί & Μπακλαβάς</h3></div></article>
+    <article class="card"><div class="photo">🎂</div><div class="body"><h3>Τούρτες & ειδικές κατασκευές</h3></div></article>
+  </div></section>
+</main>
+
+<footer>
+  <strong>ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</strong>
+  <div class="small">Μεσαγρός Γέρας • Δευτέρα–Σάββατο 06:00–15:00 • Κυριακή κλειστά</div>
+  <div style="margin-top:10px"><a class="cta primary" href="tel:2251085183">📞 2251085183</a></div>
+</footer>
+</body>
+</html>
