@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Παστάκια | Αρτοποιείο Μεσαγρός</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box
+}
 
 html,body{
 margin:0;
@@ -165,12 +169,12 @@ font-size:20px;
 font-weight:bold
 }
 
-.whatsapp{
+.messenger{
 display:block;
 margin:20px auto 0;
 max-width:650px;
 padding:15px;
-background:#25D366;
+background:#0084ff;
 color:white;
 text-decoration:none;
 text-align:center;
@@ -180,7 +184,10 @@ font-weight:bold
 }
 
 @media(max-width:600px){
-h1{font-size:27px}
+
+h1{
+font-size:27px
+}
 
 .flavors{
 grid-template-columns:1fr
@@ -193,7 +200,9 @@ gap:8px
 .flavor-row input{
 width:85px
 }
+
 }
+
 </style>
 </head>
 
@@ -203,7 +212,9 @@ width:85px
 
 <img src="LOGO.png" alt="Αρτοποιείο Μεσαγρός" class="logo">
 
-<a href="index.html" class="back">← Επιστροφή στον κατάλογο</a>
+<a href="index.html" class="back">
+← Επιστροφή στον κατάλογο
+</a>
 
 <div class="product">
 
@@ -213,7 +224,9 @@ width:85px
 
 <h1>Παστάκια</h1>
 
-<div class="subtitle">Διάφορες γεύσεις</div>
+<div class="subtitle">
+Διάφορες γεύσεις
+</div>
 
 <div class="description">
 Λαχταριστά παστάκια σε διάφορες γεύσεις, ιδανικά για κέρασμα, τον καφέ ή για κάθε γλυκιά στιγμή.
@@ -223,94 +236,179 @@ width:85px
 15,00 € / κιλό
 </div>
 
-<h2>Επίλεξε γεύσεις</h2>
+<h2>
+Επίλεξε γεύσεις
+</h2>
 
 <div class="flavors">
 
-<div class="flavor">🍫 Σοκολάτα</div>
-<div class="flavor">🤍 Ανάμεικτο σοκολάτα - βανίλια</div>
-<div class="flavor">🤎 Σορένο</div>
-<div class="flavor">🩷 Φράουλα</div>
-<div class="flavor">💙 Bueno</div>
+<div class="flavor">
+🍫 Σοκολάτα
+</div>
+
+<div class="flavor">
+🤍 Ανάμεικτο σοκολάτα - βανίλια
+</div>
+
+<div class="flavor">
+🤎 Σορένο
+</div>
+
+<div class="flavor">
+🩷 Φράουλα
+</div>
+
+<div class="flavor">
+💙 Bueno
+</div>
 
 </div>
 
-<h2>Επίλεξε συνολική ποσότητα</h2>
+<h2>
+Επίλεξε συνολική ποσότητα
+</h2>
 
 <div class="sizes">
 
-<button class="size active" onclick="setTotal(500,this)">500 γρ.</button>
+<button class="size active" onclick="setTotal(500,this)">
+500 γρ.
+</button>
 
-<button class="size" onclick="setTotal(750,this)">750 γρ.</button>
+<button class="size" onclick="setTotal(750,this)">
+750 γρ.
+</button>
 
-<button class="size" onclick="setTotal(1000,this)">1 κιλό</button>
+<button class="size" onclick="setTotal(1000,this)">
+1 κιλό
+</button>
 
 </div>
 
 <div class="order-box">
 
-<h2>Μοίρασε την ποσότητα στις γεύσεις</h2>
+<h2>
+Μοίρασε την ποσότητα στις γεύσεις
+</h2>
 
 <div class="flavor-row">
-<label>🍫 Σοκολάτα</label>
+
+<label>
+🍫 Σοκολάτα
+</label>
+
 <input type="number" min="0" value="0" onchange="calculate()">
-<span>γρ.</span>
+
+<span>
+γρ.
+</span>
+
 </div>
 
-<div class="flavor-row">
-<label>🤍 Ανάμεικτο</label>
-<input type="number" min="0" value="0" onchange="calculate()">
-<span>γρ.</span>
-</div>
 
 <div class="flavor-row">
-<label>🤎 Σορένο</label>
+
+<label>
+🤍 Ανάμεικτο
+</label>
+
 <input type="number" min="0" value="0" onchange="calculate()">
-<span>γρ.</span>
+
+<span>
+γρ.
+</span>
+
 </div>
 
-<div class="flavor-row">
-<label>🩷 Φράουλα</label>
-<input type="number" min="0" value="0" onchange="calculate()">
-<span>γρ.</span>
-</div>
 
 <div class="flavor-row">
-<label>💙 Bueno</label>
+
+<label>
+🤎 Σορένο
+</label>
+
 <input type="number" min="0" value="0" onchange="calculate()">
-<span>γρ.</span>
+
+<span>
+γρ.
+</span>
+
 </div>
+
+
+<div class="flavor-row">
+
+<label>
+🩷 Φράουλα
+</label>
+
+<input type="number" min="0" value="0" onchange="calculate()">
+
+<span>
+γρ.
+</span>
+
+</div>
+
+
+<div class="flavor-row">
+
+<label>
+💙 Bueno
+</label>
+
+<input type="number" min="0" value="0" onchange="calculate()">
+
+<span>
+γρ.
+</span>
+
+</div>
+
 
 <div class="total" id="total">
 Σύνολο: 0 / 500 γρ.
 </div>
 
-<a href="#" class="whatsapp" id="whatsapp">
-📱 Παραγγελία μέσω WhatsApp
+
+<a
+href="https://www.facebook.com/profile.php?id=61579292276839&locale=el_GR"
+class="messenger"
+target="_blank">
+
+💬 Παραγγελία μέσω Messenger
+
 </a>
 
 </div>
 
 </div>
+
 </div>
+
 </div>
+
 
 <script>
 
 let requiredTotal = 500;
+
 
 function setTotal(amount,button){
 
 requiredTotal = amount;
 
 document.querySelectorAll(".size").forEach(b=>{
+
 b.classList.remove("active");
+
 });
 
 button.classList.add("active");
 
 calculate();
+
 }
+
 
 function calculate(){
 
@@ -319,59 +417,39 @@ let inputs = document.querySelectorAll(".flavor-row input");
 let total = 0;
 
 inputs.forEach(input=>{
+
 total += Number(input.value) || 0;
+
 });
+
 
 let text = document.getElementById("total");
 
-text.innerHTML = "Σύνολο: " + total + " / " + requiredTotal + " γρ.";
+
+text.innerHTML =
+"Σύνολο: " + total + " / " + requiredTotal + " γρ.";
+
 
 if(total === requiredTotal){
 
 text.style.background = "#dff3df";
+
 text.innerHTML += " ✅";
+
 }else{
 
 text.style.background = "#efe4d3";
-}
-
-updateWhatsApp();
-}
-
-function updateWhatsApp(){
-
-let inputs = document.querySelectorAll(".flavor-row input");
-
-let flavors = [
-"Σοκολάτα",
-"Ανάμεικτο σοκολάτα - βανίλια",
-"Σορένο",
-"Φράουλα",
-"Bueno"
-];
-
-let message = "Καλησπέρα, θα ήθελα " + requiredTotal + " γρ. παστάκια:%0A";
-
-inputs.forEach((input,index)=>{
-
-let amount = Number(input.value) || 0;
-
-if(amount > 0){
-
-message += "%0A• " + flavors[index] + ": " + amount + " γρ.";
 
 }
-
-});
-
-document.getElementById("whatsapp").href =
-"https://wa.me/302251085183?text=" + message;
 
 }
 
 calculate();
 
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
