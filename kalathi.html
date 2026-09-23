@@ -195,7 +195,7 @@ margin:20px 0;
 }
 
 
-.messenger{
+.email-button{
 display:block;
 
 width:100%;
@@ -206,7 +206,7 @@ border:0;
 
 border-radius:12px;
 
-background:#0084ff;
+background:#7a4b2a;
 
 color:white;
 
@@ -452,11 +452,11 @@ id="cartTotal"
 
 
 <button
-class="messenger"
+class="email-button"
 onclick="sendOrder()"
 >
 
-💬 Αποστολή παραγγελίας μέσω Messenger
+📧 Αποστολή παραγγελίας με Email
 
 </button>
 
@@ -748,77 +748,7 @@ sum
 
 
 /* ========================= */
-/* ΔΗΜΙΟΥΡΓΙΑ ΠΑΡΑΓΓΕΛΙΑΣ */
-/* ========================= */
-
-
-function createOrderText(){
-
-
-let message =
-
-"Καλησπέρα! Θα ήθελα να παραγγείλω:\n\n";
-
-
-let sum = 0;
-
-
-
-cart.forEach(
-item => {
-
-
-let subtotal =
-item.price *
-item.quantity;
-
-
-sum += subtotal;
-
-
-
-message +=
-
-"• " +
-
-item.name +
-
-" × " +
-
-item.quantity +
-
-" — " +
-
-subtotal
-.toFixed(2)
-.replace(".",",") +
-
-" €\n";
-
-
-});
-
-
-
-message +=
-
-"\nΣύνολο: " +
-
-sum
-.toFixed(2)
-.replace(".",",") +
-
-" €";
-
-
-return message;
-
-}
-
-
-
-/* ========================= */
-/* ΑΠΟΣΤΟΛΗ ΣΤΟ MESSENGER */
+/* ΑΠΟΣΤΟΛΗ EMAIL */
 /* ========================= */
 
 
@@ -839,141 +769,90 @@ return;
 
 
 
-let message =
-createOrderText();
+let subject =
+"Νέα παραγγελία - Αρτοποιείο Μεσαγρός";
+
+
+let body =
+"Καλησπέρα! Θα ήθελα να παραγγείλω:%0D%0A%0D%0A";
+
+
+let sum = 0;
+
+
+
+cart.forEach(
+item => {
+
+
+let subtotal =
+item.price *
+item.quantity;
+
+
+sum += subtotal;
+
+
+
+body +=
+
+"• " +
+
+item.name +
+
+" × " +
+
+item.quantity +
+
+" — " +
+
+subtotal
+.toFixed(2)
+.replace(".",",") +
+
+" €%0D%0A";
+
+
+});
+
+
+
+body +=
+
+"%0D%0AΣύνολο: " +
+
+sum
+.toFixed(2)
+.replace(".",",") +
+
+" €";
+
+
+
+body +=
+
+"%0D%0A%0D%0AΌνομα πελάτη: " +
+
+"%0D%0AΤηλέφωνο: ";
 
 
 
 /*
-Αντιγράφουμε την παραγγελία
-στο πρόχειρο.
+Ανοίγει το πρόγραμμα
+email του πελάτη
 */
 
+window.location.href =
 
-if(
-navigator.clipboard &&
-navigator.clipboard.writeText
-){
+"mailto:mesagrosbakery@gmail.com" +
 
+"?subject=" +
 
-navigator.clipboard
-.writeText(message)
-.then(
-openMessenger
-)
-.catch(
-function(){
+encodeURIComponent(subject) +
 
-copyFallback(message);
+"&body=" +
 
-openMessenger();
-
-}
-);
-
-}
-
-
-else{
-
-
-copyFallback(message);
-
-openMessenger();
-
-}
-
-}
-
-
-
-/* ========================= */
-/* ΕΝΑΛΛΑΚΤΙΚΗ ΑΝΤΙΓΡΑΦΗ */
-/* ========================= */
-
-
-function copyFallback(text){
-
-
-let textarea =
-document.createElement(
-"textarea"
-);
-
-
-textarea.value = text;
-
-
-textarea.style.position =
-"fixed";
-
-
-textarea.style.left =
-"-9999px";
-
-
-document.body.appendChild(
-textarea
-);
-
-
-textarea.focus();
-
-
-textarea.select();
-
-
-document.execCommand(
-"copy"
-);
-
-
-document.body.removeChild(
-textarea
-);
-
-}
-
-
-
-/* ========================= */
-/* ΑΝΟΙΓΜΑ MESSENGER */
-/* ========================= */
-
-
-function openMessenger(){
-
-
-window.open(
-
-"https://m.me/61579292276839",
-
-"_blank"
-
-);
-
-
-
-setTimeout(
-function(){
-
-
-alert(
-
-"Η παραγγελία αντιγράφηκε!\n\n" +
-
-"Άνοιξε το Messenger και πάτησε " +
-
-"Ctrl + V " +
-
-"για να εμφανιστεί η παραγγελία."
-
-);
-
-
-},
-700
-);
+body;
 
 }
 
