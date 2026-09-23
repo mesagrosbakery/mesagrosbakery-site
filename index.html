@@ -605,5 +605,57 @@ cursor:pointer;
   <div class="small">Μεσαγρός Γέρας • Δευτέρα–Σάββατο 06:00–15:00 • Κυριακή κλειστά</div>
   <div style="margin-top:10px"><a class="cta primary" href="tel:2251085183">📞 2251085183</a></div>
 </footer>
+  <script>
+
+function addProductToCart(name, price, event) {
+
+    let cart = JSON.parse(
+        localStorage.getItem("mesagrosCart")
+    ) || [];
+
+    let existing = cart.find(
+        item => item.name === name
+    );
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+
+    }
+
+    localStorage.setItem(
+        "mesagrosCart",
+        JSON.stringify(cart)
+    );
+
+    /* Μικρή επιβεβαίωση */
+
+    let button = event.currentTarget;
+
+    let oldText = button.innerHTML;
+
+    button.innerHTML = "✓ Προστέθηκε!";
+
+    button.style.background = "#4f7d3a";
+
+    setTimeout(function(){
+
+        button.innerHTML = oldText;
+
+        button.style.background = "#9a5b2d";
+
+    }, 1200);
+
+}
+
+</script>
 </body>
 </html>
