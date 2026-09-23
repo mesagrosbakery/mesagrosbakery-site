@@ -419,8 +419,9 @@ cursor:pointer;
     <option value="500">500 g</option>
     <option value="750">750 g</option>
     <option value="1000">1 kg</option>
+    <option value="package">Συσκευασία — 3,00 € (200 g)</option>
   </select>
-  <button class="cart-btn" data-name="Μικρά cookies χωρίς αυγό, ζάχαρη &amp; βούτυρο" data-kilo-price="15.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+  <button class="cart-btn" data-name="Μικρά cookies χωρίς αυγό, ζάχαρη &amp; βούτυρο" data-kilo-price="15.0" onclick="addCookieProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
 </div>
 </article>
     <article class="card"><div class="photo">🍫</div><div class="body"><h3>Βουτυρένια μπισκότα με σοκολάτα γάλακτος</h3></div></article>
@@ -760,6 +761,44 @@ function addWeightedProductToCart(button, event){
     const name = button.dataset.name;
     const price = Math.round(kiloPrice * grams / 1000 * 100) / 100;
     const displayName = name + " (" + (grams === 1000 ? "1 kg" : grams + " g") + ")";
+
+    let cart = JSON.parse(localStorage.getItem("mesagrosCart")) || [];
+    let existing = cart.find(item => item.name === displayName);
+
+    if(existing){
+        existing.quantity++;
+    }else{
+        cart.push({name: displayName, price: price, quantity: 1});
+    }
+
+    localStorage.setItem("mesagrosCart", JSON.stringify(cart));
+
+    const oldText = button.innerHTML;
+    button.innerHTML = "✓ Προστέθηκε!";
+    button.style.background = "#4f7d3a";
+    setTimeout(function(){
+        button.innerHTML = oldText;
+        button.style.background = "#9a5b2d";
+    },1200);
+}
+
+function addCookieProductToCart(button, event){
+    const select = button.parentElement.querySelector("select");
+    const choice = select.value;
+    const kiloPrice = Number(button.dataset.kiloPrice);
+    const name = button.dataset.name;
+
+    let price;
+    let displayName;
+
+    if(choice === "package"){
+        price = 3.00;
+        displayName = name + " (Συσκευασία)";
+    }else{
+        const grams = Number(choice);
+        price = Math.round(kiloPrice * grams / 1000 * 100) / 100;
+        displayName = name + " (" + (grams === 1000 ? "1 kg" : grams + " g") + ")";
+    }
 
     let cart = JSON.parse(localStorage.getItem("mesagrosCart")) || [];
     let existing = cart.find(item => item.name === displayName);
