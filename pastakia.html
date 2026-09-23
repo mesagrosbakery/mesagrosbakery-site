@@ -369,13 +369,27 @@ width:85px
 Σύνολο: 0 / 500 γρ.
 </div>
 
+<button
+id="addPastakia"
+onclick="addPastakiaToCart()"
+style="
+display:block;
+width:100%;
+max-width:650px;
+margin:20px auto 0;
+padding:15px;
+background:#7a4b2a;
+color:white;
+border:0;
+border-radius:12px;
+font-size:19px;
+font-weight:bold;
+cursor:pointer;
+">
 
-<a
-href="https://www.facebook.com/profile.php?id=61579292276839&locale=el_GR"
-class="messenger"
-target="_blank">
+🛒 Προσθήκη στο καλάθι
 
-💬 Παραγγελία μέσω Messenger
+</button>
 
 </a>
 
@@ -445,6 +459,114 @@ text.style.background = "#efe4d3";
 }
 
 calculate();
+  function addPastakiaToCart(){
+
+    let inputs =
+        document.querySelectorAll(".flavor-row input");
+
+    let total = 0;
+
+    let flavors = [];
+
+    let names = [
+        "Σοκολάτα",
+        "Ανάμεικτο σοκολάτα - βανίλια",
+        "Σορένο",
+        "Φράουλα",
+        "Bueno"
+    ];
+
+    inputs.forEach(function(input,index){
+
+        let grams =
+            Number(input.value) || 0;
+
+        total += grams;
+
+        if(grams > 0){
+
+            flavors.push(
+                names[index] +
+                ": " +
+                grams +
+                " γρ."
+            );
+
+        }
+
+    });
+
+
+    if(total !== requiredTotal){
+
+        alert(
+            "Η συνολική ποσότητα πρέπει να είναι " +
+            requiredTotal +
+            " γρ."
+        );
+
+        return;
+
+    }
+
+
+    let price =
+        (requiredTotal / 1000) * 15;
+
+
+    let description =
+        "Παστάκια " +
+        requiredTotal +
+        " γρ. — " +
+        flavors.join(", ");
+
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("mesagrosCart")
+        ) || [];
+
+
+    cart.push({
+
+        name: description,
+
+        price: price,
+
+        quantity: 1
+
+    });
+
+
+    localStorage.setItem(
+        "mesagrosCart",
+        JSON.stringify(cart)
+    );
+
+
+    let button =
+        document.getElementById("addPastakia");
+
+
+    button.innerHTML =
+        "✓ Προστέθηκε στο καλάθι!";
+
+
+    button.style.background =
+        "#4f7d3a";
+
+
+    setTimeout(function(){
+
+        button.innerHTML =
+            "🛒 Προσθήκη στο καλάθι";
+
+        button.style.background =
+            "#7a4b2a";
+
+    },1500);
+
+}
 
 </script>
 
