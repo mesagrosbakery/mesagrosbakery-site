@@ -10,13 +10,11 @@ content="width=device-width, initial-scale=1.0">
 
 <title>Καλάθι Παραγγελίας | Αρτοποιείο Μεσαγρός</title>
 
-
 <style>
 
 *{
 box-sizing:border-box;
 }
-
 
 body{
 margin:0;
@@ -25,13 +23,11 @@ background:#f8f1e5;
 color:#3b2a20;
 }
 
-
 .container{
 max-width:900px;
 margin:auto;
 padding:30px 20px 50px;
 }
-
 
 .logo{
 width:180px;
@@ -39,12 +35,10 @@ display:block;
 margin:0 auto 20px;
 }
 
-
 h1{
 text-align:center;
 margin-bottom:5px;
 }
-
 
 .subtitle{
 text-align:center;
@@ -52,65 +46,49 @@ color:#7a4b2a;
 margin-bottom:30px;
 }
 
-
 .product{
 background:white;
 border-radius:16px;
 padding:18px;
 margin-bottom:15px;
-
-box-shadow:
-0 3px 15px rgba(0,0,0,.08);
-
+box-shadow:0 3px 15px rgba(0,0,0,.08);
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:15px;
 }
 
-
 .product-info h3{
 margin:0 0 7px;
 }
-
 
 .price{
 font-weight:bold;
 font-size:18px;
 }
 
-
 .add{
 background:#7a4b2a;
 color:white;
 border:0;
 border-radius:10px;
-
 padding:11px 17px;
-
 font-size:16px;
 font-weight:bold;
-
 cursor:pointer;
 }
-
 
 .cart{
 background:white;
 border-radius:18px;
-
 padding:22px;
 margin-top:30px;
-
-box-shadow:
-0 3px 15px rgba(0,0,0,.08);
+box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
-
 
 .cart h2{
 margin-top:0;
 }
-
 
 .empty{
 text-align:center;
@@ -118,25 +96,18 @@ padding:20px;
 color:#777;
 }
 
-
 .cart-item{
 display:flex;
 align-items:center;
 justify-content:space-between;
-
 gap:10px;
-
 padding:12px 0;
-
-border-bottom:
-1px solid #eadfd2;
+border-bottom:1px solid #eadfd2;
 }
-
 
 .item-name{
 flex:1;
 }
-
 
 .item-controls{
 display:flex;
@@ -144,94 +115,59 @@ align-items:center;
 gap:8px;
 }
 
-
 .qty-button{
 width:32px;
 height:32px;
-
 border:0;
 border-radius:8px;
-
 background:#eadfd2;
-
 font-size:18px;
-
 cursor:pointer;
 }
-
 
 .qty{
 font-weight:bold;
-
 min-width:25px;
-
 text-align:center;
 }
-
 
 .remove{
 border:0;
-
 background:#999;
-
 color:white;
-
 border-radius:7px;
-
 padding:6px 9px;
-
 cursor:pointer;
 }
-
 
 .total{
 text-align:right;
-
 font-size:22px;
-
 font-weight:bold;
-
 margin:20px 0;
 }
 
-
 .email-button{
 display:block;
-
 width:100%;
-
 padding:15px;
-
 border:0;
-
 border-radius:12px;
-
-background:#7a4b2a;
-
+background:#d44638;
 color:white;
-
 font-size:19px;
-
 font-weight:bold;
-
 cursor:pointer;
 }
 
-
 .back{
 display:block;
-
 text-align:center;
-
 margin-top:20px;
-
 color:#7a4b2a;
-
 text-decoration:none;
-
 font-weight:bold;
 }
-
 
 @media(max-width:600px){
 
@@ -240,11 +176,9 @@ flex-direction:column;
 align-items:stretch;
 }
 
-
 .add{
 width:100%;
 }
-
 
 .cart-item{
 align-items:flex-start;
@@ -256,12 +190,9 @@ align-items:flex-start;
 
 </head>
 
-
 <body>
 
-
 <div class="container">
-
 
 <img
 src="LOGO.png"
@@ -269,27 +200,18 @@ alt="Αρτοποιείο Μεσαγρός"
 class="logo"
 >
 
-
 <h1>
 🛒 Καλάθι Παραγγελίας
 </h1>
 
-
 <div class="subtitle">
-
 Αρτοποιείο Μεσαγρός
-
 </div>
 
 
-
-<!-- ========================= -->
-<!-- ΔΟΚΙΜΑΣΤΙΚΑ ΠΡΟΪΟΝΤΑ -->
-<!-- ========================= -->
-
+<!-- ΠΡΟΪΟΝΤΑ -->
 
 <div class="product">
-
 
 <div class="product-info">
 
@@ -298,30 +220,22 @@ class="logo"
 </h3>
 
 <div class="price">
-
 0,90 €
-
 </div>
 
 </div>
-
 
 <button
 class="add"
 onclick="addToCart('Σταρένιο ψωμί',0.90)"
 >
-
 + Προσθήκη
-
 </button>
-
 
 </div>
 
 
-
 <div class="product">
-
 
 <div class="product-info">
 
@@ -330,30 +244,22 @@ onclick="addToCart('Σταρένιο ψωμί',0.90)"
 </h3>
 
 <div class="price">
-
 3,00 €
-
 </div>
 
 </div>
-
 
 <button
 class="add"
 onclick="addToCart('Cheesecake',3.00)"
 >
-
 + Προσθήκη
-
 </button>
-
 
 </div>
 
 
-
 <div class="product">
-
 
 <div class="product-info">
 
@@ -362,30 +268,22 @@ onclick="addToCart('Cheesecake',3.00)"
 </h3>
 
 <div class="price">
-
 3,00 €
-
 </div>
 
 </div>
-
 
 <button
 class="add"
 onclick="addToCart('Tiramisu',3.00)"
 >
-
 + Προσθήκη
-
 </button>
-
 
 </div>
 
 
-
 <div class="product">
-
 
 <div class="product-info">
 
@@ -394,148 +292,101 @@ onclick="addToCart('Tiramisu',3.00)"
 </h3>
 
 <div class="price">
-
 7,50 €
-
 </div>
 
 </div>
-
 
 <button
 class="add"
 onclick="addToCart('Παστάκια 500 γρ. — Σοκολάτα 250 γρ. + Φράουλα 250 γρ.',7.50)"
 >
-
 + Προσθήκη
-
 </button>
-
 
 </div>
 
 
-
-<!-- ========================= -->
 <!-- ΚΑΛΑΘΙ -->
-<!-- ========================= -->
-
 
 <div class="cart">
 
-
 <h2>
-
 Τα προϊόντα σας
-
 </h2>
-
 
 <div
 id="cartItems"
 class="empty"
 >
-
 Το καλάθι είναι άδειο.
-
 </div>
-
 
 <div
 class="total"
 id="cartTotal"
 >
-
 Σύνολο: 0,00 €
-
 </div>
-
 
 <button
 class="email-button"
 onclick="sendOrder()"
 >
-
-📧 Αποστολή παραγγελίας με Email
-
+📧 Αποστολή παραγγελίας μέσω Gmail
 </button>
 
-
 </div>
-
 
 
 <a
 href="index.html"
 class="back"
 >
-
 ← Επιστροφή στον κατάλογο
-
 </a>
-
 
 </div>
 
 
-
 <script>
 
-
-/* ========================= */
 /* ΚΑΛΑΘΙ */
-/* ========================= */
-
 
 let cart = [];
 
 
-
-/* ========================= */
-/* ΠΡΟΣΘΗΚΗ ΠΡΟΪΟΝΤΟΣ */
-/* ========================= */
-
+/* ΠΡΟΣΘΗΚΗ */
 
 function addToCart(name,price){
-
 
 let existing =
 cart.find(
 item => item.name === name
 );
 
-
 if(existing){
 
 existing.quantity++;
 
-}
-
-else{
+}else{
 
 cart.push({
 
 name:name,
-
 price:price,
-
 quantity:1
 
 });
 
 }
 
-
 renderCart();
 
 }
 
 
-
-/* ========================= */
-/* ΑΥΞΗΣΗ ΠΟΣΟΤΗΤΑΣ */
-/* ========================= */
-
+/* ΑΥΞΗΣΗ */
 
 function increase(index){
 
@@ -546,36 +397,24 @@ renderCart();
 }
 
 
-
-/* ========================= */
-/* ΜΕΙΩΣΗ ΠΟΣΟΤΗΤΑΣ */
-/* ========================= */
-
+/* ΜΕΙΩΣΗ */
 
 function decrease(index){
 
 cart[index].quantity--;
 
-
-if(
-cart[index].quantity <= 0
-){
+if(cart[index].quantity <= 0){
 
 cart.splice(index,1);
 
 }
-
 
 renderCart();
 
 }
 
 
-
-/* ========================= */
 /* ΔΙΑΓΡΑΦΗ */
-/* ========================= */
-
 
 function removeItem(index){
 
@@ -586,141 +425,88 @@ renderCart();
 }
 
 
-
-/* ========================= */
-/* ΕΜΦΑΝΙΣΗ ΚΑΛΑΘΙΟΥ */
-/* ========================= */
-
+/* ΕΜΦΑΝΙΣΗ */
 
 function renderCart(){
 
-
 let box =
-document.getElementById(
-"cartItems"
-);
-
+document.getElementById("cartItems");
 
 let total =
-document.getElementById(
-"cartTotal"
-);
-
-
+document.getElementById("cartTotal");
 
 if(cart.length === 0){
 
-
 box.className="empty";
-
 
 box.innerHTML =
 "Το καλάθι είναι άδειο.";
 
-
 total.innerHTML =
 "Σύνολο: 0,00 €";
-
 
 return;
 
 }
 
-
-
 box.className="";
-
 
 let html="";
 
-
 let sum=0;
 
-
-
-cart.forEach(
-(item,index)=>{
-
+cart.forEach((item,index)=>{
 
 let subtotal =
-item.price *
-item.quantity;
-
+item.price * item.quantity;
 
 sum += subtotal;
-
-
 
 html += `
 
 <div class="cart-item">
 
-
 <div class="item-name">
 
-
 <strong>
-
 ${item.name}
-
 </strong>
-
 
 <br>
 
-
-${item.price
-.toFixed(2)
-.replace(".",",")
-} € / τεμ.
-
+${item.price.toFixed(2).replace(".",",")}
+€ / τεμ.
 
 </div>
 
-
-
 <div class="item-controls">
-
 
 <button
 class="qty-button"
 onclick="decrease(${index})"
 >
-
 −
-
 </button>
 
-
 <span class="qty">
-
 ${item.quantity}
-
 </span>
-
 
 <button
 class="qty-button"
 onclick="increase(${index})"
 >
-
 +
-
 </button>
-
 
 <button
 class="remove"
 onclick="removeItem(${index})"
 >
-
 ×
-
 </button>
 
-
 </div>
-
 
 </div>
 
@@ -728,45 +514,27 @@ onclick="removeItem(${index})"
 
 });
 
-
-box.innerHTML = html;
-
-
+box.innerHTML=html;
 
 total.innerHTML =
-
 "Σύνολο: " +
-
-sum
-.toFixed(2)
-.replace(".",",") +
-
+sum.toFixed(2).replace(".",",") +
 " €";
 
 }
 
 
-
-/* ========================= */
-/* ΑΠΟΣΤΟΛΗ EMAIL */
-/* ========================= */
-
+/* ΑΠΟΣΤΟΛΗ ΣΤΟ GMAIL */
 
 function sendOrder(){
 
-
 if(cart.length === 0){
 
-
-alert(
-"Το καλάθι είναι άδειο."
-);
-
+alert("Το καλάθι είναι άδειο.");
 
 return;
 
 }
-
 
 
 let subject =
@@ -774,91 +542,64 @@ let subject =
 
 
 let body =
-"Καλησπέρα! Θα ήθελα να παραγγείλω:%0D%0A%0D%0A";
+"Καλησπέρα! Θα ήθελα να παραγγείλω:\n\n";
 
 
-let sum = 0;
+let sum=0;
 
 
-
-cart.forEach(
-item => {
-
+cart.forEach(item=>{
 
 let subtotal =
-item.price *
-item.quantity;
-
+item.price * item.quantity;
 
 sum += subtotal;
 
-
-
 body +=
-
 "• " +
-
 item.name +
-
 " × " +
-
 item.quantity +
-
 " — " +
-
-subtotal
-.toFixed(2)
-.replace(".",",") +
-
-" €%0D%0A";
-
+subtotal.toFixed(2).replace(".",",") +
+" €\n";
 
 });
 
 
-
 body +=
-
-"%0D%0AΣύνολο: " +
-
-sum
-.toFixed(2)
-.replace(".",",") +
-
+"\nΣύνολο: " +
+sum.toFixed(2).replace(".",",") +
 " €";
 
 
-
 body +=
-
-"%0D%0A%0D%0AΌνομα πελάτη: " +
-
-"%0D%0AΤηλέφωνο: ";
-
+"\n\nΌνομα πελάτη:\n" +
+"Τηλέφωνο:\n";
 
 
 /*
-Ανοίγει το πρόγραμμα
-email του πελάτη
+ΑΝΟΙΓΜΑ GMAIL
 */
 
-window.location.href =
-
-"mailto:mesagrosbakery@gmail.com" +
-
-"?subject=" +
-
+let gmailUrl =
+"https://mail.google.com/mail/?view=cm" +
+"&fs=1" +
+"&to=mesagrosbakery%40gmail.com" +
+"&su=" +
 encodeURIComponent(subject) +
-
 "&body=" +
+encodeURIComponent(body);
 
-body;
+
+window.open(
+gmailUrl,
+"_blank"
+);
 
 }
 
-
 </script>
-
 
 </body>
 
