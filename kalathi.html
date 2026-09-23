@@ -800,15 +800,12 @@ function sendOrder(){
         encodeURIComponent(body);
 
 
-    window.open(
-        gmailUrl,
-        "_blank"
-    );
-
-    // Αδειάζουμε το καλάθι μετά τη δημιουργία της παραγγελίας στο Gmail
+    // Αδειάζουμε το καλάθι πριν μεταφερθούμε στο Gmail
     cart = [];
     localStorage.removeItem("mesagrosCart");
-    renderCart();
+
+    // Μεταφορά απευθείας στο Gmail (δεν μπλοκάρεται από popup blocker)
+    window.location.href = gmailUrl;
 
 }
 
