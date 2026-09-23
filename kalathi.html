@@ -621,12 +621,9 @@ function sendOrder(){
 
     if(cart.length === 0){
 
-        alert(
-            "Το καλάθι είναι άδειο."
-        );
+        alert("Το καλάθι είναι άδειο.");
 
         return;
-
     }
 
 
@@ -670,7 +667,6 @@ function sendOrder(){
         );
 
         return;
-
     }
 
 
@@ -683,7 +679,7 @@ function sendOrder(){
 
 
     /* ================================= */
-    /* ΑΡΧΗ ΜΗΝΥΜΑΤΟΣ */
+    /* ΑΡΧΗ EMAIL */
     /* ================================= */
 
     let body =
@@ -701,37 +697,33 @@ function sendOrder(){
 
     let sum = 0;
 
+    cart.forEach(item => {
 
-    cart.forEach(
-        item => {
+        let subtotal =
+            item.price * item.quantity;
 
-            let subtotal =
-                item.price * item.quantity;
+        sum += subtotal;
 
-            sum += subtotal;
+        body +=
+            "• " +
+            item.name +
+            " × " +
+            item.quantity +
+            " — " +
+            subtotal
+                .toFixed(2)
+                .replace(".",",") +
+            " €\n";
 
-
-            body +=
-                "• " +
-                item.name +
-                " × " +
-                item.quantity +
-                " — " +
-                subtotal
-                    .toFixed(2)
-                    .replace(".",",") +
-                " €\n\n";
-
-        }
-    );
+    });
 
 
     /* ================================= */
-    /* ΣΥΝΟΛΟ + ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ */
+    /* ΣΥΝΟΛΟ */
     /* ================================= */
 
     body +=
-        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+        "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
 
         "💰 ΣΥΝΟΛΟ: " +
         sum
@@ -739,8 +731,14 @@ function sendOrder(){
             .replace(".",",") +
         " €\n\n" +
 
-        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+        "━━━━━━━━━━━━━━━━━━━━\n\n";
 
+
+    /* ================================= */
+    /* ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ */
+    /* ================================= */
+
+    body +=
         "👤 ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ\n\n" +
 
         "Όνομα: " +
@@ -806,6 +804,8 @@ function sendOrder(){
         gmailUrl,
         "_blank"
     );
+
+}
 
 }
 
