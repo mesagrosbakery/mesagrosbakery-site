@@ -46,38 +46,6 @@ color:#7a4b2a;
 margin-bottom:30px;
 }
 
-.product{
-background:white;
-border-radius:16px;
-padding:18px;
-margin-bottom:15px;
-box-shadow:0 3px 15px rgba(0,0,0,.08);
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-}
-
-.product-info h3{
-margin:0 0 7px;
-}
-
-.price{
-font-weight:bold;
-font-size:18px;
-}
-
-.add{
-background:#7a4b2a;
-color:white;
-border:0;
-border-radius:10px;
-padding:11px 17px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-}
-
 .cart{
 background:white;
 border-radius:18px;
@@ -101,7 +69,7 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 gap:10px;
-padding:12px 0;
+padding:14px 0;
 border-bottom:1px solid #eadfd2;
 }
 
@@ -160,6 +128,19 @@ font-weight:bold;
 cursor:pointer;
 }
 
+.clear-button{
+display:block;
+width:100%;
+padding:11px;
+margin-top:10px;
+border:0;
+border-radius:10px;
+background:#eee;
+color:#555;
+font-size:15px;
+cursor:pointer;
+}
+
 .back{
 display:block;
 text-align:center;
@@ -169,30 +150,16 @@ text-decoration:none;
 font-weight:bold;
 }
 
-@media(max-width:600px){
-
-.product{
-flex-direction:column;
-align-items:stretch;
-}
-
-.add{
-width:100%;
-}
-
-.cart-item{
-align-items:flex-start;
-}
-
-}
-
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="container">
+
 
 <img
 src="LOGO.png"
@@ -200,120 +167,26 @@ alt="Αρτοποιείο Μεσαγρός"
 class="logo"
 >
 
+
 <h1>
 🛒 Καλάθι Παραγγελίας
 </h1>
 
+
 <div class="subtitle">
+
 Αρτοποιείο Μεσαγρός
-</div>
-
-
-<!-- ΠΡΟΪΟΝΤΑ -->
-
-<div class="product">
-
-<div class="product-info">
-
-<h3>
-🥖 Σταρένιο ψωμί
-</h3>
-
-<div class="price">
-0,90 €
-</div>
 
 </div>
 
-<button
-class="add"
-onclick="addToCart('Σταρένιο ψωμί',0.90)"
->
-+ Προσθήκη
-</button>
-
-</div>
-
-
-<div class="product">
-
-<div class="product-info">
-
-<h3>
-🍰 Cheesecake
-</h3>
-
-<div class="price">
-3,00 €
-</div>
-
-</div>
-
-<button
-class="add"
-onclick="addToCart('Cheesecake',3.00)"
->
-+ Προσθήκη
-</button>
-
-</div>
-
-
-<div class="product">
-
-<div class="product-info">
-
-<h3>
-☕ Tiramisu
-</h3>
-
-<div class="price">
-3,00 €
-</div>
-
-</div>
-
-<button
-class="add"
-onclick="addToCart('Tiramisu',3.00)"
->
-+ Προσθήκη
-</button>
-
-</div>
-
-
-<div class="product">
-
-<div class="product-info">
-
-<h3>
-🍫 Παστάκια — 500 γρ.
-</h3>
-
-<div class="price">
-7,50 €
-</div>
-
-</div>
-
-<button
-class="add"
-onclick="addToCart('Παστάκια 500 γρ. — Σοκολάτα 250 γρ. + Φράουλα 250 γρ.',7.50)"
->
-+ Προσθήκη
-</button>
-
-</div>
-
-
-<!-- ΚΑΛΑΘΙ -->
 
 <div class="cart">
+
 
 <h2>
 Τα προϊόντα σας
 </h2>
+
 
 <div
 id="cartItems"
@@ -322,6 +195,7 @@ class="empty"
 Το καλάθι είναι άδειο.
 </div>
 
+
 <div
 class="total"
 id="cartTotal"
@@ -329,12 +203,22 @@ id="cartTotal"
 Σύνολο: 0,00 €
 </div>
 
+
 <button
 class="email-button"
 onclick="sendOrder()"
 >
 📧 Αποστολή παραγγελίας μέσω Gmail
 </button>
+
+
+<button
+class="clear-button"
+onclick="clearCart()"
+>
+🗑️ Άδειασμα καλαθιού
+</button>
+
 
 </div>
 
@@ -346,98 +230,45 @@ class="back"
 ← Επιστροφή στον κατάλογο
 </a>
 
+
 </div>
+
 
 
 <script>
 
-/* ΚΑΛΑΘΙ */
 
-let cart = [];
-
-
-/* ΠΡΟΣΘΗΚΗ */
-
-function addToCart(name,price){
-
-let existing =
-cart.find(
-item => item.name === name
-);
-
-if(existing){
-
-existing.quantity++;
-
-}else{
-
-cart.push({
-
-name:name,
-price:price,
-quantity:1
-
-});
-
-}
-
-renderCart();
-
-}
+/* ================================= */
+/* ΔΙΑΒΑΖΟΥΜΕ ΤΟ ΙΔΙΟ ΚΑΛΑΘΙ */
+/* ================================= */
 
 
-/* ΑΥΞΗΣΗ */
-
-function increase(index){
-
-cart[index].quantity++;
-
-renderCart();
-
-}
+let cart =
+JSON.parse(
+localStorage.getItem("mesagrosCart")
+) || [];
 
 
-/* ΜΕΙΩΣΗ */
 
-function decrease(index){
+/* ================================= */
+/* ΕΜΦΑΝΙΣΗ ΚΑΛΑΘΙΟΥ */
+/* ================================= */
 
-cart[index].quantity--;
-
-if(cart[index].quantity <= 0){
-
-cart.splice(index,1);
-
-}
-
-renderCart();
-
-}
-
-
-/* ΔΙΑΓΡΑΦΗ */
-
-function removeItem(index){
-
-cart.splice(index,1);
-
-renderCart();
-
-}
-
-
-/* ΕΜΦΑΝΙΣΗ */
 
 function renderCart(){
+
 
 let box =
 document.getElementById("cartItems");
 
+
 let total =
 document.getElementById("cartTotal");
 
+
 if(cart.length === 0){
 
-box.className="empty";
+box.className = "empty";
 
 box.innerHTML =
 "Το καλάθι είναι άδειο.";
@@ -449,22 +280,31 @@ return;
 
 }
 
-box.className="";
 
-let html="";
+box.className = "";
 
-let sum=0;
 
-cart.forEach((item,index)=>{
+let html = "";
+
+let sum = 0;
+
+
+cart.forEach(
+(item,index) => {
+
 
 let subtotal =
-item.price * item.quantity;
+item.price *
+item.quantity;
+
 
 sum += subtotal;
+
 
 html += `
 
 <div class="cart-item">
+
 
 <div class="item-name">
 
@@ -474,12 +314,16 @@ ${item.name}
 
 <br>
 
-${item.price.toFixed(2).replace(".",",")}
-€ / τεμ.
+${item.price
+.toFixed(2)
+.replace(".",",")
+} € / τεμάχιο
 
 </div>
 
+
 <div class="item-controls">
+
 
 <button
 class="qty-button"
@@ -488,9 +332,11 @@ onclick="decrease(${index})"
 −
 </button>
 
+
 <span class="qty">
 ${item.quantity}
 </span>
+
 
 <button
 class="qty-button"
@@ -499,6 +345,7 @@ onclick="increase(${index})"
 +
 </button>
 
+
 <button
 class="remove"
 onclick="removeItem(${index})"
@@ -506,7 +353,9 @@ onclick="removeItem(${index})"
 ×
 </button>
 
+
 </div>
+
 
 </div>
 
@@ -514,23 +363,144 @@ onclick="removeItem(${index})"
 
 });
 
-box.innerHTML=html;
+
+box.innerHTML = html;
+
 
 total.innerHTML =
+
 "Σύνολο: " +
-sum.toFixed(2).replace(".",",") +
+
+sum
+.toFixed(2)
+.replace(".",",") +
+
 " €";
 
 }
 
 
-/* ΑΠΟΣΤΟΛΗ ΣΤΟ GMAIL */
 
-function sendOrder(){
+/* ================================= */
+/* ΑΥΞΗΣΗ */
+/* ================================= */
+
+
+function increase(index){
+
+cart[index].quantity++;
+
+saveCart();
+
+renderCart();
+
+}
+
+
+
+/* ================================= */
+/* ΜΕΙΩΣΗ */
+/* ================================= */
+
+
+function decrease(index){
+
+cart[index].quantity--;
+
+
+if(cart[index].quantity <= 0){
+
+cart.splice(index,1);
+
+}
+
+
+saveCart();
+
+renderCart();
+
+}
+
+
+
+/* ================================= */
+/* ΔΙΑΓΡΑΦΗ */
+/* ================================= */
+
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+saveCart();
+
+renderCart();
+
+}
+
+
+
+/* ================================= */
+/* ΑΠΟΘΗΚΕΥΣΗ */
+/* ================================= */
+
+
+function saveCart(){
+
+localStorage.setItem(
+"mesagrosCart",
+JSON.stringify(cart)
+);
+
+}
+
+
+
+/* ================================= */
+/* ΑΔΕΙΑΣΜΑ ΚΑΛΑΘΙΟΥ */
+/* ================================= */
+
+
+function clearCart(){
 
 if(cart.length === 0){
 
-alert("Το καλάθι είναι άδειο.");
+return;
+
+}
+
+
+if(
+confirm(
+"Θέλετε να αδειάσετε το καλάθι;"
+)
+){
+
+cart = [];
+
+saveCart();
+
+renderCart();
+
+}
+
+}
+
+
+
+/* ================================= */
+/* ΑΠΟΣΤΟΛΗ ΣΤΟ GMAIL */
+/* ================================= */
+
+
+function sendOrder(){
+
+
+if(cart.length === 0){
+
+alert(
+"Το καλάθι είναι άδειο."
+);
 
 return;
 
@@ -545,50 +515,80 @@ let body =
 "Καλησπέρα! Θα ήθελα να παραγγείλω:\n\n";
 
 
-let sum=0;
+let sum = 0;
 
 
-cart.forEach(item=>{
+cart.forEach(
+item => {
+
 
 let subtotal =
-item.price * item.quantity;
+item.price *
+item.quantity;
+
 
 sum += subtotal;
 
+
 body +=
+
 "• " +
+
 item.name +
+
 " × " +
+
 item.quantity +
+
 " — " +
-subtotal.toFixed(2).replace(".",",") +
+
+subtotal
+.toFixed(2)
+.replace(".",",") +
+
 " €\n";
 
 });
 
 
 body +=
+
 "\nΣύνολο: " +
-sum.toFixed(2).replace(".",",") +
+
+sum
+.toFixed(2)
+.replace(".",",") +
+
 " €";
 
 
 body +=
+
 "\n\nΌνομα πελάτη:\n" +
+
 "Τηλέφωνο:\n";
 
 
-/*
-ΑΝΟΙΓΜΑ GMAIL
-*/
+
+/* ================================= */
+/* ΑΝΟΙΓΜΑ GMAIL */
+/* ================================= */
+
 
 let gmailUrl =
+
 "https://mail.google.com/mail/?view=cm" +
+
 "&fs=1" +
+
 "&to=mesagrosbakery%40gmail.com" +
+
 "&su=" +
+
 encodeURIComponent(subject) +
+
 "&body=" +
+
 encodeURIComponent(body);
 
 
@@ -599,7 +599,17 @@ gmailUrl,
 
 }
 
+
+
+/* ================================= */
+/* ΑΡΧΙΚΗ ΕΜΦΑΝΙΣΗ */
+/* ================================= */
+
+
+renderCart();
+
 </script>
+
 
 </body>
 
