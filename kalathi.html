@@ -800,12 +800,13 @@ function sendOrder(){
         encodeURIComponent(body);
 
 
-    // Αδειάζουμε το καλάθι πριν μεταφερθούμε στο Gmail
+    // Ανοίγουμε το Gmail όπως στην προηγούμενη έκδοση που λειτουργούσε
+    window.open(gmailUrl, "_blank");
+
+    // Αδειάζουμε το καλάθι μετά τη δημιουργία του email
     cart = [];
     localStorage.removeItem("mesagrosCart");
-
-    // Μεταφορά απευθείας στο Gmail (δεν μπλοκάρεται από popup blocker)
-    window.location.href = gmailUrl;
+    renderCart();
 
 }
 
