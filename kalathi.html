@@ -520,107 +520,105 @@ renderCart();
 
 function sendOrder(){
 
+    if(cart.length === 0){
 
-if(cart.length === 0){
+        alert(
+            "Το καλάθι είναι άδειο."
+        );
 
-alert(
-"Το καλάθι είναι άδειο."
-);
+        return;
 
-return;
+    }
+
+
+    let subject =
+        "🛒 Νέα παραγγελία - Αρτοποιείο Μεσαγρός";
+
+
+    let body =
+        "🍞 ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ\n" +
+        "ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ\n\n" +
+
+        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+
+        "🛒 ΠΡΟΪΟΝΤΑ\n\n";
+
+
+    let sum = 0;
+
+
+    cart.forEach(
+        item => {
+
+            let subtotal =
+                item.price * item.quantity;
+
+            sum += subtotal;
+
+
+            body +=
+                "• " +
+                item.name +
+                " × " +
+                item.quantity +
+                " — " +
+                subtotal
+                    .toFixed(2)
+                    .replace(".",",") +
+                " €\n\n";
+
+        }
+    );
+
+
+    body +=
+        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+
+        "💰 ΣΥΝΟΛΟ: " +
+        sum
+            .toFixed(2)
+            .replace(".",",") +
+        " €\n\n" +
+
+        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+
+        "👤 ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ\n\n" +
+
+        "Όνομα:\n" +
+
+        "Τηλέφωνο:\n\n" +
+
+        "Σχόλιο / Παρατηρήσεις:\n\n" +
+
+        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+
+        "Αρτοποιείο Μεσαγρός\n" +
+        "Μεσαγρός, Γέρας Λέσβου";
+
+
+    let gmailUrl =
+
+        "https://mail.google.com/mail/?view=cm" +
+
+        "&fs=1" +
+
+        "&to=mesagrosbakery%40gmail.com" +
+
+        "&su=" +
+
+        encodeURIComponent(subject) +
+
+        "&body=" +
+
+        encodeURIComponent(body);
+
+
+    window.open(
+        gmailUrl,
+        "_blank"
+    );
 
 }
-
-
-let subject =
-"Νέα παραγγελία - Αρτοποιείο Μεσαγρός";
-
-
-let body =
-"Καλησπέρα! Θα ήθελα να παραγγείλω:\n\n";
-
-
-let sum = 0;
-
-
-cart.forEach(
-item => {
-
-
-let subtotal =
-item.price *
-item.quantity;
-
-
-sum += subtotal;
-
-
-body +=
-
-"• " +
-
-item.name +
-
-" × " +
-
-item.quantity +
-
-" — " +
-
-subtotal
-.toFixed(2)
-.replace(".",",") +
-
-" €\n";
-
-});
-
-
-body +=
-
-"\nΣύνολο: " +
-
-sum
-.toFixed(2)
-.replace(".",",") +
-
-" €";
-
-
-body +=
-
-"\n\nΌνομα πελάτη:\n" +
-
-"Τηλέφωνο:\n";
-
-
-
-/* ================================= */
-/* ΑΝΟΙΓΜΑ GMAIL */
-/* ================================= */
-
-
-let gmailUrl =
-
-"https://mail.google.com/mail/?view=cm" +
-
-"&fs=1" +
-
-"&to=mesagrosbakery%40gmail.com" +
-
-"&su=" +
-
-encodeURIComponent(subject) +
-
-"&body=" +
-
-encodeURIComponent(body);
-
-
-window.open(
-gmailUrl,
-"_blank"
-);
 
 }
 
