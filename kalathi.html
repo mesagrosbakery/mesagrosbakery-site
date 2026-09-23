@@ -802,10 +802,40 @@ function sendOrder(){
         encodeURIComponent(body);
 
 
-    // Ανοίγουμε το Gmail όπως στην προηγούμενη έκδοση που λειτουργούσε
-    window.open(gmailUrl, "_blank");
+    /*
+     * Υπολογιστής:
+     * ανοίγουμε το Gmail στον browser όπως πριν.
+     *
+     * Κινητό:
+     * χρησιμοποιούμε mailto ώστε το κινητό να ανοίξει
+     * την προεπιλεγμένη εφαρμογή email (π.χ. Gmail)
+     * με παραλήπτη, θέμα και έτοιμη παραγγελία.
+     */
+    const isMobile =
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    // Αδειάζουμε το καλάθι μετά τη δημιουργία του email
+    if(isMobile){
+
+        const mailtoUrl =
+            "mailto:mesagrosbakery@gmail.com" +
+            "?subject=" +
+            encodeURIComponent(subject) +
+            "&body=" +
+            encodeURIComponent(body);
+
+        window.location.href = mailtoUrl;
+
+    }else{
+
+        window.open(gmailUrl, "_blank");
+
+    }
+
+    /*
+     * Η παραγγελία έχει ήδη δημιουργηθεί.
+     * Καθαρίζουμε το καλάθι ώστε ο πελάτης να ξεκινήσει
+     * με άδειο καλάθι όταν επιστρέψει στο site.
+     */
     cart = [];
     localStorage.removeItem("mesagrosCart");
     renderCart();
