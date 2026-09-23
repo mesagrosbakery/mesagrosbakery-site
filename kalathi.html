@@ -630,9 +630,61 @@ function sendOrder(){
     }
 
 
+    /* ================================= */
+    /* ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ */
+    /* ================================= */
+
+    let customerName =
+        document.getElementById("customerName").value.trim();
+
+    let customerPhone =
+        document.getElementById("customerPhone").value.trim();
+
+    let customerArea =
+        document.getElementById("customerArea").value.trim();
+
+    let customerAddress =
+        document.getElementById("customerAddress").value.trim();
+
+    let customerNumber =
+        document.getElementById("customerNumber").value.trim();
+
+    let customerNotes =
+        document.getElementById("customerNotes").value.trim();
+
+
+    /* ================================= */
+    /* ΕΛΕΓΧΟΣ ΥΠΟΧΡΕΩΤΙΚΩΝ ΠΕΔΙΩΝ */
+    /* ================================= */
+
+    if(
+        !customerName ||
+        !customerPhone ||
+        !customerArea ||
+        !customerAddress ||
+        !customerNumber
+    ){
+
+        alert(
+            "Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά στοιχεία."
+        );
+
+        return;
+
+    }
+
+
+    /* ================================= */
+    /* ΘΕΜΑ EMAIL */
+    /* ================================= */
+
     let subject =
         "🛒 Νέα παραγγελία - Αρτοποιείο Μεσαγρός";
 
+
+    /* ================================= */
+    /* ΑΡΧΗ ΜΗΝΥΜΑΤΟΣ */
+    /* ================================= */
 
     let body =
         "🍞 ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ\n" +
@@ -642,6 +694,10 @@ function sendOrder(){
 
         "🛒 ΠΡΟΪΟΝΤΑ\n\n";
 
+
+    /* ================================= */
+    /* ΠΡΟΪΟΝΤΑ */
+    /* ================================= */
 
     let sum = 0;
 
@@ -670,6 +726,10 @@ function sendOrder(){
     );
 
 
+    /* ================================= */
+    /* ΣΥΝΟΛΟ + ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ */
+    /* ================================= */
+
     body +=
         "━━━━━━━━━━━━━━━━━━━━\n\n" +
 
@@ -683,17 +743,47 @@ function sendOrder(){
 
         "👤 ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ\n\n" +
 
-        "Όνομα:\n" +
+        "Όνομα: " +
+        customerName +
+        "\n" +
 
-        "Τηλέφωνο:\n\n" +
+        "Τηλέφωνο: " +
+        customerPhone +
+        "\n\n" +
 
-        "Σχόλιο / Παρατηρήσεις:\n\n" +
+        "📍 ΣΤΟΙΧΕΙΑ ΠΑΡΑΔΟΣΗΣ\n\n" +
+
+        "Περιοχή / Χωριό: " +
+        customerArea +
+        "\n" +
+
+        "Διεύθυνση: " +
+        customerAddress +
+        "\n" +
+
+        "Αριθμός: " +
+        customerNumber +
+        "\n\n" +
+
+        "📝 ΠΑΡΑΤΗΡΗΣΕΙΣ\n\n" +
+
+        (
+            customerNotes
+                ? customerNotes
+                : "Δεν υπάρχουν παρατηρήσεις."
+        ) +
+
+        "\n\n" +
 
         "━━━━━━━━━━━━━━━━━━━━\n\n" +
 
         "Αρτοποιείο Μεσαγρός\n" +
         "Μεσαγρός, Γέρας Λέσβου";
 
+
+    /* ================================= */
+    /* ΑΝΟΙΓΜΑ GMAIL */
+    /* ================================= */
 
     let gmailUrl =
 
@@ -718,8 +808,6 @@ function sendOrder(){
     );
 
 }
-
-
 
 /* ================================= */
 /* ΑΡΧΙΚΗ ΕΜΦΑΝΙΣΗ */
