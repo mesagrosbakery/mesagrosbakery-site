@@ -301,23 +301,49 @@ item.quantity;
 sum += subtotal;
 
 
+let itemName = item.name;
+let itemDescription = "";
+
+let isPastakia = item.name.startsWith("Παστάκια");
+
+if(isPastakia){
+
+    let parts = item.name.split(" — ");
+
+    itemName = parts[0];
+
+    itemDescription = parts[1] || "";
+
+}
+
 html += `
 
 <div class="cart-item">
 
-
 <div class="item-name">
 
 <strong>
-${item.name}
+${itemName}
 </strong>
 
-<br>
+${isPastakia ? `
+<div style="
+margin-top:5px;
+font-size:14px;
+line-height:1.6;
+color:#666;
+">
+${itemDescription.replaceAll(", ", "<br>")}
+</div>
+` : ""}
 
+${!isPastakia ? `
+<br>
 ${item.price
 .toFixed(2)
 .replace(".",",")
 } € / τεμάχιο
+` : ""}
 
 </div>
 
