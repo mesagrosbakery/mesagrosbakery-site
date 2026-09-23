@@ -350,6 +350,7 @@ ${item.price
 
 <div class="item-controls">
 
+${isPastakia ? "" : `
 
 <button
 class="qty-button"
@@ -358,11 +359,9 @@ onclick="decrease(${index})"
 −
 </button>
 
-
 <span class="qty">
 ${item.quantity}
 </span>
-
 
 <button
 class="qty-button"
@@ -371,6 +370,7 @@ onclick="increase(${index})"
 +
 </button>
 
+`}
 
 <button
 class="remove"
@@ -378,7 +378,6 @@ onclick="removeItem(${index})"
 >
 ×
 </button>
-
 
 </div>
 
