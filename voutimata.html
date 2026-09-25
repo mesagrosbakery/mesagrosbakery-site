@@ -1,42 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Βουτήματα | Αρτοποιείο Μεσαγρός</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Βουτήματα – Κουλουράκια – Παξιμαδάκια | Αρτοποιείο Μεσαγρός</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f8f4ed;color:#4a2f20}
-header{text-align:center;background:#fff;padding:24px 16px;border-bottom:1px solid #e6ddd1}
-h1{margin:0 0 8px;font-size:32px}header p{margin:0;color:#7a6658}
-.back{display:inline-block;margin-top:16px;padding:10px 18px;border-radius:22px;background:#4a2f20;color:#fff;text-decoration:none}
-.products{max-width:1200px;margin:30px auto;padding:0 18px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
-.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.card img{width:100%;height:220px;object-fit:cover;display:block}
-.card-content{padding:16px;text-align:center}.card h2{margin:0;font-size:19px;font-weight:600}
-@media(max-width:600px){h1{font-size:27px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 10px 30px}.card img{height:165px}.card-content{padding:11px 7px 14px}.card h2{font-size:16px}}
+:root{--ink:#2b2119;--cream:#fffaf1;--accent:#9a5b2d;--muted:#75675c}
+*{box-sizing:border-box}html,body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
+header{background:#f1dfc5;padding:25px 15px;text-align:center;border-bottom:1px solid #e1c8a8}
+header h1{margin:0;font-size:30px}header p{margin:8px 0 0;color:var(--muted)}
+.container{max-width:1200px;margin:auto;padding:20px 15px 70px}
+.back{display:inline-block;margin-bottom:18px;text-decoration:none;color:var(--ink);background:#f0e2d0;padding:10px 15px;border-radius:20px;font-weight:bold}
+.hero-image{width:100%;height:250px;object-fit:cover;border-radius:16px;display:block;margin-bottom:25px}
+.intro{text-align:center;margin:0 0 25px}.intro h2{margin:0 0 8px;font-size:26px}.intro p{margin:0;color:var(--muted)}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.product-card{background:#fff;border:1px solid #eee4d8;border-radius:16px;overflow:hidden;box-shadow:0 4px 15px #0000000a}
+.product-card img{width:100%;height:230px;object-fit:cover;display:block}
+.product-body{padding:18px}.product-body h2{margin:0 0 8px;text-align:center;font-size:20px;min-height:48px;display:flex;align-items:center;justify-content:center}
+.kilo-price{text-align:center;color:var(--accent);font-weight:800;font-size:18px;margin-bottom:14px}
+label{display:block;font-weight:bold;margin:10px 0 7px}select{width:100%;padding:12px;border:1px solid #dcc9b4;border-radius:10px;background:#fff;font-size:16px}
+.total{margin-top:13px;text-align:center;font-size:19px;font-weight:bold}
+.cart-btn{width:100%;margin-top:14px;padding:13px;border:0;border-radius:11px;background:var(--accent);color:white;font-size:16px;font-weight:bold;cursor:pointer}
+.cart-btn.added{background:#4f7d3a}.cart-link{display:block;max-width:420px;margin:28px auto 0;text-align:center;text-decoration:none;background:#2b2119;color:white;padding:13px;border-radius:11px;font-weight:bold}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){header h1{font-size:25px}.container{padding:15px 10px 50px}.hero-image{height:180px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product-card img{height:155px}.product-body{padding:11px 8px 13px}.product-body h2{font-size:15px;min-height:42px}.kilo-price{font-size:15px}select{padding:9px;font-size:14px}.total{font-size:16px}.cart-btn{padding:11px 6px;font-size:14px}}
 </style>
 </head>
 <body>
-<header>
-<h1>Βουτήματα</h1>
-<p>Αρτοποιείο Μεσαγρός, Γέρας</p>
-<a class="back" href="index.html">← Επιστροφή στα προϊόντα</a>
-</header>
-<main class="products">
-<article class="card"><img src="koulouraki-kanela.png" alt="Κουλουράκι κανέλα"><div class="card-content"><h2>Κουλουράκι κανέλα</h2></div></article>
-<article class="card"><img src="koulouraki-moustou.png" alt="Κουλουράκι μουστου"><div class="card-content"><h2>Κουλουράκι μουστου</h2></div></article>
-<article class="card"><img src="koulouraki-nistisimo.png" alt="Κουλουράκι νηστίσιμο"><div class="card-content"><h2>Κουλουράκι νηστίσιμο</h2></div></article>
-<article class="card"><img src="koulouraki-portokaliou.png" alt="Κουλουράκι πορτοκαλιού"><div class="card-content"><h2>Κουλουράκι πορτοκαλιού</h2></div></article>
-<article class="card"><img src="koulouraki-vanilias.png" alt="Κουλουράκι βανίλιας"><div class="card-content"><h2>Κουλουράκι βανίλιας</h2></div></article>
-<article class="card"><img src="ptifour.png" alt="Πτι φουρ"><div class="card-content"><h2>Πτι φουρ</h2></div></article>
-<article class="card"><img src="paximadaki-amygdalou.png" alt="Παξιμαδάκι αμυγδάλου"><div class="card-content"><h2>Παξιμαδάκι αμυγδάλου</h2></div></article>
-<article class="card"><img src="paximadaki-karydi.png" alt="Παξιμαδάκι καρυδιού"><div class="card-content"><h2>Παξιμαδάκι καρυδιού</h2></div></article>
-<article class="card"><img src="paximadaki-vanilias.png" alt="Παξιμαδάκι βανίλιας"><div class="card-content"><h2>Παξιμαδάκι βανίλιας</h2></div></article>
-<article class="card"><img src="paximadaki-stafidas.png" alt="Παξιμαδάκι σταφίδας"><div class="card-content"><h2>Παξιμαδάκι σταφίδας</h2></div></article>
-<article class="card"><img src="paximadaki-glikanisou.png" alt="Παξιμαδάκι γλυκάνισου"><div class="card-content"><h2>Παξιμαδάκι γλυκάνισου</h2></div></article>
-<article class="card"><img src="paximadaki-kakao.png" alt="Παξιμαδάκι κακάο"><div class="card-content"><h2>Παξιμαδάκι κακάο</h2></div></article>
-<article class="card"><img src="ombrelaki-sokolata.png" alt="Ομπρελάκι σοκολάτα"><div class="card-content"><h2>Ομπρελάκι σοκολάτα</h2></div></article>
-<article class="card"><img src="baton-sale.png" alt="Μπατόν σαλέ"><div class="card-content"><h2>Μπατόν σαλέ</h2></div></article>
+<header><h1>🍪 Βουτήματα – Κουλουράκια – Παξιμαδάκια</h1><p>Αρτοποιείο Μεσαγρός • Παραδοσιακές γεύσεις</p></header>
+<main class="container">
+<a class="back" href="index.html">← Επιστροφή στον κατάλογο</a>
+<img class="hero-image" src="voutimata-koulourakia-paximadakia.png" alt="Βουτήματα – Κουλουράκια – Παξιμαδάκια">
+<div class="intro"><h2>Επιλέξτε το βούτημά σας</h2><p>Όλα τα προϊόντα της κατηγορίας: <strong>12,00 € / κιλό</strong></p></div>
+<section class="products"><article class="product-card">
+<img src="koulouraki-vanilias.png" alt="Κουλουράκι βανίλιας">
+<div class="product-body">
+<h2>Κουλουράκι βανίλιας</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-0">Ποσότητα</label>
+<select id="weight-0" onchange="updatePrice(0)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-0">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-0" onclick="addToCart(0, 'Κουλουράκι βανίλιας')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="koulouraki-kanela.png" alt="Κουλουράκι κανέλας">
+<div class="product-body">
+<h2>Κουλουράκι κανέλας</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-1">Ποσότητα</label>
+<select id="weight-1" onchange="updatePrice(1)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-1">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-1" onclick="addToCart(1, 'Κουλουράκι κανέλας')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="koulouraki-portokaliou.png" alt="Κουλουράκι πορτοκαλιού">
+<div class="product-body">
+<h2>Κουλουράκι πορτοκαλιού</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-2">Ποσότητα</label>
+<select id="weight-2" onchange="updatePrice(2)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-2">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-2" onclick="addToCart(2, 'Κουλουράκι πορτοκαλιού')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="koulouraki-nistisimo.png" alt="Κουλουράκι νηστίσιμο με μέλι και σουσάμι">
+<div class="product-body">
+<h2>Κουλουράκι νηστίσιμο με μέλι και σουσάμι</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-3">Ποσότητα</label>
+<select id="weight-3" onchange="updatePrice(3)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-3">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-3" onclick="addToCart(3, 'Κουλουράκι νηστίσιμο με μέλι και σουσάμι')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="koulouraki-moustou.png" alt="Κουλουράκι μούστου">
+<div class="product-body">
+<h2>Κουλουράκι μούστου</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-4">Ποσότητα</label>
+<select id="weight-4" onchange="updatePrice(4)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-4">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-4" onclick="addToCart(4, 'Κουλουράκι μούστου')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="ptifour.png" alt="Πτιφούρ">
+<div class="product-body">
+<h2>Πτιφούρ</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-5">Ποσότητα</label>
+<select id="weight-5" onchange="updatePrice(5)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-5">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-5" onclick="addToCart(5, 'Πτιφούρ')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="paximadaki-amygdalou.png" alt="Παξιμαδάκι αμυγδάλου">
+<div class="product-body">
+<h2>Παξιμαδάκι αμυγδάλου</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-6">Ποσότητα</label>
+<select id="weight-6" onchange="updatePrice(6)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-6">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-6" onclick="addToCart(6, 'Παξιμαδάκι αμυγδάλου')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="paximadaki-karydi.png" alt="Παξιμαδάκι καρυδιού">
+<div class="product-body">
+<h2>Παξιμαδάκι καρυδιού</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-7">Ποσότητα</label>
+<select id="weight-7" onchange="updatePrice(7)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-7">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-7" onclick="addToCart(7, 'Παξιμαδάκι καρυδιού')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="paximadaki-vanilias.png" alt="Παξιμαδάκι βανίλιας">
+<div class="product-body">
+<h2>Παξιμαδάκι βανίλιας</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-8">Ποσότητα</label>
+<select id="weight-8" onchange="updatePrice(8)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-8">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-8" onclick="addToCart(8, 'Παξιμαδάκι βανίλιας')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="paximadaki-stafidas.png" alt="Παξιμαδάκι σταφίδας">
+<div class="product-body">
+<h2>Παξιμαδάκι σταφίδας</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-9">Ποσότητα</label>
+<select id="weight-9" onchange="updatePrice(9)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-9">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-9" onclick="addToCart(9, 'Παξιμαδάκι σταφίδας')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="paximadaki-glikanisou.png" alt="Παξιμαδάκι γλυκάνισου">
+<div class="product-body">
+<h2>Παξιμαδάκι γλυκάνισου</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-10">Ποσότητα</label>
+<select id="weight-10" onchange="updatePrice(10)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-10">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-10" onclick="addToCart(10, 'Παξιμαδάκι γλυκάνισου')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="paximadaki-kakao.png" alt="Παξιμαδάκι κακάο">
+<div class="product-body">
+<h2>Παξιμαδάκι κακάο</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-11">Ποσότητα</label>
+<select id="weight-11" onchange="updatePrice(11)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-11">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-11" onclick="addToCart(11, 'Παξιμαδάκι κακάο')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="ombrelaki-sokolata.png" alt="Ομπρελάκι γεμιστό με σοκολάτα">
+<div class="product-body">
+<h2>Ομπρελάκι γεμιστό με σοκολάτα</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-12">Ποσότητα</label>
+<select id="weight-12" onchange="updatePrice(12)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-12">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-12" onclick="addToCart(12, 'Ομπρελάκι γεμιστό με σοκολάτα')">🛒 Προσθήκη στο καλάθι</button>
+</div></article><article class="product-card">
+<img src="baton-sale.png" alt="Μπατόν σαλέ">
+<div class="product-body">
+<h2>Μπατόν σαλέ</h2>
+<div class="kilo-price">12,00 € / κιλό</div>
+<label for="weight-13">Ποσότητα</label>
+<select id="weight-13" onchange="updatePrice(13)">
+<option value="250">250 g</option><option value="500">500 g</option>
+<option value="750">750 g</option><option value="1000">1 kg</option>
+</select>
+<div class="total" id="total-13">Τιμή: 3,00 €</div>
+<button class="cart-btn" id="button-13" onclick="addToCart(13, 'Μπατόν σαλέ')">🛒 Προσθήκη στο καλάθι</button>
+</div></article></section>
+<a class="cart-link" href="kalathi.html">🛒 Μετάβαση στο καλάθι</a>
 </main>
+<script>
+const kiloPrice=12;
+function updatePrice(i){const g=Number(document.getElementById('weight-'+i).value);const p=Math.round(kiloPrice*g/1000*100)/100;document.getElementById('total-'+i).textContent='Τιμή: '+p.toFixed(2).replace('.',',')+' €';}
+function addToCart(i,item){const g=Number(document.getElementById('weight-'+i).value);const p=Math.round(kiloPrice*g/1000*100)/100;const n=item+' ('+(g===1000?'1 kg':g+' g')+')';let cart=JSON.parse(localStorage.getItem('mesagrosCart'))||[];const e=cart.find(x=>x.name===n);if(e)e.quantity++;else cart.push({name:n,price:p,quantity:1});localStorage.setItem('mesagrosCart',JSON.stringify(cart));const b=document.getElementById('button-'+i),old=b.innerHTML;b.innerHTML='✓ Προστέθηκε!';b.classList.add('added');setTimeout(()=>{b.innerHTML=old;b.classList.remove('added')},1200);}
+for(let i=0;i<14;i++)updatePrice(i);
+</script>
 </body>
 </html>
