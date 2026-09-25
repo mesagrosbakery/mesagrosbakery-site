@@ -150,46 +150,6 @@ text-decoration:none;
 font-weight:bold;
 }
 
-
-<style>
-.delivery-box{
-  margin-top:25px;
-  padding:20px;
-  background:#f8f1e5;
-  border-radius:14px;
-  border:1px solid #eadfd2;
-}
-.delivery-box h3{margin:0 0 14px}
-.delivery-box label{display:block;font-weight:bold;margin:12px 0 7px}
-.delivery-box select,
-.delivery-box input{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:16px;
-  background:#fff;
-}
-.delivery-info{
-  margin-top:12px;
-  padding:12px;
-  background:#fff;
-  border-radius:10px;
-  color:#5f5045;
-  line-height:1.5;
-}
-.same-day-warning{
-  display:none;
-  margin-top:12px;
-  padding:14px;
-  background:#fff3cd;
-  border:1px solid #e5c76b;
-  border-radius:10px;
-  color:#5a4610;
-  line-height:1.5;
-}
-</style>
-
 </style>
 
 </head>
@@ -322,6 +282,42 @@ border:1px solid #ddd;
 border-radius:8px;
 font-size:16px;
 ">
+
+<h3>
+🚚 Τρόπος / Περιοχή διανομής
+</h3>
+
+<select
+id="deliveryRoute"
+style="
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+background:white;
+">
+<option value="">Επιλέξτε διαδρομή *</option>
+<option value="mytilene">Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά</option>
+<option value="plomari">Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά</option>
+<option value="other">Άλλη περιοχή Λέσβου / Υπόλοιπη Ελλάδα — κατόπιν συνεννόησης</option>
+</select>
+
+<label for="deliveryDate" style="display:block;margin:8px 0 6px;font-weight:bold;">📅 Ημερομηνία παράδοσης *</label>
+<input
+id="deliveryDate"
+type="date"
+style="
+width:100%;
+padding:12px;
+margin-bottom:8px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+">
+
+<div id="deliveryMessage" style="display:none;padding:12px;border-radius:10px;margin-bottom:18px;line-height:1.5;font-size:14px;"></div>
 
 <h3>
 📝 Παρατηρήσεις
@@ -655,104 +651,76 @@ renderCart();
 
 
 /* ================================= */
-/* ΑΠΟΣΤΟΛΗ ΣΤΟ GMAIL */
+/* ΕΛΕΓΧΟΣ ΔΙΑΝΟΜΗΣ */
 /* ================================= */
 
-
-
-const deliverySchedules = {
-  mytilini: {
-    label: "Μεσαγρός → Μυτιλήνη",
-    days: [2, 4, 5],
-    info: "Τρίτη • Πέμπτη • Παρασκευή, 15:00 – 17:00"
-  },
-  plomari: {
-    label: "Μεσαγρός → Πλωμάρι",
-    days: [1, 3, 6],
-    info: "Δευτέρα • Τετάρτη • Σάββατο, 15:00 – 17:00"
-  },
-  lesvos: {
-    label: "Υπόλοιπο Λέσβου",
-    days: [],
-    info: "Κατόπιν συνεννόησης"
-  },
-  greece: {
-    label: "Υπόλοιπη Ελλάδα",
-    days: [],
-    info: "Κατόπιν συνεννόησης"
-  }
-};
-
-const dayNames = ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"];
-
-function formatDate(date){
-  return date.toLocaleDateString("el-GR", {
-    weekday:"long", day:"2-digit", month:"2-digit", year:"numeric"
-  });
+function setMinDeliveryDate(){
+    const dateInput = document.getElementById("deliveryDate");
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    dateInput.min = `${y}-${m}-${d}`;
 }
 
-function dateKey(date){
-  const y=date.getFullYear();
-  const m=String(date.getMonth()+1).padStart(2,"0");
-  const d=String(date.getDate()).padStart(2,"0");
-  return `${y}-${m}-${d}`;
-}
+function checkDeliveryDate(){
+    const route = document.getElementById("deliveryRoute").value;
+    const dateValue = document.getElementById("deliveryDate").value;
+    const message = document.getElementById("deliveryMessage");
 
-function updateDeliveryOptions(){
-  const route=document.getElementById("deliveryRoute").value;
-  const dateSelect=document.getElementById("deliveryDate");
-  const info=document.getElementById("routeInfo");
-  const warning=document.getElementById("sameDayWarning");
+    message.style.display = "none";
+    message.innerHTML = "";
 
-  warning.style.display="none";
-  dateSelect.innerHTML="";
+    if(!route || !dateValue) return;
 
-  if(!route){
-    dateSelect.innerHTML='<option value="">Επιλέξτε πρώτα τη διαδρομή</option>';
-    info.textContent="Επιλέξτε πρώτα την περιοχή / διαδρομή.";
-    return;
-  }
+    const selected = new Date(dateValue + "T12:00:00");
+    const day = selected.getDay();
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const isToday = selected.toDateString() === today.toDateString();
 
-  const schedule=deliverySchedules[route];
-  info.textContent=schedule.info;
+    let routeDay = false;
+    let routeName = "";
 
-  if(route==="lesvos" || route==="greece"){
-    dateSelect.innerHTML='<option value="contact">Κατόπιν συνεννόησης</option>';
-    return;
-  }
-
-  dateSelect.innerHTML='<option value="">Επιλέξτε ημερομηνία</option>';
-
-  const today=new Date();
-  today.setHours(0,0,0,0);
-
-  for(let i=0;i<28;i++){
-    const d=new Date(today);
-    d.setDate(today.getDate()+i);
-
-    if(schedule.days.includes(d.getDay())){
-      const option=document.createElement("option");
-      option.value=dateKey(d);
-      option.textContent=formatDate(d);
-      dateSelect.appendChild(option);
+    if(route === "mytilene"){
+        routeDay = [2,4,5].includes(day);
+        routeName = "Μυτιλήνη";
+    }else if(route === "plomari"){
+        routeDay = [1,3,6].includes(day);
+        routeName = "Πλωμάρι";
+    }else{
+        message.style.display = "block";
+        message.style.background = "#fff8e1";
+        message.style.border = "1px solid #ead7a0";
+        message.innerHTML = "📞 Η παράδοση στην περιοχή σας γίνεται κατόπιν συνεννόησης. Θα επικοινωνήσουμε μαζί σας τηλεφωνικά για επιβεβαίωση.";
+        return;
     }
-  }
+
+    if(!routeDay){
+        message.style.display = "block";
+        message.style.background = "#fff8e1";
+        message.style.border = "1px solid #ead7a0";
+        message.innerHTML = `⚠️ Η διαδρομή <strong>Μεσαγρός → ${routeName}</strong> δεν πραγματοποιείται τη συγκεκριμένη ημέρα. Παρακαλούμε επιλέξτε διαθέσιμη ημέρα ή επικοινωνήστε μαζί μας.`;
+        return;
+    }
+
+    if(isToday){
+        message.style.display = "block";
+        message.style.background = "#fff3cd";
+        message.style.border = "1px solid #e0b84c";
+        message.innerHTML = "⚠️ <strong>Προσοχή:</strong> Η παραγγελία σας αφορά παράδοση σήμερα. Ενδέχεται να μην είναι διαθέσιμα όλα τα προϊόντα. Θα ενημερωθείτε τηλεφωνικά για επιβεβαίωση της παραγγελίας.";
+    }else{
+        message.style.display = "block";
+        message.style.background = "#eef7ee";
+        message.style.border = "1px solid #b9d8b9";
+        message.innerHTML = `✅ Η ημερομηνία είναι διαθέσιμη για τη διαδρομή <strong>Μεσαγρός → ${routeName}</strong> (15:00 – 17:00).`;
+    }
 }
 
-function checkSameDay(){
-  const route=document.getElementById("deliveryRoute").value;
-  const selected=document.getElementById("deliveryDate").value;
-  const warning=document.getElementById("sameDayWarning");
 
-  if(!route || !selected || selected==="contact"){
-    warning.style.display="none";
-    return;
-  }
-
-  const today=new Date();
-  const todayKey=dateKey(today);
-  warning.style.display = selected===todayKey ? "block" : "none";
-}
+/* ================================= */
+/* ΑΠΟΣΤΟΛΗ ΣΤΟ GMAIL */
+/* ================================= */
 
 
 function sendOrder(){
@@ -793,18 +761,11 @@ function sendOrder(){
     let deliveryDate =
         document.getElementById("deliveryDate").value;
 
-    let deliveryRouteLabel =
-        deliveryRoute && deliverySchedules[deliveryRoute]
-        ? deliverySchedules[deliveryRoute].label
-        : "";
-
-    let deliveryDateLabel = deliveryDate === "contact"
-        ? "Κατόπιν συνεννόησης"
-        : deliveryDate
-            ? document.getElementById("deliveryDate").options[
-                document.getElementById("deliveryDate").selectedIndex
-              ].text
-            : "";
+    const routeNames = {
+        mytilene: "Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά",
+        plomari: "Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά",
+        other: "Άλλη περιοχή — κατόπιν συνεννόησης"
+    };
 
 
     /* ================================= */
@@ -816,13 +777,28 @@ function sendOrder(){
         !customerPhone ||
         !customerArea ||
         !customerAddress ||
-        !customerNumber
+        !customerNumber ||
+        !deliveryRoute ||
+        !deliveryDate
     ){
 
         alert(
             "Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά στοιχεία."
         );
 
+        return;
+    }
+
+    const selectedDeliveryDate = new Date(deliveryDate + "T12:00:00");
+    const selectedDay = selectedDeliveryDate.getDay();
+
+    if(deliveryRoute === "mytilene" && ![2,4,5].includes(selectedDay)){
+        alert("Η διαδρομή Μεσαγρός → Μυτιλήνη πραγματοποιείται Τρίτη, Πέμπτη και Παρασκευή.");
+        return;
+    }
+
+    if(deliveryRoute === "plomari" && ![1,3,6].includes(selectedDay)){
+        alert("Η διαδρομή Μεσαγρός → Πλωμάρι πραγματοποιείται Δευτέρα, Τετάρτη και Σάββατο.");
         return;
     }
 
@@ -920,6 +896,18 @@ function sendOrder(){
         customerNumber +
         "\n\n" +
 
+        "🚚 ΔΙΑΝΟΜΗ\n\n" +
+
+        "Διαδρομή: " +
+        routeNames[deliveryRoute] +
+        "\n" +
+
+        "Ημερομηνία: " +
+        new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") +
+        "\n" +
+
+        "Ώρες διανομής: 15:00 – 17:00\n\n" +
+
         "📝 ΠΑΡΑΤΗΡΗΣΕΙΣ\n\n" +
 
         (
@@ -971,7 +959,9 @@ function sendOrder(){
 /* ΑΡΧΙΚΗ ΕΜΦΑΝΙΣΗ */
 /* ================================= */
 
-
+setMinDeliveryDate();
+document.getElementById("deliveryRoute").addEventListener("change", checkDeliveryDate);
+document.getElementById("deliveryDate").addEventListener("change", checkDeliveryDate);
 renderCart();
 
 </script>
