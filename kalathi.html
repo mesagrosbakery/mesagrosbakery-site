@@ -150,6 +150,46 @@ text-decoration:none;
 font-weight:bold;
 }
 
+
+<style>
+.delivery-box{
+  margin-top:25px;
+  padding:20px;
+  background:#f8f1e5;
+  border-radius:14px;
+  border:1px solid #eadfd2;
+}
+.delivery-box h3{margin:0 0 14px}
+.delivery-box label{display:block;font-weight:bold;margin:12px 0 7px}
+.delivery-box select,
+.delivery-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:16px;
+  background:#fff;
+}
+.delivery-info{
+  margin-top:12px;
+  padding:12px;
+  background:#fff;
+  border-radius:10px;
+  color:#5f5045;
+  line-height:1.5;
+}
+.same-day-warning{
+  display:none;
+  margin-top:12px;
+  padding:14px;
+  background:#fff3cd;
+  border:1px solid #e5c76b;
+  border-radius:10px;
+  color:#5a4610;
+  line-height:1.5;
+}
+</style>
+
 </style>
 
 </head>
@@ -619,6 +659,102 @@ renderCart();
 /* ================================= */
 
 
+
+const deliverySchedules = {
+  mytilini: {
+    label: "Μεσαγρός → Μυτιλήνη",
+    days: [2, 4, 5],
+    info: "Τρίτη • Πέμπτη • Παρασκευή, 15:00 – 17:00"
+  },
+  plomari: {
+    label: "Μεσαγρός → Πλωμάρι",
+    days: [1, 3, 6],
+    info: "Δευτέρα • Τετάρτη • Σάββατο, 15:00 – 17:00"
+  },
+  lesvos: {
+    label: "Υπόλοιπο Λέσβου",
+    days: [],
+    info: "Κατόπιν συνεννόησης"
+  },
+  greece: {
+    label: "Υπόλοιπη Ελλάδα",
+    days: [],
+    info: "Κατόπιν συνεννόησης"
+  }
+};
+
+const dayNames = ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"];
+
+function formatDate(date){
+  return date.toLocaleDateString("el-GR", {
+    weekday:"long", day:"2-digit", month:"2-digit", year:"numeric"
+  });
+}
+
+function dateKey(date){
+  const y=date.getFullYear();
+  const m=String(date.getMonth()+1).padStart(2,"0");
+  const d=String(date.getDate()).padStart(2,"0");
+  return `${y}-${m}-${d}`;
+}
+
+function updateDeliveryOptions(){
+  const route=document.getElementById("deliveryRoute").value;
+  const dateSelect=document.getElementById("deliveryDate");
+  const info=document.getElementById("routeInfo");
+  const warning=document.getElementById("sameDayWarning");
+
+  warning.style.display="none";
+  dateSelect.innerHTML="";
+
+  if(!route){
+    dateSelect.innerHTML='<option value="">Επιλέξτε πρώτα τη διαδρομή</option>';
+    info.textContent="Επιλέξτε πρώτα την περιοχή / διαδρομή.";
+    return;
+  }
+
+  const schedule=deliverySchedules[route];
+  info.textContent=schedule.info;
+
+  if(route==="lesvos" || route==="greece"){
+    dateSelect.innerHTML='<option value="contact">Κατόπιν συνεννόησης</option>';
+    return;
+  }
+
+  dateSelect.innerHTML='<option value="">Επιλέξτε ημερομηνία</option>';
+
+  const today=new Date();
+  today.setHours(0,0,0,0);
+
+  for(let i=0;i<28;i++){
+    const d=new Date(today);
+    d.setDate(today.getDate()+i);
+
+    if(schedule.days.includes(d.getDay())){
+      const option=document.createElement("option");
+      option.value=dateKey(d);
+      option.textContent=formatDate(d);
+      dateSelect.appendChild(option);
+    }
+  }
+}
+
+function checkSameDay(){
+  const route=document.getElementById("deliveryRoute").value;
+  const selected=document.getElementById("deliveryDate").value;
+  const warning=document.getElementById("sameDayWarning");
+
+  if(!route || !selected || selected==="contact"){
+    warning.style.display="none";
+    return;
+  }
+
+  const today=new Date();
+  const todayKey=dateKey(today);
+  warning.style.display = selected===todayKey ? "block" : "none";
+}
+
+
 function sendOrder(){
 
     if(cart.length === 0){
@@ -650,6 +786,25 @@ function sendOrder(){
 
     let customerNotes =
         document.getElementById("customerNotes").value.trim();
+
+    let deliveryRoute =
+        document.getElementById("deliveryRoute").value;
+
+    let deliveryDate =
+        document.getElementById("deliveryDate").value;
+
+    let deliveryRouteLabel =
+        deliveryRoute && deliverySchedules[deliveryRoute]
+        ? deliverySchedules[deliveryRoute].label
+        : "";
+
+    let deliveryDateLabel = deliveryDate === "contact"
+        ? "Κατόπιν συνεννόησης"
+        : deliveryDate
+            ? document.getElementById("deliveryDate").options[
+                document.getElementById("deliveryDate").selectedIndex
+              ].text
+            : "";
 
 
     /* ================================= */
@@ -802,40 +957,10 @@ function sendOrder(){
         encodeURIComponent(body);
 
 
-    /*
-     * Υπολογιστής:
-     * ανοίγουμε το Gmail στον browser όπως πριν.
-     *
-     * Κινητό:
-     * χρησιμοποιούμε mailto ώστε το κινητό να ανοίξει
-     * την προεπιλεγμένη εφαρμογή email (π.χ. Gmail)
-     * με παραλήπτη, θέμα και έτοιμη παραγγελία.
-     */
-    const isMobile =
-        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // Ανοίγουμε το Gmail όπως στην προηγούμενη έκδοση που λειτουργούσε
+    window.open(gmailUrl, "_blank");
 
-    if(isMobile){
-
-        const mailtoUrl =
-            "mailto:mesagrosbakery@gmail.com" +
-            "?subject=" +
-            encodeURIComponent(subject) +
-            "&body=" +
-            encodeURIComponent(body);
-
-        window.location.href = mailtoUrl;
-
-    }else{
-
-        window.open(gmailUrl, "_blank");
-
-    }
-
-    /*
-     * Η παραγγελία έχει ήδη δημιουργηθεί.
-     * Καθαρίζουμε το καλάθι ώστε ο πελάτης να ξεκινήσει
-     * με άδειο καλάθι όταν επιστρέψει στο site.
-     */
+    // Αδειάζουμε το καλάθι μετά τη δημιουργία του email
     cart = [];
     localStorage.removeItem("mesagrosCart");
     renderCart();
