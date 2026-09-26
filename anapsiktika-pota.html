@@ -3,685 +3,431 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Αναψυκτικά – Ποτά | Αρτοποιείο Μεσαγρός</title>
+<style>
+:root{--ink:#2b2119;--cream:#fffaf1;--paper:#fff;--accent:#9a5b2d;--muted:#75675c}
+*{box-sizing:border-box} html,body{margin:0;width:100%;min-width:100%;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
+header{padding:34px 18px;text-align:center;background:#f1dfc5 url('header-background.png') center/cover no-repeat;border-bottom:1px solid #e1c8a8}
+.site-logo{width:220px;max-width:80%;height:auto;display:block;margin:0 auto}
+nav{position:sticky;top:0;z-index:5;background:#fff;display:flex;gap:8px;overflow:auto;padding:10px;border-bottom:1px solid #eee}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);background:#f7eee3;padding:9px 13px;border-radius:20px;font-size:14px}
+.container{max-width:1050px;margin:auto;padding:22px 15px 90px}
+.hero-area{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,380px);gap:18px;align-items:stretch;margin-bottom:25px}.hero{position:relative;background:url('welcome-background.png') center/cover no-repeat;border-radius:18px;padding:35px 25px;text-align:center;box-shadow:0 5px 20px #0000000b;margin-bottom:0;min-height:290px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}.hero>h1,.hero>p,.hero>a.cta{visibility:hidden}.hero .hero-link{position:absolute;display:block;z-index:5;text-decoration:none;background:transparent}.hero .hero-phone{left:28%;right:28%;bottom:21%;height:17%}.hero .hero-facebook{left:28%;right:28%;bottom:5%;height:12%}.delivery-info{background:#f8f1e5;border:1px solid #ead7bf;border-radius:18px;padding:22px;box-shadow:0 5px 20px #0000000b}.delivery-info h2{margin:0 0 12px;border:0;padding:0;font-size:24px}.delivery-route{background:#fff;border-radius:12px;padding:12px 14px;margin:10px 0}.delivery-route strong{display:block;margin-bottom:4px}.delivery-note{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.5}@media(max-width:760px){.hero-area{grid-template-columns:1fr}.delivery-info{order:2}}
+.hero h1{margin:0 0 8px}.hero p{color:var(--muted)}
+.cta{display:inline-block;margin:7px;padding:12px 18px;border-radius:25px;text-decoration:none;font-weight:bold}
+.primary{background:var(--accent);color:white}.secondary{background:#f0e2d0;color:var(--ink)}
+section{margin:28px 0} h2{font-size:24px;border-bottom:2px solid #ead7bf;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.card{background:var(--paper);border-radius:15px;overflow:hidden;box-shadow:0 4px 15px #0000000a;border:1px solid #eee4d8}
+.photo{height:145px;background:#eee0cc;display:flex;align-items:center;justify-content:center;font-size:48px}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.card .body{padding:14px}.card h3{margin:0 0 5px;font-size:18px}.desc{color:var(--muted);font-size:14px;min-height:35px}.price{font-weight:800;margin-top:10px;color:var(--accent)}
+footer{text-align:center;background:#2b2119;color:white;padding:25px 15px}.small{font-size:13px;color:#e7d9ca}
 
 <style>
-:root{
-  --ink:#2b2119;
-  --cream:#fffaf1;
-  --paper:#fff;
-  --accent:#9a5b2d;
-  --muted:#75675c
-}
+.weight-box{margin-top:10px}
+.weight-box select{width:100%;padding:9px;border:1px solid #dcc9b4;border-radius:8px;background:#fff;font-size:15px}
+.cart-btn{width:calc(100% - 28px);margin:10px 14px 14px;padding:11px;border:0;border-radius:10px;background:#9a5b2d;color:white;font-size:16px;font-weight:bold;cursor:pointer}
 
-*{
-  box-sizing:border-box
-}
+.drink-list{max-width:900px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;border:1px solid #eadfd6;}
+.drink-row{display:grid;grid-template-columns:1fr auto 150px;align-items:center;gap:14px;padding:10px 14px;border-bottom:1px solid #eee7e1;}
+.drink-row:last-child{border-bottom:0;}
+.drink-row span{font-weight:600;font-size:17px;}
+.drink-row strong{font-size:17px;white-space:nowrap;}
+.drink-row .cart-btn{width:auto;margin:0;padding:8px 12px;font-size:14px;}
+@media(max-width:600px){.drink-row{grid-template-columns:1fr auto;gap:8px;}.drink-row .cart-btn{grid-column:1 / -1;width:100%;}.drink-row span{font-size:16px;}}
+</style>
 
-html,body{
-  margin:0;
-  width:100%;
-  min-width:100%;
-  font-family:Arial,sans-serif;
-  background:var(--cream);
-  color:var(--ink)
-}
 
-header{
-  padding:34px 18px;
+<style>
+.delivery-home{
+  margin:25px 0;
+  background:#f1dfc5;
+  border:1px solid #e1c8a8;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 4px 15px #0000000a;
+}
+.delivery-inner{max-width:900px;margin:0 auto}
+.delivery-text h2{
+  margin:0 0 18px;
   text-align:center;
-  background:#f1dfc5 url('header-background.png') center/cover no-repeat;
-  border-bottom:1px solid #e1c8a8
+  border-bottom:0;
+  padding-bottom:0;
+  font-size:25px;
 }
-
-.site-logo{
-  width:220px;
-  max-width:80%;
-  height:auto;
+.delivery-route,.delivery-other{
+  background:#fffaf1;
+  border-radius:12px;
+  padding:12px 15px;
+  margin:9px 0;
+}
+.delivery-route strong,.delivery-other strong{display:block}
+.delivery-route span,.delivery-other span{
   display:block;
-  margin:0 auto
+  margin-top:4px;
+  color:#75675c;
 }
-
-nav{
-  position:sticky;
-  top:0;
-  z-index:5;
-  background:#fff;
-  display:flex;
-  gap:8px;
-  overflow:auto;
-  padding:10px;
-  border-bottom:1px solid #eee
-}
-
-nav a{
-  white-space:nowrap;
-  text-decoration:none;
-  color:var(--ink);
-  background:#f7eee3;
-  padding:9px 13px;
-  border-radius:20px;
-  font-size:14px
-}
-
-.container{
-  max-width:1050px;
-  margin:auto;
-  padding:22px 15px 90px
-}
-
-h2{
-  font-size:28px;
-  border-bottom:2px solid #ead7bf;
-  padding-bottom:10px;
-  text-align:center
-}
-
-.category-cover{
-  margin:20px auto 25px;
-  max-width:900px
-}
-
-.category-cover img{
-  width:100%;
-  display:block;
-  border-radius:16px
-}
-
-.drink-list{
-  max-width:900px;
-  margin:0 auto;
-  background:#fff;
-  border-radius:14px;
-  overflow:hidden;
-  border:1px solid #eadfd6;
-  box-shadow:0 4px 15px #0000000a
-}
-
-.drink-row{
-  display:grid;
-  grid-template-columns:1fr auto 150px;
-  align-items:center;
-  gap:14px;
-  padding:10px 14px;
-  border-bottom:1px solid #eee7e1
-}
-
-.drink-row:last-child{
-  border-bottom:0
-}
-
-.drink-row span{
-  font-weight:600;
-  font-size:17px
-}
-
-.drink-row strong{
-  font-size:17px;
-  white-space:nowrap
-}
-
-.cart-btn{
-  width:auto;
-  margin:0;
-  padding:8px 12px;
-  border:0;
-  border-radius:10px;
-  background:#9a5b2d;
-  color:white;
-  font-size:14px;
+.delivery-note{
+  margin-top:15px;
+  text-align:center;
   font-weight:bold;
-  cursor:pointer
 }
-
-.page-note{
-  max-width:900px;
-  margin:0 auto 18px;
-  text-align:center;
-  color:var(--muted);
-  font-size:15px
-}
-
-footer{
-  text-align:center;
-  background:#2b2119;
-  color:white;
-  padding:25px 15px
-}
-
-.small{
-  font-size:13px;
-  color:#e7d9ca
-}
-
-.cta{
-  display:inline-block;
-  margin:7px;
-  padding:12px 18px;
-  border-radius:25px;
-  text-decoration:none;
-  font-weight:bold
-}
-
-.primary{
-  background:var(--accent);
-  color:white
-}
-
 @media(max-width:600px){
-
-  .drink-row{
-    grid-template-columns:1fr auto;
-    gap:8px
-  }
-
-  .drink-row .cart-btn{
-    grid-column:1 / -1;
-    width:100%
-  }
-
-  .drink-row span{
-    font-size:16px
-  }
-
-  h2{
-    font-size:24px
-  }
+  .delivery-home{padding:16px}
+  .delivery-text h2{font-size:22px}
 }
 </style>
+
+</style>
 </head>
-
 <body>
-
 <header>
-
   <div style="text-align:center;margin-bottom:20px;">
+<h1 style="font-size:36px;margin:0 0 8px;font-weight:800;letter-spacing:1px;">
+ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ
+</h1>
 
-    <h1 style="font-size:36px;margin:0 0 8px;font-weight:800;letter-spacing:1px;">
-      ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ
-    </h1>
+<div style="font-size:20px;font-weight:600;margin-bottom:12px;">
+ΜΕΣΑΓΡΟΣ • ΓΕΡΑΣ • ΛΕΣΒΟΣ
+</div>
 
-    <div style="font-size:20px;font-weight:600;margin-bottom:12px;">
-      ΜΕΣΑΓΡΟΣ • ΓΕΡΑΣ • ΛΕΣΒΟΣ
-    </div>
+<div style="font-size:28px;font-weight:800;letter-spacing:2px;margin-bottom:5px;">
+BAKERY MESAGROS
+</div>
 
-    <div style="font-size:28px;font-weight:800;letter-spacing:2px;margin-bottom:5px;">
-      BAKERY MESAGROS
-    </div>
-
-    <div style="font-size:17px;">
-      Mesagros • Geras • Lesvos
-    </div>
-
-  </div>
-
-  <img src="LOGO.png"
-       alt="Αρτοποιείο Μεσαγρός"
-       class="site-logo">
-
+<div style="font-size:17px;">
+Mesagros • Geras • Lesvos
+</div>
+</div>
+  <img src="LOGO.png" alt="Αρτοποιείο Μεσαγρός" class="site-logo">
+  
 </header>
+  <div style="text-align:center;margin:15px 0;">
 
+<a href="kalathi.html"
+   style="
+   display:inline-block;
+   background:#7a4b2a;
+   color:white;
+   padding:12px 22px;
+   border-radius:12px;
+   text-decoration:none;
+   font-size:18px;
+   font-weight:bold;
+   ">
 
-<div style="text-align:center;margin:15px 0;">
+🛒 Καλάθι Παραγγελίας
 
-  <a href="kalathi.html"
-     style="
-     display:inline-block;
-     background:#7a4b2a;
-     color:white;
-     padding:12px 22px;
-     border-radius:12px;
-     text-decoration:none;
-     font-size:18px;
-     font-weight:bold;
-     ">
-
-    🛒 Καλάθι Παραγγελίας
-
-  </a>
+</a>
 
 </div>
 
-
 <nav>
-  <a href="index.html">🏠 Αρχική</a>
-  <a href="index.html#psomi">Ψωμιά</a>
-  <a href="index.html#koulouria">Κουλούρια</a>
-  <a href="index.html#paximadia">Παξιμάδια</a>
-  <a href="index.html#voutimata">Βουτήματα</a>
-  <a href="index.html#pites">Πίτες</a>
-  <a href="index.html#mpiskota">Μπισκότα</a>
-  <a href="index.html#tsoureki">Τσουρέκια</a>
-  <a href="index.html#sandwich">Σάντουιτς</a>
-  <a href="index.html#glyka">Γλυκά</a>
+  <a href="index.html#psomi">Ψωμιά</a><a href="index.html#koulouria">Κουλούρια</a><a href="index.html#paximadia">Παξιμάδια</a><a href="index.html#voutimata">Βουτήματα</a><a href="index.html#pites">Πίτες</a>
+  <a href="index.html#mpiskota">Μπισκότα</a><a href="index.html#tsoureki">Τσουρέκια</a><a href="index.html#sandwich">Σάντουιτς</a><a href="index.html#glyka">Γλυκά</a><a href="anapsiktika-pota.html">Αναψυκτικά – Ποτά</a>
 </nav>
 
-
 <main class="container">
-
-  <section>
-
+<section id="anapsiktika-pota">
     <h2>🥤 Αναψυκτικά – Ποτά</h2>
-
-    <div class="category-cover">
-      <img src="anapsiktika-pota.png"
-           alt="Αναψυκτικά – Ποτά">
+    <div class="category-cover" style="margin-bottom:18px;">
+      <img src="anapsiktika-pota.png" alt="Αναψυκτικά – Ποτά" style="width:100%;max-width:900px;display:block;margin:0 auto;border-radius:16px;">
     </div>
-
-    <div class="page-note">
-      Επιλέξτε το προϊόν που θέλετε και προσθέστε το στο καλάθι.
-    </div>
-
-
     <div class="drink-list">
-
-
-      <!-- ========================= -->
-      <!-- 2η ΦΩΤΟΓΡΑΦΙΑ -->
-      <!-- ========================= -->
-
       <div class="drink-row">
         <span>Coca-Cola</span>
-        <strong>1,20 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Coca-Cola',1.20,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Coca-Cola',1.20,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Coca-Cola Zero</span>
-        <strong>1,20 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Coca-Cola Zero',1.20,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Coca-Cola Zero',1.20,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Fanta Πορτοκάλι</span>
-        <strong>1,20 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Fanta Πορτοκάλι',1.20,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Fanta Πορτοκάλι',1.20,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Fanta μπλε χωρίς ανθρακικό</span>
-        <strong>1,20 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Fanta μπλε χωρίς ανθρακικό',1.20,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Fanta μπλε χωρίς ανθρακικό',1.20,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Fanta Λεμονάδα</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Fanta Λεμονάδα',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Fanta Λεμονάδα',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Sprite</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Sprite',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Sprite',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Sprite Zero</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Sprite Zero',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Sprite Zero',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Motion</span>
-        <strong>1,50 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Motion',1.50,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.50 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Motion',1.50,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Πορτοκάλι</span>
-        <strong>1,80 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Πορτοκάλι',1.80,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.80 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Πορτοκάλι',1.80,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Βύσσινο</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Βύσσινο',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Βύσσινο',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Free Detox</span>
-        <strong>1,50 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Free Detox',1.50,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.50 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Free Detox',1.50,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Πορτοκάλι-Βερίκοκο-Μήλο</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Πορτοκάλι-Βερίκοκο-Μήλο',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Πορτοκάλι-Βερίκοκο-Μήλο',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Fun Μήλο</span>
-        <strong>1,00 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Fun Μήλο',1.00,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Fun Μήλο',1.00,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Fun Κόκκινο</span>
-        <strong>1,00 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Fun Κόκκινο',1.00,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Fun Κόκκινο',1.00,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Schweppes Pink</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Schweppes Pink',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Pink',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Schweppes Πορτοκάλι</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Schweppes Πορτοκάλι',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Πορτοκάλι',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Schweppes Grapefruit</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Schweppes Grapefruit',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Grapefruit',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Schweppes Ginger</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Schweppes Ginger',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Ginger',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Schweppes Soda</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Schweppes Soda',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Soda',1.90,event)">🛒 Προσθήκη</button>
       </div>
 
-
-      <!-- ========================= -->
-      <!-- 1η ΦΩΤΟΓΡΑΦΙΑ -->
-      <!-- ========================= -->
-
-
+      <!-- Σελίδα 1 του καταλόγου -->
       <div class="drink-row">
         <span>Lipton Ροδάκινο</span>
-        <strong>1,20 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Lipton Ροδάκινο',1.20,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Lipton Ροδάκινο',1.20,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Lipton Λεμόνι</span>
-        <strong>1,20 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Lipton Λεμόνι',1.20,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Lipton Λεμόνι',1.20,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Σοκολατούχο γάλα</span>
-        <strong>1,00 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Σοκολατούχο γάλα',1.00,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Σοκολατούχο γάλα',1.00,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Motion 1L</span>
-        <strong>3,20 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Motion 1L',3.20,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>3.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Motion 1L',3.20,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Πορτοκάλι 1L</span>
-        <strong>3,00 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Πορτοκάλι 1L',3.00,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>3.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Πορτοκάλι 1L',3.00,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Amita Πορτοκάλι-Βερίκοκο-Μήλο 1L</span>
-        <strong>2,00 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Amita Πορτοκάλι-Βερίκοκο-Μήλο 1L',2.00,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>2.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Πορτοκάλι-Βερίκοκο-Μήλο 1L',2.00,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Fanta Πορτοκάλι 1,5L</span>
-        <strong>2,70 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Fanta Πορτοκάλι 1,5L',2.70,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>2.70 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Fanta Πορτοκάλι 1,5L',2.70,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Νερό 500ml</span>
-        <strong>0,50 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Νερό 500ml',0.50,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>0.50 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Νερό 500ml',0.50,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Νερό 1,5L</span>
-        <strong>1,00 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Νερό 1,5L',1.00,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Νερό 1,5L',1.00,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Νερό 6άδα</span>
-        <strong>3,00 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Νερό 6άδα',3.00,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>3.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Νερό 6άδα',3.00,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Nescafé Στιγμιαίος</span>
-        <strong>0,60 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Nescafé Στιγμιαίος',0.60,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>0.60 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Nescafé Στιγμιαίος',0.60,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Μπύρα Fix 330ml</span>
-        <strong>1,90 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Μπύρα Fix 330ml',1.90,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Μπύρα Fix 330ml',1.90,event)">🛒 Προσθήκη</button>
       </div>
-
-
       <div class="drink-row">
         <span>Μπύρα Μάμος 330ml</span>
-        <strong>1,80 €</strong>
-        <button class="cart-btn"
-          onclick="addProductToCart('Μπύρα Μάμος 330ml',1.80,event)">
-          🛒 Προσθήκη
-        </button>
+        <strong>1.80 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Μπύρα Μάμος 330ml',1.80,event)">🛒 Προσθήκη</button>
       </div>
-
-
     </div>
-
   </section>
-
 </main>
 
-
 <footer>
-
   <strong>ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</strong>
-
-  <div class="small">
-    Μεσαγρός Γέρας • Δευτέρα–Σάββατο 06:00–15:00 • Κυριακή κλειστά
-  </div>
-
-  <div style="margin-top:10px">
-    <a class="cta primary" href="tel:2251085183">
-      📞 2251085183
-    </a>
-  </div>
-
+  <div class="small">Μεσαγρός Γέρας • Δευτέρα–Σάββατο 06:00–15:00 • Κυριακή κλειστά</div>
+  <div style="margin-top:10px"><a class="cta primary" href="tel:2251085183">📞 2251085183</a></div>
 </footer>
-
-
 <script>
+
+
+function addWeightedProductToCart(button, event){
+    const select = button.parentElement.querySelector("select");
+    const grams = Number(select.value);
+    const kiloPrice = Number(button.dataset.kiloPrice);
+    const name = button.dataset.name;
+    const price = Math.round(kiloPrice * grams / 1000 * 100) / 100;
+    const displayName = name + " (" + (grams === 1000 ? "1 kg" : grams + " g") + ")";
+
+    let cart = JSON.parse(localStorage.getItem("mesagrosCart")) || [];
+    let existing = cart.find(item => item.name === displayName);
+
+    if(existing){
+        existing.quantity++;
+    }else{
+        cart.push({name: displayName, price: price, quantity: 1});
+    }
+
+    localStorage.setItem("mesagrosCart", JSON.stringify(cart));
+
+    const oldText = button.innerHTML;
+    button.innerHTML = "✓ Προστέθηκε!";
+    button.style.background = "#4f7d3a";
+    setTimeout(function(){
+        button.innerHTML = oldText;
+        button.style.background = "#9a5b2d";
+    },1200);
+}
+
+function addCookieProductToCart(button, event){
+    const select = button.parentElement.querySelector("select");
+    const choice = select.value;
+    const kiloPrice = Number(button.dataset.kiloPrice);
+    const name = button.dataset.name;
+
+    let price;
+    let displayName;
+
+    if(choice === "package"){
+        price = 3.00;
+        displayName = name + " (Συσκευασία)";
+    }else{
+        const grams = Number(choice);
+        price = Math.round(kiloPrice * grams / 1000 * 100) / 100;
+        displayName = name + " (" + (grams === 1000 ? "1 kg" : grams + " g") + ")";
+    }
+
+    let cart = JSON.parse(localStorage.getItem("mesagrosCart")) || [];
+    let existing = cart.find(item => item.name === displayName);
+
+    if(existing){
+        existing.quantity++;
+    }else{
+        cart.push({name: displayName, price: price, quantity: 1});
+    }
+
+    localStorage.setItem("mesagrosCart", JSON.stringify(cart));
+
+    const oldText = button.innerHTML;
+    button.innerHTML = "✓ Προστέθηκε!";
+    button.style.background = "#4f7d3a";
+    setTimeout(function(){
+        button.innerHTML = oldText;
+        button.style.background = "#9a5b2d";
+    },1200);
+}
+
+function updateWeightPrice(select){
+    // Η τιμή υπολογίζεται τη στιγμή της προσθήκης στο καλάθι.
+}
 
 function addProductToCart(name, price, event) {
 
-  let cart = JSON.parse(
-    localStorage.getItem("mesagrosCart")
-  ) || [];
+    let cart = JSON.parse(
+        localStorage.getItem("mesagrosCart")
+    ) || [];
 
-  let existing = cart.find(
-    item => item.name === name
-  );
+    let existing = cart.find(
+        item => item.name === name
+    );
 
-  if (existing) {
+    if (existing) {
 
-    existing.quantity++;
+        existing.quantity++;
 
-  } else {
+    } else {
 
-    cart.push({
-      name: name,
-      price: price,
-      quantity: 1
-    });
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
 
-  }
+    }
 
-  localStorage.setItem(
-    "mesagrosCart",
-    JSON.stringify(cart)
-  );
+    localStorage.setItem(
+        "mesagrosCart",
+        JSON.stringify(cart)
+    );
 
+    /* Μικρή επιβεβαίωση */
 
-  let button = event.currentTarget;
+    let button = event.currentTarget;
 
-  let oldText = button.innerHTML;
+    let oldText = button.innerHTML;
 
-  button.innerHTML = "✓ Προστέθηκε!";
+    button.innerHTML = "✓ Προστέθηκε!";
 
-  button.style.background = "#4f7d3a";
+    button.style.background = "#4f7d3a";
 
+    setTimeout(function(){
 
-  setTimeout(function(){
+        button.innerHTML = oldText;
 
-    button.innerHTML = oldText;
+        button.style.background = "#9a5b2d";
 
-    button.style.background = "#9a5b2d";
-
-  },1200);
+    }, 1200);
 
 }
 
 </script>
-
 </body>
 </html>
