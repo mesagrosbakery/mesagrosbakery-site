@@ -301,6 +301,7 @@ background:white;
 <option value="">Επιλέξτε διαδρομή *</option>
 <option value="mytilene">Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά</option>
 <option value="plomari">Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά</option>
+<option value="geras">Μεσαγρός → Γέρα / καθημερινά</option>
 <option value="other">Άλλη περιοχή Λέσβου / Υπόλοιπη Ελλάδα — κατόπιν συνεννόησης</option>
 </select>
 
@@ -688,6 +689,9 @@ function checkDeliveryDate(){
     }else if(route === "plomari"){
         routeDay = [1,3,6].includes(day);
         routeName = "Πλωμάρι";
+    }else if(route === "geras"){
+        routeDay = true;
+        routeName = "Γέρα";
     }else{
         message.style.display = "block";
         message.style.background = "#fff8e1";
@@ -764,6 +768,7 @@ function sendOrder(){
     const routeNames = {
         mytilene: "Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά",
         plomari: "Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά",
+        geras: "Μεσαγρός → Γέρα / καθημερινά",
         other: "Άλλη περιοχή — κατόπιν συνεννόησης"
     };
 
