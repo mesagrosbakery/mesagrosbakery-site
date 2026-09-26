@@ -12,7 +12,7 @@ header{padding:34px 18px;text-align:center;background:#f1dfc5;border-bottom:1px 
 nav{position:sticky;top:0;z-index:5;background:#fff;display:flex;gap:8px;overflow:auto;padding:10px;border-bottom:1px solid #eee}
 nav a{white-space:nowrap;text-decoration:none;color:var(--ink);background:#f7eee3;padding:9px 13px;border-radius:20px;font-size:14px}
 .container{max-width:1050px;margin:auto;padding:22px 15px 90px}
-.hero{background:#fff;border-radius:18px;padding:25px;text-align:center;box-shadow:0 5px 20px #0000000b;margin-bottom:25px}
+.hero-area{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,380px);gap:18px;align-items:stretch;margin-bottom:25px}.hero{background:linear-gradient(rgba(255,255,255,.84),rgba(255,255,255,.84)),url('psomi-starenio.png') center/cover no-repeat;border-radius:18px;padding:35px 25px;text-align:center;box-shadow:0 5px 20px #0000000b;margin-bottom:0;min-height:290px;display:flex;flex-direction:column;justify-content:center}.delivery-info{background:#f8f1e5;border:1px solid #ead7bf;border-radius:18px;padding:22px;box-shadow:0 5px 20px #0000000b}.delivery-info h2{margin:0 0 12px;border:0;padding:0;font-size:24px}.delivery-route{background:#fff;border-radius:12px;padding:12px 14px;margin:10px 0}.delivery-route strong{display:block;margin-bottom:4px}.delivery-note{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.5}@media(max-width:760px){.hero-area{grid-template-columns:1fr}.delivery-info{order:2}}
 .hero h1{margin:0 0 8px}.hero p{color:var(--muted)}
 .cta{display:inline-block;margin:7px;padding:12px 18px;border-radius:25px;text-decoration:none;font-weight:bold}
 .primary{background:var(--accent);color:white}.secondary{background:#f0e2d0;color:var(--ink)}
@@ -23,6 +23,54 @@ section{margin:28px 0} h2{font-size:24px;border-bottom:2px solid #ead7bf;padding
   .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .card .body{padding:14px}.card h3{margin:0 0 5px;font-size:18px}.desc{color:var(--muted);font-size:14px;min-height:35px}.price{font-weight:800;margin-top:10px;color:var(--accent)}
 footer{text-align:center;background:#2b2119;color:white;padding:25px 15px}.small{font-size:13px;color:#e7d9ca}
+
+<style>
+.weight-box{margin-top:10px}
+.weight-box select{width:100%;padding:9px;border:1px solid #dcc9b4;border-radius:8px;background:#fff;font-size:15px}
+.cart-btn{width:calc(100% - 28px);margin:10px 14px 14px;padding:11px;border:0;border-radius:10px;background:#9a5b2d;color:white;font-size:16px;font-weight:bold;cursor:pointer}
+</style>
+
+
+<style>
+.delivery-home{
+  margin:25px 0;
+  background:#f1dfc5;
+  border:1px solid #e1c8a8;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 4px 15px #0000000a;
+}
+.delivery-inner{max-width:900px;margin:0 auto}
+.delivery-text h2{
+  margin:0 0 18px;
+  text-align:center;
+  border-bottom:0;
+  padding-bottom:0;
+  font-size:25px;
+}
+.delivery-route,.delivery-other{
+  background:#fffaf1;
+  border-radius:12px;
+  padding:12px 15px;
+  margin:9px 0;
+}
+.delivery-route strong,.delivery-other strong{display:block}
+.delivery-route span,.delivery-other span{
+  display:block;
+  margin-top:4px;
+  color:#75675c;
+}
+.delivery-note{
+  margin-top:15px;
+  text-align:center;
+  font-weight:bold;
+}
+@media(max-width:600px){
+  .delivery-home{padding:16px}
+  .delivery-text h2{font-size:22px}
+}
+</style>
+
 </style>
 </head>
 <body>
@@ -47,18 +95,58 @@ Mesagros • Geras • Lesvos
   <img src="LOGO.png" alt="Αρτοποιείο Μεσαγρός" class="site-logo">
   
 </header>
+  <div style="text-align:center;margin:15px 0;">
+
+<a href="kalathi.html"
+   style="
+   display:inline-block;
+   background:#7a4b2a;
+   color:white;
+   padding:12px 22px;
+   border-radius:12px;
+   text-decoration:none;
+   font-size:18px;
+   font-weight:bold;
+   ">
+
+🛒 Καλάθι Παραγγελίας
+
+</a>
+
+</div>
 
 <nav>
-  <a href="#psomi">Ψωμιά</a><a href="#koulouria">Κουλούρια</a><a href="#pites">Πίτες</a>
+  <a href="#psomi">Ψωμιά</a><a href="#koulouria">Κουλούρια</a><a href="#paximadia">Παξιμάδια</a><a href="#voutimata">Βουτήματα</a><a href="#pites">Πίτες</a>
   <a href="#mpiskota">Μπισκότα</a><a href="#tsoureki">Τσουρέκια</a><a href="#sandwich">Σάντουιτς</a><a href="#glyka">Γλυκά</a>
 </nav>
 
 <main class="container">
-  <div class="hero">
+  <div class="hero-area">
+   <div class="hero">
     <h1>Καλώς ήρθατε στον Μεσαγρό!</h1>
     <p>Δείτε τον κατάλογό μας και επικοινωνήστε μαζί μας για παραγγελίες και delivery.</p>
     <a class="cta primary" href="tel:2251085183">📞 Delivery 2251085183</a>
     <a class="cta secondary" href="https://www.facebook.com/" target="_blank">Facebook</a>
+   </div>
+
+   <div class="delivery-info">
+    <h2>🚚 Διανομές</h2>
+    <div class="delivery-route">
+      <strong>Μεσαγρός → Μυτιλήνη</strong>
+      Τρίτη • Πέμπτη • Παρασκευή<br>
+      🕒 15:00 – 17:00
+    </div>
+    <div class="delivery-route">
+      <strong>Μεσαγρός → Πλωμάρι</strong>
+      Δευτέρα • Τετάρτη • Σάββατο<br>
+      🕒 15:00 – 17:00
+    </div>
+    <div class="delivery-note">
+      📍 Ενδιάμεσα χωριά των διαδρομών εξυπηρετούνται κανονικά.<br>
+      🚚 Υπόλοιπο Λέσβου: κατόπιν συνεννόησης.<br>
+      📦 Υπόλοιπη Ελλάδα: κατόπιν συνεννόησης.
+    </div>
+   </div>
   </div>
 
  <section id="psomi">
@@ -76,6 +164,22 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+  <button
+onclick="addProductToCart('Σταρένιο ψωμί',0.90,event)"
+style="
+width:calc(100% - 28px);
+margin:0 14px 14px;
+padding:11px;
+border:0;
+border-radius:10px;
+background:#9a5b2d;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+">
+🛒 Προσθήκη στο καλάθι
+</button>
 </article>
 
 <article class="card">
@@ -89,6 +193,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Χωριάτικο ψωμί',0.9,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
  <article class="card">
 <a href="psomi-olikis.html" style="text-decoration:none;color:inherit;display:block;">
@@ -101,6 +207,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Ψωμί ολικής',1.2,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
   <article class="card">
 <a href="stareni-bagketa.html" style="text-decoration:none;color:inherit;display:block;">
@@ -115,6 +223,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Σταρένια μπαγκέτα',1.0,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
 
 <article class="card">
@@ -130,6 +240,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Ψωμί τοστ λευκό',1.8,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
 
 <article class="card">
@@ -145,6 +257,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Ψωμί τοστ ολικής',2.4,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
 
 </div>
@@ -163,21 +277,17 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Κουλούρι',0.7,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
-<a href="koulouri-tragano.html" style="text-decoration:none;color:inherit;display:block;">
-<div class="photo">
-<img src="koulouri-tragano.png" alt="Κουλούρι πιο τραγανό">
-</div>
-<div class="body">
-<h3>Κουλούρι πιο τραγανό</h3>
-<div class="desc">Τραγανό κουλούρι με σουσάμι</div>
-<div style="font-size:20px;font-weight:bold;margin-top:10px;">
-0,70 € / τεμάχιο
-</div>
-</div>
-</a>
-<button class="cart-btn" onclick="addProductToCart('Κουλούρι πιο τραγανό',0.7,event)">🛒 Προσθήκη στο καλάθι</button>
+ <div class="photo"><img src="koulouri-tragano.png" alt="Κουλούρι πιο τραγανό"></div>
+ <div class="body">
+  <h3>Κουλούρι πιο τραγανό</h3>
+  <div class="desc">Τραγανό κουλούρι με σουσάμι</div>
+  <div style="font-size:20px;font-weight:bold;margin-top:10px;">0,70 € / τεμάχιο</div>
+ </div>
+ <button class="cart-btn" onclick="addProductToCart('Κουλούρι πιο τραγανό',0.70,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
 <a href="koulouri-diplo.html" style="text-decoration:none;color:inherit;display:block;">
@@ -192,6 +302,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Κουλούρι διπλό',1.4,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card"><div class="photo">🥪</div><div class="body"><h3>Κουλούρι σάντουιτς</h3></div></article>
     <article class="card"><div class="photo">🍫</div><div class="body"><h3>Κουλούρι γεμιστό με σοκολάτα</h3></div></article>
@@ -209,6 +321,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Σταφιδόψωμο',1.0,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
 
 </div>
@@ -231,6 +345,16 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Παξιμάδια λαδιού" data-kilo-price="6.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
 
 <article class="card">
@@ -246,6 +370,16 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Παξιμάδια ολικής" data-kilo-price="6.5" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
 
 <article class="card">
@@ -261,6 +395,16 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Παξιμάδια ολικής χωρίς ζάχαρη & αλάτι" data-kilo-price="6.5" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
   <article class="card">
 <a href="paximadia-glikaniso.html" style="text-decoration:none;color:inherit;display:block;">
@@ -275,9 +419,37 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Παξιμάδια με γλυκάνισο" data-kilo-price="6.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
 
 </div>
+</section>
+
+
+<section id="voutimata">
+<h2>🍪 Βουτήματα – Κουλουράκια – Παξιμαδάκια</h2>
+<a href="voutimata.html" style="text-decoration:none;color:inherit;display:block;">
+<div class="card" style="max-width:1100px;margin:0 auto;cursor:pointer;">
+  <div style="width:100%;height:360px;background:#eee0cc;overflow:hidden;">
+    <img src="voutimata-koulourakia-paximadakia.png" alt="Βουτήματα – Κουλουράκια – Παξιμαδάκια" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+  </div>
+  <div class="body" style="text-align:center;">
+    <h3 style="font-size:24px;">Βουτήματα – Κουλουράκια – Παξιμαδάκια</h3>
+    <div class="desc" style="font-size:16px;">Παραδοσιακές γεύσεις φτιαγμένες με αγνά υλικά</div>
+    <div style="font-size:20px;font-weight:bold;margin-top:10px;">12,00 € / κιλό</div>
+    <div style="margin-top:12px;font-weight:bold;color:#9a5b2d;">Πατήστε για να δείτε τα είδη και να παραγγείλετε</div>
+  </div>
+</div>
+</a>
 </section>
 
   <section id="pites"><h2>🥐 Πίτες & Σφολιάτες</h2><div class="grid">
@@ -301,6 +473,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Cookie με βανίλια',1.5,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
 <a href="cookie-kakao.html" style="text-decoration:none;color:inherit;display:block;">
@@ -315,6 +489,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Cookie με κακάο',1.5,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
 <a href="cookies-mikra-xoris-avgo-zaxari-voutyro.html" style="text-decoration:none;color:inherit;display:block;">
@@ -329,6 +505,17 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+    <option value="package">Συσκευασία — 3,00 € (200 g)</option>
+  </select>
+  <button class="cart-btn" data-name="Μικρά cookies χωρίς αυγό, ζάχαρη &amp; βούτυρο" data-kilo-price="15.0" onclick="addCookieProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card"><div class="photo">🍫</div><div class="body"><h3>Βουτυρένια μπισκότα με σοκολάτα γάλακτος</h3></div></article>
   </div></section>
@@ -347,6 +534,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Τσουρέκι απλό ατομικό',1.7,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
 <a href="tsoureki-pralina-fountouki.html" style="text-decoration:none;color:inherit;display:block;">
@@ -361,6 +550,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Τσουρέκι ατομικό με πραλίνα φουντουκιού',2.0,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
 <a href="tsoureki-bueno.html" style="text-decoration:none;color:inherit;display:block;">
@@ -375,6 +566,8 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Τσουρέκι ατομικό με Bueno',2.0,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
 <a href="tsoureki-megalo-aplo.html" style="text-decoration:none;color:inherit;display:block;">
@@ -397,6 +590,16 @@ Mesagros • Geras • Lesvos
 
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Μεγάλο τσουρέκι απλό" data-kilo-price="14.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card">
 <a href="tsoureki-megalo-pralina-fountouki.html" style="text-decoration:none;color:inherit;display:block;">
@@ -419,6 +622,16 @@ Mesagros • Geras • Lesvos
 
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Μεγάλο τσουρέκι με πραλίνα φουντουκιού" data-kilo-price="14.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card">
 <a href="tsoureki-megalo-bueno.html" style="text-decoration:none;color:inherit;display:block;">
@@ -441,6 +654,16 @@ Mesagros • Geras • Lesvos
 
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Μεγάλο τσουρέκι με Bueno" data-kilo-price="14.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card"><div class="photo">🍯</div><div class="body"><h3>Μελωμένο τσουρέκι</h3><div class="desc">Ιδανικό και για το έθιμο με το προσκλητήριο γάμου</div></div></article>
   </div></section>
@@ -472,6 +695,8 @@ Mesagros • Geras • Lesvos
 
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Cheesecake',3.0,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card"><div class="photo">🍫</div><div class="body"><h3>Chocolate mousse</h3></div></article>
     <article class="card"><div class="photo">🥐</div><div class="body"><h3>Mille-feuille</h3></div></article>
@@ -496,6 +721,8 @@ Mesagros • Geras • Lesvos
 
 </div>
 </a>
+
+<button class="cart-btn" onclick="addProductToCart('Tiramisu',3.0,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
     <article class="card">
 <a href="pouraki-tachini.html" style="text-decoration:none;color:inherit;display:block;">
@@ -518,6 +745,16 @@ Mesagros • Geras • Lesvos
 
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Πουράκι με ταχίνι" data-kilo-price="15.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card">
 <a href="boul-troufas.html" style="text-decoration:none;color:inherit;display:block;">
@@ -540,6 +777,16 @@ Mesagros • Geras • Lesvos
 
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Μπουλ Τρούφας" data-kilo-price="15.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card">
 <a href="karyokes.html" style="text-decoration:none;color:inherit;display:block;">
@@ -556,6 +803,16 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Καριόκες" data-kilo-price="15.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card">
 <a href="pastakia.html" style="text-decoration:none;color:inherit;display:block;">
@@ -572,6 +829,16 @@ Mesagros • Geras • Lesvos
 </div>
 </div>
 </a>
+
+<div class="weight-box">
+  <select onchange="updateWeightPrice(this)">
+    <option value="250">250 g</option>
+    <option value="500">500 g</option>
+    <option value="750">750 g</option>
+    <option value="1000">1 kg</option>
+  </select>
+  <button class="cart-btn" data-name="Παστάκια" data-kilo-price="15.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
 </article>
     <article class="card"><div class="photo">🍯</div><div class="body"><h3>Φανουρόπιτα</h3></div></article>
     <article class="card"><div class="photo">🍯</div><div class="body"><h3>Σαραγλί & Μπακλαβάς</h3></div></article>
@@ -584,5 +851,128 @@ Mesagros • Geras • Lesvos
   <div class="small">Μεσαγρός Γέρας • Δευτέρα–Σάββατο 06:00–15:00 • Κυριακή κλειστά</div>
   <div style="margin-top:10px"><a class="cta primary" href="tel:2251085183">📞 2251085183</a></div>
 </footer>
+  <script>
+
+
+function addWeightedProductToCart(button, event){
+    const select = button.parentElement.querySelector("select");
+    const grams = Number(select.value);
+    const kiloPrice = Number(button.dataset.kiloPrice);
+    const name = button.dataset.name;
+    const price = Math.round(kiloPrice * grams / 1000 * 100) / 100;
+    const displayName = name + " (" + (grams === 1000 ? "1 kg" : grams + " g") + ")";
+
+    let cart = JSON.parse(localStorage.getItem("mesagrosCart")) || [];
+    let existing = cart.find(item => item.name === displayName);
+
+    if(existing){
+        existing.quantity++;
+    }else{
+        cart.push({name: displayName, price: price, quantity: 1});
+    }
+
+    localStorage.setItem("mesagrosCart", JSON.stringify(cart));
+
+    const oldText = button.innerHTML;
+    button.innerHTML = "✓ Προστέθηκε!";
+    button.style.background = "#4f7d3a";
+    setTimeout(function(){
+        button.innerHTML = oldText;
+        button.style.background = "#9a5b2d";
+    },1200);
+}
+
+function addCookieProductToCart(button, event){
+    const select = button.parentElement.querySelector("select");
+    const choice = select.value;
+    const kiloPrice = Number(button.dataset.kiloPrice);
+    const name = button.dataset.name;
+
+    let price;
+    let displayName;
+
+    if(choice === "package"){
+        price = 3.00;
+        displayName = name + " (Συσκευασία)";
+    }else{
+        const grams = Number(choice);
+        price = Math.round(kiloPrice * grams / 1000 * 100) / 100;
+        displayName = name + " (" + (grams === 1000 ? "1 kg" : grams + " g") + ")";
+    }
+
+    let cart = JSON.parse(localStorage.getItem("mesagrosCart")) || [];
+    let existing = cart.find(item => item.name === displayName);
+
+    if(existing){
+        existing.quantity++;
+    }else{
+        cart.push({name: displayName, price: price, quantity: 1});
+    }
+
+    localStorage.setItem("mesagrosCart", JSON.stringify(cart));
+
+    const oldText = button.innerHTML;
+    button.innerHTML = "✓ Προστέθηκε!";
+    button.style.background = "#4f7d3a";
+    setTimeout(function(){
+        button.innerHTML = oldText;
+        button.style.background = "#9a5b2d";
+    },1200);
+}
+
+function updateWeightPrice(select){
+    // Η τιμή υπολογίζεται τη στιγμή της προσθήκης στο καλάθι.
+}
+
+function addProductToCart(name, price, event) {
+
+    let cart = JSON.parse(
+        localStorage.getItem("mesagrosCart")
+    ) || [];
+
+    let existing = cart.find(
+        item => item.name === name
+    );
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+
+    }
+
+    localStorage.setItem(
+        "mesagrosCart",
+        JSON.stringify(cart)
+    );
+
+    /* Μικρή επιβεβαίωση */
+
+    let button = event.currentTarget;
+
+    let oldText = button.innerHTML;
+
+    button.innerHTML = "✓ Προστέθηκε!";
+
+    button.style.background = "#4f7d3a";
+
+    setTimeout(function(){
+
+        button.innerHTML = oldText;
+
+        button.style.background = "#9a5b2d";
+
+    }, 1200);
+
+}
+
+</script>
 </body>
 </html>
