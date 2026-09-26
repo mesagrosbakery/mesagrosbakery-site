@@ -1,450 +1,54 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Κριτσίνια | Αρτοποιείο Μεσαγρός</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f4ed;
-      color: #3d2b1f;
-    }
-
-    header {
-      background-image: url("header-background.png");
-      background-size: cover;
-      background-position: center;
-      min-height: 170px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 25px;
-      text-align: center;
-    }
-
-    .header-content {
-      background: rgba(255,255,255,0.88);
-      padding: 15px 30px;
-      border-radius: 15px;
-    }
-
-    .header-content h1 {
-      margin: 0;
-      font-size: 30px;
-    }
-
-    .header-content p {
-      margin: 5px 0 0;
-      font-size: 17px;
-    }
-
-    .page {
-      max-width: 1100px;
-      margin: 35px auto;
-      padding: 20px;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 25px;
-      color: #7a4b28;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .category-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.10);
-      margin-bottom: 35px;
-    }
-
-    .category-image img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .category-info {
-      padding: 25px;
-      text-align: center;
-    }
-
-    .category-info h2 {
-      margin: 0 0 10px;
-      font-size: 34px;
-    }
-
-    .category-info p {
-      font-size: 18px;
-      margin: 8px 0;
-    }
-
-    .price {
-      font-size: 25px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
-
-    .note {
-      background: #f8f1e6;
-      border-radius: 12px;
-      padding: 14px;
-      margin: 20px auto 0;
-      max-width: 700px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .choices {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-top: 25px;
-    }
-
-    .choice {
-      border: 1px solid #e0d5c7;
-      border-radius: 16px;
-      padding: 18px;
-      background: #fffdf9;
-    }
-
-    .choice img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
-    }
-
-    .choice h3 {
-      margin: 5px 0;
-      font-size: 23px;
-    }
-
-    .choice-price {
-      font-weight: bold;
-      font-size: 18px;
-      margin: 8px 0 15px;
-    }
-
-    .option-row {
-      margin-bottom: 12px;
-      text-align: left;
-    }
-
-    .option-row label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
-
-    select {
-      width: 100%;
-      padding: 11px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      background: white;
-    }
-
-    .add-cart {
-      width: 100%;
-      border: none;
-      background: #7a4b28;
-      color: white;
-      padding: 13px;
-      border-radius: 9px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 5px;
-    }
-
-    .add-cart:hover {
-      opacity: 0.9;
-    }
-
-    .message {
-      margin-top: 10px;
-      font-weight: bold;
-      display: none;
-      text-align: center;
-    }
-
-    @media (max-width: 700px) {
-      .choices {
-        grid-template-columns: 1fr;
-      }
-
-      .category-image img {
-        height: 230px;
-      }
-
-      .category-info h2 {
-        font-size: 28px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Κριτσίνια | Αρτοποιείο Μεσαγρός</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f8f4ed;color:#3d2b1f}
+header{background-image:url("header-background.png");background-size:cover;background-position:center;min-height:170px;display:flex;align-items:center;justify-content:center;padding:25px;text-align:center}
+.header-content{background:rgba(255,255,255,.88);padding:15px 30px;border-radius:15px}.header-content h1{margin:0;font-size:30px}.header-content p{margin:5px 0 0;font-size:17px}
+.page{max-width:1100px;margin:35px auto;padding:20px}.back-link{display:inline-block;margin-bottom:25px;color:#7a4b28;text-decoration:none;font-weight:bold}
+.category-card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.1);margin-bottom:35px}.category-image img{width:100%;height:300px;object-fit:cover;display:block}.category-info{padding:25px;text-align:center}.category-info h2{margin:0 0 10px;font-size:34px}.category-info p{font-size:18px;margin:8px 0}.price{font-size:25px;font-weight:bold;margin:15px 0}.note{background:#f8f1e6;border-radius:12px;padding:14px;margin:20px auto 0;max-width:700px;font-size:16px;line-height:1.5}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.choice{border:1px solid #e0d5c7;border-radius:16px;padding:18px;background:#fffdf9}.choice img{width:100%;height:190px;object-fit:cover;border-radius:12px;margin-bottom:12px}.choice h3{margin:5px 0;font-size:23px}.choice-price{font-weight:bold;font-size:18px;margin:8px 0 15px}.option-row{margin-bottom:12px;text-align:left}.option-row label{display:block;margin-bottom:6px;font-weight:bold}select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;font-size:16px;background:white}.add-cart{width:100%;border:none;background:#9a5b2d;color:white;padding:13px;border-radius:9px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:5px;transition:.15s}.add-cart:hover{opacity:.9}.add-cart.added{background:#4f7d3a!important}.message{margin-top:10px;font-weight:bold;display:none;text-align:center;color:#4f7d3a}
+@media(max-width:700px){.choices{grid-template-columns:1fr}.category-image img{height:230px}.category-info h2{font-size:28px}}
+</style>
 </head>
-
 <body>
-
-<header>
-  <div class="header-content">
-    <h1>Αρτοποιείο Μεσαγρός</h1>
-    <p>Μεσαγρός, Γέρας Λέσβου</p>
-  </div>
-</header>
-
+<header><div class="header-content"><h1>Αρτοποιείο Μεσαγρός</h1><p>Μεσαγρός, Γέρας Λέσβου</p></div></header>
 <main class="page">
-
-  <a href="index.html" class="back-link">
-    ← Επιστροφή στον κατάλογο
-  </a>
-
-  <div class="category-card">
-
-    <div class="category-image">
-      <img src="kritsinia.png" alt="Κριτσίνια">
-    </div>
-
-    <div class="category-info">
-
-      <h2>Κριτσίνια</h2>
-
-      <p>
-        Τραγανά κριτσίνια σε τέσσερις διαφορετικές γεύσεις.
-      </p>
-
-      <div class="price">
-        13,00 € / κιλό
-      </div>
-
-      <div class="note">
-        <strong>Σημείωση:</strong><br>
-        Κάθε τεμάχιο ζυγίζει περίπου 40–50 γραμμάρια.
-        Το τελικό βάρος της συσκευασίας μπορεί να διαφέρει ελαφρώς.
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="choices">
-
-    <!-- ΟΛΙΚΗΣ -->
-    <div class="choice">
-
-      <img src="kritsinia-olikis.png" alt="Κριτσίνια Ολικής">
-
-      <h3>Κριτσίνια Ολικής</h3>
-
-      <div class="choice-price">
-        13,00 € / κιλό
-      </div>
-
-      <div class="option-row">
-        <label for="weight-olikis">Επιλέξτε ποσότητα:</label>
-
-        <select id="weight-olikis">
-          <option value="250">250 γρ. — 3,25 €</option>
-          <option value="500">500 γρ. — 6,50 €</option>
-          <option value="750">750 γρ. — 9,75 €</option>
-          <option value="1000">1 κιλό — 13,00 €</option>
-        </select>
-      </div>
-
-      <button class="add-cart"
-        onclick="addToCart('Κριτσίνια Ολικής','weight-olikis')">
-        🛒 Προσθήκη στο καλάθι
-      </button>
-
-      <div class="message" id="message-olikis">
-        Προστέθηκε στο καλάθι!
-      </div>
-
-    </div>
-
-
-    <!-- ΤΥΡΙΟΥ -->
-    <div class="choice">
-
-      <img src="kritsinia-tyriou.png" alt="Κριτσίνια Τυριού">
-
-      <h3>Κριτσίνια Τυριού</h3>
-
-      <div class="choice-price">
-        13,00 € / κιλό
-      </div>
-
-      <div class="option-row">
-        <label for="weight-tyriou">Επιλέξτε ποσότητα:</label>
-
-        <select id="weight-tyriou">
-          <option value="250">250 γρ. — 3,25 €</option>
-          <option value="500">500 γρ. — 6,50 €</option>
-          <option value="750">750 γρ. — 9,75 €</option>
-          <option value="1000">1 κιλό — 13,00 €</option>
-        </select>
-      </div>
-
-      <button class="add-cart"
-        onclick="addToCart('Κριτσίνια Τυριού','weight-tyriou')">
-        🛒 Προσθήκη στο καλάθι
-      </button>
-
-      <div class="message" id="message-tyriou">
-        Προστέθηκε στο καλάθι!
-      </div>
-
-    </div>
-
-
-    <!-- ΚΑΝΕΛΑΣ -->
-    <div class="choice">
-
-      <img src="kritsinia-kanelas.png" alt="Κριτσίνια Κανέλας">
-
-      <h3>Κριτσίνια Κανέλας</h3>
-
-      <div class="choice-price">
-        13,00 € / κιλό
-      </div>
-
-      <div class="option-row">
-        <label for="weight-kanelas">Επιλέξτε ποσότητα:</label>
-
-        <select id="weight-kanelas">
-          <option value="250">250 γρ. — 3,25 €</option>
-          <option value="500">500 γρ. — 6,50 €</option>
-          <option value="750">750 γρ. — 9,75 €</option>
-          <option value="1000">1 κιλό — 13,00 €</option>
-        </select>
-      </div>
-
-      <button class="add-cart"
-        onclick="addToCart('Κριτσίνια Κανέλας','weight-kanelas')">
-        🛒 Προσθήκη στο καλάθι
-      </button>
-
-      <div class="message" id="message-kanelas">
-        Προστέθηκε στο καλάθι!
-      </div>
-
-    </div>
-
-
-    <!-- ΗΛΙΟΣΠΟΡΟΥ -->
-    <div class="choice">
-
-      <img src="kritsinia-iliosporou.png" alt="Κριτσίνια Ηλιόσπορου">
-
-      <h3>Κριτσίνια Ηλιόσπορου</h3>
-
-      <div class="choice-price">
-        13,00 € / κιλό
-      </div>
-
-      <div class="option-row">
-        <label for="weight-iliosporou">Επιλέξτε ποσότητα:</label>
-
-        <select id="weight-iliosporou">
-          <option value="250">250 γρ. — 3,25 €</option>
-          <option value="500">500 γρ. — 6,50 €</option>
-          <option value="750">750 γρ. — 9,75 €</option>
-          <option value="1000">1 κιλό — 13,00 €</option>
-        </select>
-      </div>
-
-      <button class="add-cart"
-        onclick="addToCart('Κριτσίνια Ηλιόσπορου','weight-iliosporou')">
-        🛒 Προσθήκη στο καλάθι
-      </button>
-
-      <div class="message" id="message-iliosporou">
-        Προστέθηκε στο καλάθι!
-      </div>
-
-    </div>
-
-  </div>
-
-</main>
-
-
+<a href="index.html" class="back-link">← Επιστροφή στον κατάλογο</a>
+<div class="category-card"><div class="category-image"><img src="kritsinia.png" alt="Κριτσίνια"></div><div class="category-info"><h2>Κριτσίνια</h2><p>Τραγανά κριτσίνια σε τέσσερις διαφορετικές γεύσεις.</p><div class="price">13,00 € / κιλό</div><div class="note"><strong>Σημείωση:</strong><br>Κάθε τεμάχιο ζυγίζει περίπου 40–50 γραμμάρια. Το τελικό βάρος της συσκευασίας μπορεί να διαφέρει ελαφρώς.</div></div></div>
+<div class="choices">
+<div class="choice"><img src="kritsinia-olikis.png" alt="Κριτσίνια Ολικής"><h3>Κριτσίνια Ολικής</h3><div class="choice-price">13,00 € / κιλό</div><div class="option-row"><label for="weight-olikis">Επιλέξτε ποσότητα:</label><select id="weight-olikis"><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select></div><button class="add-cart" onclick="addWeightedProductToCart(this)">🛒 Προσθήκη στο καλάθι</button><div class="message">Το προϊόν προστέθηκε στο καλάθι!</div></div>
+<div class="choice"><img src="kritsinia-tyriou.png" alt="Κριτσίνια Τυριού"><h3>Κριτσίνια Τυριού</h3><div class="choice-price">13,00 € / κιλό</div><div class="option-row"><label for="weight-tyriou">Επιλέξτε ποσότητα:</label><select id="weight-tyriou"><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select></div><button class="add-cart" onclick="addWeightedProductToCart(this)">🛒 Προσθήκη στο καλάθι</button><div class="message">Το προϊόν προστέθηκε στο καλάθι!</div></div>
+<div class="choice"><img src="kritsinia-kanelas.png" alt="Κριτσίνια Κανέλας"><h3>Κριτσίνια Κανέλας</h3><div class="choice-price">13,00 € / κιλό</div><div class="option-row"><label for="weight-kanelas">Επιλέξτε ποσότητα:</label><select id="weight-kanelas"><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select></div><button class="add-cart" onclick="addWeightedProductToCart(this)">🛒 Προσθήκη στο καλάθι</button><div class="message">Το προϊόν προστέθηκε στο καλάθι!</div></div>
+<div class="choice"><img src="kritsinia-iliosporou.png" alt="Κριτσίνια Ηλιόσπορου"><h3>Κριτσίνια Ηλιόσπορου</h3><div class="choice-price">13,00 € / κιλό</div><div class="option-row"><label for="weight-iliosporou">Επιλέξτε ποσότητα:</label><select id="weight-iliosporou"><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select></div><button class="add-cart" onclick="addWeightedProductToCart(this)">🛒 Προσθήκη στο καλάθι</button><div class="message">Το προϊόν προστέθηκε στο καλάθι!</div></div>
+</div></main>
 <script>
-
-function addToCart(productName, selectId) {
-
-  const weight =
-    parseInt(document.getElementById(selectId).value);
-
-  const pricePerKg = 13;
-
-  const price =
-    (weight / 1000) * pricePerKg;
-
-  let cart =
-    JSON.parse(localStorage.getItem("cart") || "[]");
-
-  const cartName =
-    productName + " - " + weight + " γρ.";
-
-  const existing =
-    cart.find(item => item.name === cartName);
-
-  if (existing) {
-
-    existing.quantity += 1;
-
-  } else {
-
-    cart.push({
-      name: cartName,
-      price: price,
-      quantity: 1
-    });
-
-  }
-
-  localStorage.setItem(
-    "cart",
-    JSON.stringify(cart)
-  );
-
-  const messageId =
-    "message-" +
-    selectId.replace("weight-", "");
-
-  const message =
-    document.getElementById(messageId);
-
-  if (message) {
-
-    message.style.display = "block";
-
-    setTimeout(function() {
-      message.style.display = "none";
-    }, 2000);
-
-  }
-
+function addWeightedProductToCart(button){
+  const select=button.parentElement.querySelector('select');
+  const grams=Number(select.value);
+  const names={
+    'weight-olikis':'Κριτσίνια Ολικής',
+    'weight-tyriou':'Κριτσίνια Τυριού',
+    'weight-kanelas':'Κριτσίνια Κανέλας',
+    'weight-iliosporou':'Κριτσίνια Ηλιόσπορου'
+  };
+  const name=names[select.id];
+  const price=Math.round(13*grams/1000*100)/100;
+  const displayName=name+' ('+(grams===1000?'1 kg':grams+' γρ.')+')';
+  let cart=JSON.parse(localStorage.getItem('mesagrosCart'))||[];
+  const existing=cart.find(item=>item.name===displayName);
+  if(existing){existing.quantity++;}else{cart.push({name:displayName,price:price,quantity:1});}
+  localStorage.setItem('mesagrosCart',JSON.stringify(cart));
+  const oldText=button.innerHTML;
+  button.innerHTML='✓ Προστέθηκε!';
+  button.classList.add('added');
+  const message=button.nextElementSibling;
+  if(message) message.style.display='block';
+  setTimeout(()=>{button.innerHTML=oldText;button.classList.remove('added');if(message)message.style.display='none';},1200);
 }
-
 </script>
-
 </body>
 </html>
