@@ -28,6 +28,14 @@ footer{text-align:center;background:#2b2119;color:white;padding:25px 15px}.small
 .weight-box{margin-top:10px}
 .weight-box select{width:100%;padding:9px;border:1px solid #dcc9b4;border-radius:8px;background:#fff;font-size:15px}
 .cart-btn{width:calc(100% - 28px);margin:10px 14px 14px;padding:11px;border:0;border-radius:10px;background:#9a5b2d;color:white;font-size:16px;font-weight:bold;cursor:pointer}
+
+.drink-list{max-width:900px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;border:1px solid #eadfd6;}
+.drink-row{display:grid;grid-template-columns:1fr auto 150px;align-items:center;gap:14px;padding:10px 14px;border-bottom:1px solid #eee7e1;}
+.drink-row:last-child{border-bottom:0;}
+.drink-row span{font-weight:600;font-size:17px;}
+.drink-row strong{font-size:17px;white-space:nowrap;}
+.drink-row .cart-btn{width:auto;margin:0;padding:8px 12px;font-size:14px;}
+@media(max-width:600px){.drink-row{grid-template-columns:1fr auto;gap:8px;}.drink-row .cart-btn{grid-column:1 / -1;width:100%;}.drink-row span{font-size:16px;}}
 </style>
 
 
@@ -888,6 +896,103 @@ cursor:pointer;
     <h2>🥤 Αναψυκτικά – Ποτά</h2>
     <div class="category-cover" style="margin-bottom:18px;">
       <img src="anapsiktika-pota.png" alt="Αναψυκτικά – Ποτά" style="width:100%;max-width:900px;display:block;margin:0 auto;border-radius:16px;">
+    </div>
+    <div class="drink-list">
+      <div class="drink-row">
+        <span>Coca-Cola</span>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Coca-Cola',1.20,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Coca-Cola Zero</span>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Coca-Cola Zero',1.20,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Fanta Πορτοκάλι</span>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Fanta Πορτοκάλι',1.20,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Fanta μπλε χωρίς ανθρακικό</span>
+        <strong>1.20 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Fanta μπλε χωρίς ανθρακικό',1.20,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Fanta Λεμονάδα</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Fanta Λεμονάδα',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Sprite</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Sprite',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Sprite Zero</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Sprite Zero',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Amita Motion</span>
+        <strong>1.50 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Motion',1.50,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Amita Πορτοκάλι</span>
+        <strong>1.80 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Πορτοκάλι',1.80,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Amita Βύσσινο</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Βύσσινο',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Amita Free Detox</span>
+        <strong>1.50 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Free Detox',1.50,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Amita Πορτοκάλι-Βερίκοκο-Μήλο</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Πορτοκάλι-Βερίκοκο-Μήλο',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Amita Fun Μήλο</span>
+        <strong>1.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Fun Μήλο',1.00,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Amita Fun Κόκκινο</span>
+        <strong>1.00 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Amita Fun Κόκκινο',1.00,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Schweppes Pink</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Pink',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Schweppes Πορτοκάλι</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Πορτοκάλι',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Schweppes Grapefruit</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Grapefruit',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Schweppes Ginger</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Ginger',1.90,event)">🛒 Προσθήκη</button>
+      </div>
+      <div class="drink-row">
+        <span>Schweppes Soda</span>
+        <strong>1.90 €</strong>
+        <button class="cart-btn" onclick="addProductToCart('Schweppes Soda',1.90,event)">🛒 Προσθήκη</button>
+      </div>
     </div>
   </section>
 </main>
