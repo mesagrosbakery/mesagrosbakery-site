@@ -729,7 +729,7 @@ function checkDeliveryDate(){
 /* ================================= */
 
 
-function sendOrder(){
+async function sendOrder(){
 
     if(cart.length === 0){
 
@@ -932,59 +932,47 @@ function sendOrder(){
 
 
     /* ================================= */
-    /* ΑΝΟΙΓΜΑ GMAIL */
+    /* ================================= */
+    /* ΑΠΟΣΤΟΛΗ ΜΕ WEB3FORMS */
     /* ================================= */
 
-    let gmailUrl =
+    const formData = new FormData();
+    formData.append("access_key", "6252d037-67b8-4ea4-9fed-2d5a26c92d52");
+    formData.append("subject", subject);
+    formData.append("from_name", "Αρτοποιείο Μεσαγρός");
+    formData.append("name", customerName);
+    formData.append("email", "mesagrosbakery@gmail.com");
+    formData.append("message", body);
 
-        "https://mail.google.com/mail/?view=cm" +
-
-        "&fs=1" +
-
-        "&to=mesagrosbakery%40gmail.com" +
-
-        "&su=" +
-
-        encodeURIComponent(subject) +
-
-        "&body=" +
-
-        encodeURIComponent(body);
-
-
-    // Σε κινητό ανοίγουμε την εφαρμογή email/Gmail με έτοιμη την παραγγελία.
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    if(isAndroid){
-        /*
-         * Gmail για Android σε ορισμένες εκδόσεις κάνει μόνο ένα decode
-         * του mailto URI. Κάνουμε διπλή κωδικοποίηση ώστε το Gmail να
-         * εμφανίσει κανονικά τα ελληνικά, τα σύμβολα και τις αλλαγές γραμμής.
-         */
-        const mailtoUrl =
-            "mailto:mesagrosbakery@gmail.com" +
-            "?subject=" + encodeURIComponent(encodeURIComponent(subject)) +
-            "&body=" + encodeURIComponent(encodeURIComponent(body));
-
-        window.location.href = mailtoUrl;
-
-    }else if(isMobile){
-        const mailtoUrl =
-            "mailto:mesagrosbakery@gmail.com" +
-            "?subject=" + encodeURIComponent(subject) +
-            "&body=" + encodeURIComponent(body);
-
-        window.location.href = mailtoUrl;
-
-    }else{
-        window.open(gmailUrl, "_blank");
+    const sendButton = document.querySelector('button[onclick="sendOrder()"]');
+    if(sendButton){
+        sendButton.disabled = true;
+        sendButton.textContent = "Αποστολή...";
     }
 
-    // Αδειάζουμε το καλάθι μετά τη δημιουργία του email
-    cart = [];
-    localStorage.removeItem("mesagrosCart");
-    renderCart();
+    try{
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+        const result = await response.json();
+
+        if(result.success){
+            cart = [];
+            localStorage.removeItem("mesagrosCart");
+            renderCart();
+            alert("Η παραγγελία στάλθηκε με επιτυχία!");
+        }else{
+            alert("Δεν στάλθηκε η παραγγελία. Παρακαλώ δοκιμάστε ξανά.");
+        }
+    }catch(error){
+        alert("Παρουσιάστηκε πρόβλημα κατά την αποστολή. Παρακαλώ δοκιμάστε ξανά.");
+    }finally{
+        if(sendButton){
+            sendButton.disabled = false;
+            sendButton.textContent = "Αποστολή παραγγελίας";
+        }
+    }
 
 }
 
