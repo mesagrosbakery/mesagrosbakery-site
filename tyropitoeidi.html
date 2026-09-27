@@ -2,7 +2,7 @@
 <html lang="el">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Τυροπιτοειδή – Αρτοποιείο Μεσαγρός</title>
 <style>
 :root{--ink:#2b2119;--cream:#fffaf1;--paper:#fff;--accent:#9a5b2d;--muted:#75675c}
@@ -10,32 +10,37 @@
 html,body{margin:0;width:100%;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
 header{padding:34px 18px;text-align:center;background:#f1dfc5 url('header-background.png') center/cover no-repeat;border-bottom:1px solid #e1c8a8}
 .site-logo{width:220px;max-width:80%;height:auto;display:block;margin:0 auto}
-.container{max-width:1050px;margin:auto;padding:22px 15px 90px}
-.cart-top{text-align:center;margin:15px 0}
-.cart-btn-top,.back-btn{display:inline-block;background:#7a4b2a;color:white;padding:12px 22px;border-radius:12px;text-decoration:none;font-size:17px;font-weight:bold;box-shadow:0 2px 6px #0002}
-.back-wrap{text-align:center;margin:15px 0 25px}
-.back-btn{background:#7a4b2a}
-.back-btn:hover{background:#633b22}
-.hero-img{width:100%;display:block;border-radius:18px;box-shadow:0 5px 20px #00000012;margin-bottom:28px}
-h1{font-size:36px;margin:0 0 8px;font-weight:800;letter-spacing:1px}
-h2{font-size:26px;border-bottom:2px solid #ead7bf;padding-bottom:8px;margin-top:28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.card{background:var(--paper);border-radius:15px;overflow:hidden;box-shadow:0 4px 15px #0000000a;border:1px solid #eee4d8}
-.photo{height:180px;background:#eee0cc;display:flex;align-items:center;justify-content:center;font-size:48px}
-.photo img{width:100%;height:100%;object-fit:cover;display:block}
-.body{padding:14px;text-align:center}
-.card h3{margin:0 0 5px;font-size:18px}
-.desc{color:var(--muted);font-size:14px;min-height:35px}
-.price{font-weight:800;margin-top:10px;color:var(--accent);font-size:20px}
-.cart-btn{width:calc(100% - 28px);margin:0 14px 14px;padding:11px;border:0;border-radius:10px;background:#9a5b2d;color:white;font-size:16px;font-weight:bold;cursor:pointer}
-.weight-box{padding:0 14px 14px}
-.weight-box select{width:100%;padding:10px;border:1px solid #dcc9b4;border-radius:8px;background:#fff;font-size:15px;margin-bottom:10px}
-.section-note{text-align:center;color:var(--muted);margin:-10px 0 20px}
-footer{text-align:center;background:#2b2119;color:white;padding:25px 15px}
+.top-actions{text-align:center;margin:15px 0}
+.top-actions a{display:inline-block;background:#7a4b2a;color:#fff;padding:12px 22px;border-radius:12px;text-decoration:none;font-size:18px;font-weight:bold}
+.back-wrap{text-align:center;margin:15px 0 20px}
+.back-btn{display:inline-block;background:#7a4b2a;color:#fff;padding:11px 22px;border-radius:12px;text-decoration:none;font-size:17px;font-weight:700;box-shadow:0 2px 6px #0002}
+.container{max-width:1050px;margin:auto;padding:0 15px 80px}
+.category-image{margin:0 0 24px}
+.category-image img{width:100%;display:block;border-radius:18px;box-shadow:0 5px 20px #00000012}
+h1{font-size:32px;text-align:center;margin:20px 0 8px}
+.subtitle{text-align:center;color:var(--muted);margin-bottom:25px}
+.section-title{font-size:27px;margin:28px 0 12px;border-bottom:2px solid #ead7bf;padding-bottom:8px}
+.product-list{background:#fff;border:1px solid #eadfd6;border-radius:15px;overflow:hidden}
+.product-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:15px;padding:13px 15px;border-bottom:1px solid #eee7e1}
+.product-row:last-child{border-bottom:0}
+.product-name{font-size:17px;font-weight:700}
+.product-price{font-size:17px;font-weight:800;color:var(--accent);white-space:nowrap}
+.add-btn{border:0;background:#9a5b2d;color:#fff;padding:9px 13px;border-radius:9px;font-weight:bold;cursor:pointer;white-space:nowrap}
+.message{font-size:13px;color:#4f7d3a;margin-left:8px}
+.mini-note{text-align:center;color:var(--muted);margin:0 0 12px}
+.mini-row{display:grid;grid-template-columns:1fr 330px auto;align-items:center;gap:14px;padding:13px 15px;border-bottom:1px solid #eee7e1}
+.mini-row:last-child{border-bottom:0}
+.mini-row select{width:100%;padding:9px;border:1px solid #dcc9b4;border-radius:8px;background:#fff;font-size:15px}
+.second-image{margin:25px 0}
+.second-image img{width:100%;display:block;border-radius:18px;box-shadow:0 5px 20px #00000012}
+footer{text-align:center;background:#2b2119;color:#fff;padding:25px 15px}
 .small{font-size:13px;color:#e7d9ca}
-@media(max-width:600px){
-h1{font-size:29px}.photo{height:155px}.grid{grid-template-columns:1fr 1fr}
-.card h3{font-size:16px}.price{font-size:18px}.cart-btn{font-size:14px;padding:10px 7px}
+@media(max-width:650px){
+.product-row{grid-template-columns:1fr auto;gap:8px}
+.product-row .add-btn{grid-column:1/-1;width:100%}
+.mini-row{grid-template-columns:1fr;gap:9px}
+.mini-row .add-btn{width:100%}
+h1{font-size:27px}
 }
 </style>
 </head>
@@ -43,7 +48,7 @@ h1{font-size:29px}.photo{height:155px}.grid{grid-template-columns:1fr 1fr}
 
 <header>
   <div style="text-align:center;margin-bottom:20px;">
-    <h1>ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</h1>
+    <h1 style="font-size:36px;margin:0 0 8px;font-weight:800;letter-spacing:1px;">ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</h1>
     <div style="font-size:20px;font-weight:600;margin-bottom:12px;">ΜΕΣΑΓΡΟΣ • ΓΕΡΑΣ • ΛΕΣΒΟΣ</div>
     <div style="font-size:28px;font-weight:800;letter-spacing:2px;margin-bottom:5px;">BAKERY MESAGROS</div>
     <div style="font-size:17px;">Mesagros • Geras • Lesvos</div>
@@ -51,159 +56,96 @@ h1{font-size:29px}.photo{height:155px}.grid{grid-template-columns:1fr 1fr}
   <img src="LOGO.png" alt="Αρτοποιείο Μεσαγρός" class="site-logo">
 </header>
 
-<div class="cart-top">
-  <a class="cart-btn-top" href="kalathi.html">🛒 Καλάθι Παραγγελίας</a>
-</div>
-
-<div class="back-wrap">
-  <a class="back-btn" href="index.html">← Πίσω στον κατάλογο</a>
-</div>
+<div class="top-actions"><a href="kalathi.html">🛒 Καλάθι Παραγγελίας</a></div>
+<div class="back-wrap"><a class="back-btn" href="index.html">← Πίσω στον κατάλογο</a></div>
 
 <main class="container">
 
-<img src="tyropitoeidi-kentriki.png" alt="Τυροπιτοειδή" class="hero-img">
+  <!-- Φωτογραφία Νο 2, όπως την είχαμε στη σειρά -->
+  <div class="category-image">
+    <img src="Λαχταριστά Τυροπιτοειδή Φούρνου.png" alt="Τυροπιτοειδή">
+  </div>
 
-<h2>🥐 Τυροπιτοειδή</h2>
-<div class="section-note">Φρέσκα τυροπιτοειδή και μίνι επιλογές</div>
+  <h1>🥐 Τυροπιτοειδή</h1>
+  <div class="subtitle">Φρέσκα τυροπιτοειδή και επιλογές για κάθε στιγμή</div>
 
-<div class="grid">
+  <div class="product-list">
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Τυροπιτάκι"></div>
-<div class="body"><h3>Τυροπιτάκι</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Τυροπιτάκι',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="product-row"><div class="product-name">Τυρόπιτα</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Τυρόπιτα',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Σπανακόπιτα</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Σπανακόπιτα',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Λουκανικόπιτα</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Λουκανικόπιτα',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Ζαμπονοτυρόπιτα</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Ζαμπονοτυρόπιτα',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Πιτσάκι</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Πιτσάκι',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Λουκανικόπιτα με σάλτσα</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Λουκανικόπιτα με σάλτσα',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Λουκανικόπιτα με τυρί</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Λουκανικόπιτα με τυρί',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Ζαμπονοτυρόπιτα κουρού</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Ζαμπονοτυρόπιτα κουρού',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Τυρόπιτα κουρού</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Τυρόπιτα κουρού',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Σπανακόπιτα κουρού</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Σπανακόπιτα κουρού',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Κρουασάν βουτύρου</div><div class="product-price">1,20 €</div><button class="add-btn" onclick="addProductToCart('Κρουασάν βουτύρου',1.20,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Κρουασάν βουτύρου σοκολάτα</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Κρουασάν βουτύρου σοκολάτα',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Κρουασάν βουτύρου Bueno</div><div class="product-price">1,50 €</div><button class="add-btn" onclick="addProductToCart('Κρουασάν βουτύρου Bueno',1.50,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Κρουασάν βουτύρου σοκολάτα + Bueno</div><div class="product-price">1,80 €</div><button class="add-btn" onclick="addProductToCart('Κρουασάν βουτύρου σοκολάτα + Bueno',1.80,this)">🛒 Προσθήκη</button></div>
+    <div class="product-row"><div class="product-name">Dunat σοκολάτας</div><div class="product-price">0,80 €</div><button class="add-btn" onclick="addProductToCart('Dunat σοκολάτας',0.80,this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Τυροπιτάκι κουρού"></div>
-<div class="body"><h3>Τυροπιτάκι κουρού</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Τυροπιτάκι κουρού',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+  </div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Τυροπιτάκι ολικής"></div>
-<div class="body"><h3>Τυροπιτάκι ολικής</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Τυροπιτάκι ολικής',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+  <!-- Φωτογραφία Νο 1, δεύτερη στη σελίδα -->
+  <div class="second-image">
+    <img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Τυροπιτοειδή φούρνου">
+  </div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Σπανακοπιτάκια"></div>
-<div class="body"><h3>Σπανακοπιτάκια</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Σπανακοπιτάκια',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+  <h2 class="section-title">Μίνι Τεμάχια</h2>
+  <div class="mini-note">13,00 € / κιλό • Επιλέξτε ποσότητα</div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Λουκανικοπιτάκι με σάλτσα"></div>
-<div class="body"><h3>Λουκανικοπιτάκι με σάλτσα</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Λουκανικοπιτάκι με σάλτσα',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+  <div class="product-list">
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Λουκανικοπιτάκι με τυρί"></div>
-<div class="body"><h3>Λουκανικοπιτάκι με τυρί</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Λουκανικοπιτάκι με τυρί',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Τυροπιτάκια</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Τυροπιτάκια" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Ζαμπονοτυροπιτάκι"></div>
-<div class="body"><h3>Ζαμπονοτυροπιτάκι</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Ζαμπονοτυροπιτάκι',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Τυροπιτάκι Κουρού</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Τυροπιτάκι Κουρού" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Κρουασανάκι βουτύρου"></div>
-<div class="body"><h3>Κρουασανάκι βουτύρου</h3><div class="price">1,20 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Κρουασανάκι βουτύρου',1.20,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Τυροπιτάκι Ολικής</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Τυροπιτάκι Ολικής" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Πιτσάκια"></div>
-<div class="body"><h3>Πιτσάκια</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Πιτσάκια',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Σπανακοπιτάκια</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Σπανακοπιτάκια" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Κρουασάν βουτύρου σοκολάτα"></div>
-<div class="body"><h3>Κρουασάν βουτύρου σοκολάτα</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Κρουασάν βουτύρου σοκολάτα',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Λουκανικοπιτάκι με σάλτσα</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Λουκανικοπιτάκι με σάλτσα" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Κρουασάν βουτύρου Bueno"></div>
-<div class="body"><h3>Κρουασάν βουτύρου Bueno</h3><div class="price">1,50 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Κρουασάν βουτύρου Bueno',1.50,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Λουκανικοπιτάκι με τυρί</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Λουκανικοπιτάκι με τυρί" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="Κρουασάν βουτύρου σοκολάτα + Bueno"></div>
-<div class="body"><h3>Κρουασάν βουτύρου σοκολάτα + Bueno</h3><div class="price">1,80 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Κρουασάν βουτύρου σοκολάτα + Bueno',1.80,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Ζαμπονοτυροπιτάκι</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Ζαμπονοτυροπιτάκι" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<article class="card">
-<div class="photo">🍫</div>
-<div class="body"><h3>Dunat σοκολάτας</h3><div class="price">0,80 €</div></div>
-<button class="cart-btn" onclick="addProductToCart('Dunat σοκολάτας',0.80,event)">🛒 Προσθήκη στο καλάθι</button>
-</article>
+    <div class="mini-row"><div class="product-name">Μίνι Κρουασανάκι βουτύρου</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Κρουασανάκι βουτύρου" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-</div>
+    <div class="mini-row"><div class="product-name">Μίνι Πιτσάκια</div><select><option value="50">50 γρ. — 0,65 €</option><option value="100">100 γρ. — 1,30 €</option><option value="150">150 γρ. — 1,95 €</option><option value="200">200 γρ. — 2,60 €</option><option value="250">250 γρ. — 3,25 €</option><option value="500">500 γρ. — 6,50 €</option><option value="750">750 γρ. — 9,75 €</option><option value="1000">1 κιλό — 13,00 €</option></select><button class="add-btn" data-name="Μίνι Πιτσάκια" onclick="addMini(this)">🛒 Προσθήκη</button></div>
 
-<h2>Μίνι Τεμάχια</h2>
-<div class="section-note">13,00 € / κιλό • Επιλέξτε ποσότητα</div>
-
-<div class="grid">
-
-<script>
-const mini=[
-['Μίνι Τυροπιτάκι'],['Μίνι Τυροπιτάκι κουρού'],['Μίνι Τυροπιτάκι ολικής'],
-['Μίνι Σπανακοπιτάκι'],['Μίνι Λουκανικοπιτάκι με σάλτσα'],['Μίνι Λουκανικοπιτάκι με τυρί'],
-['Μίνι Ζαμπονοτυροπιτάκι'],['Μίνι Κρουασανάκι βουτύρου'],['Μίνι Πιτσάκια']
-];
-document.write(mini.map(([name])=>`
-<article class="card">
-<div class="photo"><img src="Χρυσά Τυροπιτοειδή Φούρνου.png" alt="${name}"></div>
-<div class="body"><h3>${name}</h3><div class="price">13,00 € / κιλό</div></div>
-<div class="weight-box">
-<select>
-<option value="250">250 g — 3,25 €</option>
-<option value="500">500 g — 6,50 €</option>
-<option value="750">750 g — 9,75 €</option>
-<option value="1000">1 kg — 13,00 €</option>
-</select>
-<button class="cart-btn" data-name="${name}" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη</button>
-</div>
-</article>`).join(''));
-</script>
-
-</div>
+  </div>
 </main>
 
 <footer>
 <strong>ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</strong>
 <div class="small">Μεσαγρός Γέρας • Δευτέρα–Σάββατο 06:00–15:00 • Κυριακή κλειστά</div>
-<div style="margin-top:10px"><a class="cart-btn-top" href="tel:2251085183">📞 2251085183</a></div>
 </footer>
 
 <script>
-function getCart(){return JSON.parse(localStorage.getItem("mesagrosCart"))||[]}
-function saveCart(c){localStorage.setItem("mesagrosCart",JSON.stringify(c))}
-function addProductToCart(name,price,event){
- let cart=getCart(), existing=cart.find(x=>x.name===name);
- if(existing) existing.quantity=(existing.quantity||1)+1;
- else cart.push({name:name,price:Number(price),quantity:1});
- saveCart(cart);
- const b=event&&event.target;if(b){const old=b.innerHTML;b.innerHTML="✓ Προστέθηκε!";b.style.background="#4f7d3a";setTimeout(()=>{b.innerHTML=old;b.style.background="#9a5b2d"},1000)}
+function getCart(){return JSON.parse(localStorage.getItem('mesagrosCart')||'[]')}
+function saveCart(c){localStorage.setItem('mesagrosCart',JSON.stringify(c))}
+function addProductToCart(name,price,button){
+  let cart=getCart(), existing=cart.find(x=>x.name===name);
+  if(existing) existing.quantity=(existing.quantity||1)+1;
+  else cart.push({name:name,price:Number(price),quantity:1});
+  saveCart(cart);
+  const old=button.innerHTML;button.innerHTML='✓ Προστέθηκε!';button.style.background='#4f7d3a';
+  setTimeout(()=>{button.innerHTML=old;button.style.background='#9a5b2d'},1000);
 }
-function addWeightedProductToCart(button,event){
- const select=button.parentElement.querySelector("select"), grams=Number(select.value);
- const name=button.dataset.name, price=Math.round(13*grams/1000*100)/100;
- const displayName=name+" ("+(grams===1000?"1 kg":grams+" g")+")";
- let cart=getCart(), existing=cart.find(x=>x.name===displayName);
- if(existing) existing.quantity=(existing.quantity||1)+1;
- else cart.push({name:displayName,price:price,quantity:1});
- saveCart(cart);
- const old=button.innerHTML;button.innerHTML="✓ Προστέθηκε!";button.style.background="#4f7d3a";
- setTimeout(()=>{button.innerHTML=old;button.style.background="#9a5b2d"},1000);
+function addMini(button){
+  const row=button.parentElement, select=row.querySelector('select'), grams=Number(select.value);
+  const name=button.dataset.name, price=Math.round(13*grams/1000*100)/100;
+  const displayName=name+' ('+(grams===1000?'1 κιλό':grams+' γρ.')+')';
+  let cart=getCart(), existing=cart.find(x=>x.name===displayName);
+  if(existing) existing.quantity=(existing.quantity||1)+1;
+  else cart.push({name:displayName,price:price,quantity:1});
+  saveCart(cart);
+  const old=button.innerHTML;button.innerHTML='✓ Προστέθηκε!';button.style.background='#4f7d3a';
+  setTimeout(()=>{button.innerHTML=old;button.style.background='#9a5b2d'},1000);
 }
 </script>
 </body>
