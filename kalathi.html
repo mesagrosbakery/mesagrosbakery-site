@@ -299,9 +299,9 @@ font-size:16px;
 background:white;
 ">
 <option value="">Επιλέξτε διαδρομή *</option>
+<option value="geras">Μεσαγρός → Γέρα / καθημερινά</option>
 <option value="mytilene">Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά</option>
 <option value="plomari">Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά</option>
-<option value="geras">Μεσαγρός → Γέρα / καθημερινά</option>
 <option value="other">Άλλη περιοχή Λέσβου / Υπόλοιπη Ελλάδα — κατόπιν συνεννόησης</option>
 </select>
 
@@ -717,7 +717,9 @@ function checkDeliveryDate(){
         message.style.display = "block";
         message.style.background = "#eef7ee";
         message.style.border = "1px solid #b9d8b9";
-        message.innerHTML = `✅ Η ημερομηνία είναι διαθέσιμη για τη διαδρομή <strong>Μεσαγρός → ${routeName}</strong> (15:00 – 17:00).`;
+        message.innerHTML = route === "geras"
+            ? `✅ Η ημερομηνία είναι διαθέσιμη για τη διαδρομή <strong>Μεσαγρός → ${routeName}</strong>. Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία σας.`
+            : `✅ Η ημερομηνία είναι διαθέσιμη για τη διαδρομή <strong>Μεσαγρός → ${routeName}</strong> (15:00 – 17:00).`;
     }
 }
 
@@ -911,7 +913,7 @@ function sendOrder(){
         new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") +
         "\n" +
 
-        "Ώρες διανομής: 15:00 – 17:00\n\n" +
+        (deliveryRoute === "geras" ? "Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία.\n\n" : "Ώρες διανομής: 15:00 – 17:00\n\n") +
 
         "📝 ΠΑΡΑΤΗΡΗΣΕΙΣ\n\n" +
 
@@ -950,8 +952,19 @@ function sendOrder(){
         encodeURIComponent(body);
 
 
-    // Ανοίγουμε το Gmail όπως στην προηγούμενη έκδοση που λειτουργούσε
-    window.open(gmailUrl, "_blank");
+    // Σε κινητό ανοίγουμε την εφαρμογή email/Gmail με έτοιμη την παραγγελία.
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if(isMobile){
+        const mailtoUrl =
+            "mailto:mesagrosbakery@gmail.com" +
+            "?subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body);
+
+        window.location.href = mailtoUrl;
+    }else{
+        window.open(gmailUrl, "_blank");
+    }
 
     // Αδειάζουμε το καλάθι μετά τη δημιουργία του email
     cart = [];
