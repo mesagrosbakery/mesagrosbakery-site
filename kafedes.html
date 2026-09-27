@@ -59,6 +59,7 @@ footer{text-align:center;background:#2b2119;color:white;padding:25px 15px;margin
 
 <div class="cart-top">
   <a href="kalathi.html">🛒 Καλάθι Παραγγελίας</a>
+</div>
 <div class="back-wrap"><a class="back-btn" href="index.html">← Πίσω στον κατάλογο</a></div>
 
 <main class="container">
@@ -160,29 +161,29 @@ footer{text-align:center;background:#2b2119;color:white;padding:25px 15px;margin
     <div class="product-row">
       <div><div class="product-name">Σοκολάτα κρύα</div></div>
       <div class="product-price">2,30 €</div>
-      <div class="no-sugar">Χωρίς επιλογή ζάχαρης</div>
-      <button class="cart-btn" onclick="addProductToCart('Σοκολάτα κρύα',2.30,event)">🛒 Προσθήκη</button>
+      <select class="sugar-select" id="sugar-13"><option>Σκέτος</option><option>Με 1 κουταλάκι ζάχαρη</option><option>Μέτριος</option><option>Γλυκός</option><option>Πολύ γλυκός</option></select>
+      <button class="cart-btn" onclick="addCoffeeToCart('Σοκολάτα κρύα',2.30,'sugar-13',event)">🛒 Προσθήκη</button>
     </div>
 
     <div class="product-row">
       <div><div class="product-name">Σοκολάτα ζεστή</div></div>
       <div class="product-price">2,30 €</div>
-      <div class="no-sugar">Χωρίς επιλογή ζάχαρης</div>
-      <button class="cart-btn" onclick="addProductToCart('Σοκολάτα ζεστή',2.30,event)">🛒 Προσθήκη</button>
+      <select class="sugar-select" id="sugar-14"><option>Σκέτος</option><option>Με 1 κουταλάκι ζάχαρη</option><option>Μέτριος</option><option>Γλυκός</option><option>Πολύ γλυκός</option></select>
+      <button class="cart-btn" onclick="addCoffeeToCart('Σοκολάτα ζεστή',2.30,'sugar-14',event)">🛒 Προσθήκη</button>
     </div>
 
     <div class="product-row">
       <div><div class="product-name">Τσάι μαύρο</div></div>
       <div class="product-price">1,80 €</div>
-      <div class="no-sugar">Χωρίς επιλογή ζάχαρης</div>
-      <button class="cart-btn" onclick="addProductToCart('Τσάι μαύρο',1.80,event)">🛒 Προσθήκη</button>
+      <select class="sugar-select" id="sugar-15"><option>Σκέτος</option><option>Με 1 κουταλάκι ζάχαρη</option><option>Μέτριος</option><option>Γλυκός</option><option>Πολύ γλυκός</option></select>
+      <button class="cart-btn" onclick="addCoffeeToCart('Τσάι μαύρο',1.80,'sugar-15',event)">🛒 Προσθήκη</button>
     </div>
 
     <div class="product-row">
       <div><div class="product-name">Τσάι φρούτα</div></div>
       <div class="product-price">1,80 €</div>
-      <div class="no-sugar">Χωρίς επιλογή ζάχαρης</div>
-      <button class="cart-btn" onclick="addProductToCart('Τσάι φρούτα',1.80,event)">🛒 Προσθήκη</button>
+      <select class="sugar-select" id="sugar-16"><option>Σκέτος</option><option>Με 1 κουταλάκι ζάχαρη</option><option>Μέτριος</option><option>Γλυκός</option><option>Πολύ γλυκός</option></select>
+      <button class="cart-btn" onclick="addCoffeeToCart('Τσάι φρούτα',1.80,'sugar-16',event)">🛒 Προσθήκη</button>
     </div>
 
   </div>
