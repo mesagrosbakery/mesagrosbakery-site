@@ -284,11 +284,661 @@ font-size:16px;
 ">
 
 <h3>
-🚚 Τρόπος / Περιοχή διανομής
+📝 Παρατηρήσεις
 </h3>
 
-<select
-id="deliveryRoute"
+<textarea
+id="customerNotes"
+placeholder="Προαιρετικά, γράψτε κάποια παρατήρηση..."
+style="
+width:100%;
+min-height:90px;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+resize:vertical;
+">
+</textarea>
+
+</div>
+</div>
+
+
+<button
+class="email-button"
+onclick="sendOrder()"
+>
+📧 Αποστολή παραγγελίας μέσω Gmail
+</button>
+
+
+<button
+class="clear-button"
+onclick="clearCart()"
+>
+🗑️ Άδειασμα καλαθιού
+</button>
+
+
+</div>
+
+
+<a
+href="index.html"
+class="back"
+>
+← Επιστροφή στον κατάλογο
+</a>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ================================= */
+/* ΔΙΑΒΑΖΟΥΜΕ ΤΟ ΙΔΙΟ ΚΑΛΑΘΙ */
+/* ================================= */
+
+
+let cart =
+JSON.parse(
+localStorage.getItem("mesagrosCart")
+) || [];
+
+
+
+/* ================================= */
+/* ΕΜΦΑΝΙΣΗ ΚΑΛΑΘΙΟΥ */
+/* ================================= */
+
+
+function renderCart(){
+
+
+let box =
+document.getElementById("cartItems");
+
+
+let total =
+document.getElementById("cartTotal");
+
+
+if(cart.length === 0){
+
+box.className = "empty";
+
+box.innerHTML =
+"Το καλάθι είναι άδειο.";
+
+total.innerHTML =
+"Σύνολο: 0,00 €";
+
+return;
+
+}
+
+
+box.className = "";
+
+
+let html = "";
+
+let sum = 0;
+
+
+cart.forEach(
+(item,index) => {
+
+
+let subtotal =
+item.price *
+item.quantity;
+
+
+sum += subtotal;
+
+
+let itemName = item.name;
+let itemDescription = "";
+
+let isPastakia = item.name.startsWith("Παστάκια");
+
+if(isPastakia){
+
+    let parts = item.name.split(" — ");
+
+    itemName = parts[0];
+
+    itemDescription = parts[1] || "";
+
+}
+
+html += `
+
+<div class="cart-item">
+
+<div class="item-name">
+
+<strong>
+${itemName}
+</strong>
+
+${isPastakia ? `
+<div style="
+margin-top:5px;
+font-size:14px;
+line-height:1.6;
+color:#666;
+">
+${itemDescription.replaceAll(", ", "<br>")}
+</div>
+` : ""}
+
+${!isPastakia ? `
+<br>
+${item.price
+.toFixed(2)
+.replace(".",",")
+} € / τεμάχιο
+` : ""}
+
+</div>
+
+
+<div class="item-controls">
+
+${isPastakia ? "" : `
+
+<button
+class="qty-button"
+onclick="decrease(${index})"
+>
+−
+</button>
+
+<span class="qty">
+${item.quantity}
+</span>
+
+<button
+class="qty-button"
+onclick="increase(${index})"
+>
++
+</button>
+
+`}
+
+<button
+class="remove"
+onclick="removeItem(${index})"
+>
+×
+</button>
+
+</div>
+
+
+</div>
+
+`;
+
+});
+
+
+box.innerHTML = html;
+
+
+total.innerHTML =
+
+"Σύνολο: " +
+
+sum
+.toFixed(2)
+.replace(".",",") +
+
+" €";
+
+}
+
+
+
+/* ================================= */
+/* ΑΥΞΗΣΗ */
+/* ================================= */
+
+
+function increase(index){
+
+cart[index].quantity++;
+
+saveCart();
+
+renderCart();
+
+}
+
+
+
+/* ================================= */
+/* ΜΕΙΩΣΗ */
+/* ================================= */
+
+
+function decrease(index){
+
+cart[index].quantity--;
+
+
+if(cart[index].quantity <= 0){
+
+cart.splice(index,1);
+
+}
+
+
+saveCart();
+
+renderCart();
+
+}
+
+
+
+/* ================================= */
+/* ΔΙΑΓΡΑΦΗ */
+/* ================================= */
+
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+saveCart();
+
+renderCart();
+
+}
+
+
+
+/* ================================= */
+/* ΑΠΟΘΗΚΕΥΣΗ */
+/* ================================= */
+
+
+function saveCart(){
+
+localStorage.setItem(
+"mesagrosCart",
+JSON.stringify(cart)
+);
+
+}
+
+
+
+/* ================================= */
+/* ΑΔΕΙΑΣΜΑ ΚΑΛΑΘΙΟΥ */
+/* ================================= */
+
+
+function clearCart(){
+
+if(cart.length === 0){
+
+return;
+
+}
+
+
+if(
+confirm(
+"Θέλετε να αδειάσετε το καλάθι;"
+)
+){
+
+cart = [];
+
+saveCart();
+
+renderCart();
+
+}
+
+}
+
+
+
+/* ================================= */
+/* ΑΠΟΣΤΟΛΗ ΣΤΟ GMAIL */
+/* ================================= */
+
+
+function sendOrder(){
+
+    if(cart.length === 0){
+
+        alert("Το καλάθι είναι άδειο.");
+
+        return;
+    }
+
+
+    /* ================================= */
+    /* ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ */
+    /* ================================= */
+
+    let customerName =
+        document.getElementById("customerName").value.trim();
+
+    let customerPhone =
+        document.getElementById("customerPhone").value.trim();
+
+    let customerArea =
+        document.getElementById("customerArea").value.trim();
+
+    let customerAddress =
+        document.getElementById("customerAddress").value.trim();
+
+    let customerNumber =
+        document.getElementById("customerNumber").value.trim();
+
+    let customerNotes =
+        document.getElementById("customerNotes").value.trim();
+
+
+    /* ================================= */
+    /* ΕΛΕΓΧΟΣ ΥΠΟΧΡΕΩΤΙΚΩΝ ΠΕΔΙΩΝ */
+    /* ================================= */
+
+    if(
+        !customerName ||
+        !customerPhone ||
+        !customerArea ||
+        !customerAddress ||
+        !customerNumber
+    ){
+
+        alert(
+            "Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά στοιχεία."
+        );
+
+        return;
+    }
+
+
+    /* ================================= */
+    /* ΘΕΜΑ EMAIL */
+    /* ================================= */
+
+    let subject =
+        "🛒 Νέα παραγγελία - Αρτοποιείο Μεσαγρός";
+
+
+    /* ================================= */
+    /* ΑΡΧΗ EMAIL */
+    /* ================================= */
+
+    let body =
+        "🍞 ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ\n" +
+        "ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ\n\n" +
+
+        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+
+        "🛒 ΠΡΟΪΟΝΤΑ\n\n";
+
+
+    /* ================================= */
+    /* ΠΡΟΪΟΝΤΑ */
+    /* ================================= */
+
+    let sum = 0;
+
+    cart.forEach(item => {
+
+        let subtotal =
+            item.price * item.quantity;
+
+        sum += subtotal;
+
+        body +=
+            "• " +
+            item.name +
+            " × " +
+            item.quantity +
+            " — " +
+            subtotal
+                .toFixed(2)
+                .replace(".",",") +
+            " €\n";
+
+    });
+
+
+    /* ================================= */
+    /* ΣΥΝΟΛΟ */
+    /* ================================= */
+
+    body +=
+        "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
+
+        "💰 ΣΥΝΟΛΟ: " +
+        sum
+            .toFixed(2)
+            .replace(".",",") +
+        " €\n\n" +
+
+        "━━━━━━━━━━━━━━━━━━━━\n\n";
+
+
+    /* ================================= */
+    /* ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ */
+    /* ================================= */
+
+    body +=
+        "👤 ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ\n\n" +
+
+        "Όνομα: " +
+        customerName +
+        "\n" +
+
+        "Τηλέφωνο: " +
+        customerPhone +
+        "\n\n" +
+
+        "📍 ΣΤΟΙΧΕΙΑ ΠΑΡΑΔΟΣΗΣ\n\n" +
+
+        "Περιοχή / Χωριό: " +
+        customerArea +
+        "\n" +
+
+        "Διεύθυνση: " +
+        customerAddress +
+        "\n" +
+
+        "Αριθμός: " +
+        customerNumber +
+        "\n\n" +
+
+        "📝 ΠΑΡΑΤΗΡΗΣΕΙΣ\n\n" +
+
+        (
+            customerNotes
+                ? customerNotes
+                : "Δεν υπάρχουν παρατηρήσεις."
+        ) +
+
+        "\n\n" +
+
+        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+
+        "Αρτοποιείο Μεσαγρός\n" +
+        "Μεσαγρός, Γέρας Λέσβου";
+
+
+    /* ================================= */
+    /* ΑΝΟΙΓΜΑ GMAIL */
+    /* ================================= */
+
+    const emailTo='mesagrosbakery@gmail.com';
+const emailSubject=subject;
+const emailBody=body;
+const isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+if(isMobile){
+ const form=document.createElement('form');
+ form.method='GET'; form.action='https://mail.google.com/mail/'; form.target='_blank'; form.style.display='none';
+ const params={view:'cm',fs:'1',to:emailTo,su:emailSubject,body:emailBody};
+ Object.keys(params).forEach(function(key){const input=document.createElement('input');input.type='hidden';input.name=key;input.value=params[key];form.appendChild(input);});
+ document.body.appendChild(form);form.submit();form.remove();
+}else{
+ const gmailUrl='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(emailTo)+'&su='+encodeURIComponent(emailSubject)+'&body='+encodeURIComponent(emailBody);
+ window.open(gmailUrl,'_blank');
+}
+
+:center;
+gap:8px;
+}
+
+.qty-button{
+width:32px;
+height:32px;
+border:0;
+border-radius:8px;
+background:#eadfd2;
+font-size:18px;
+cursor:pointer;
+}
+
+.qty{
+font-weight:bold;
+min-width:25px;
+text-align:center;
+}
+
+.remove{
+border:0;
+background:#999;
+color:white;
+border-radius:7px;
+padding:6px 9px;
+cursor:pointer;
+}
+
+.total{
+text-align:right;
+font-size:22px;
+font-weight:bold;
+margin:20px 0;
+}
+
+.email-button{
+display:block;
+width:100%;
+padding:15px;
+border:0;
+border-radius:12px;
+background:#d44638;
+color:white;
+font-size:19px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.clear-button{
+display:block;
+width:100%;
+padding:11px;
+margin-top:10px;
+border:0;
+border-radius:10px;
+background:#eee;
+color:#555;
+font-size:15px;
+cursor:pointer;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#7a4b2a;
+text-decoration:none;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<img
+src="LOGO.png"
+alt="Αρτοποιείο Μεσαγρός"
+class="logo"
+>
+
+
+<h1>
+🛒 Καλάθι Παραγγελίας
+</h1>
+
+
+<div class="subtitle">
+
+Αρτοποιείο Μεσαγρός
+
+</div>
+
+
+<div class="cart">
+
+
+<h2>
+Τα προϊόντα σας
+</h2>
+
+
+<div
+id="cartItems"
+class="empty"
+>
+Το καλάθι είναι άδειο.
+</div>
+
+
+<div
+class="total"
+id="cartTotal"
+>
+Σύνολο: 0,00 €
+</div>
+
+<div style="
+margin-top:25px;
+padding:20px;
+background:#f8f1e5;
+border-radius:14px;
+">
+
+<h3 style="margin-top:0;">
+👤 Στοιχεία πελάτη
+</h3>
+
+<input
+id="customerName"
+type="text"
+placeholder="Ονοματεπώνυμο *"
 style="
 width:100%;
 padding:12px;
@@ -296,29 +946,63 @@ margin-bottom:10px;
 border:1px solid #ddd;
 border-radius:8px;
 font-size:16px;
-background:white;
 ">
-<option value="">Επιλέξτε διαδρομή *</option>
-<option value="geras">Μεσαγρός → Γέρα / καθημερινά</option>
-<option value="mytilene">Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά</option>
-<option value="plomari">Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά</option>
-<option value="other">Άλλη περιοχή Λέσβου / Υπόλοιπη Ελλάδα — κατόπιν συνεννόησης</option>
-</select>
 
-<label for="deliveryDate" style="display:block;margin:8px 0 6px;font-weight:bold;">📅 Ημερομηνία παράδοσης *</label>
 <input
-id="deliveryDate"
-type="date"
+id="customerPhone"
+type="tel"
+placeholder="Τηλέφωνο *"
 style="
 width:100%;
 padding:12px;
-margin-bottom:8px;
+margin-bottom:20px;
 border:1px solid #ddd;
 border-radius:8px;
 font-size:16px;
 ">
 
-<div id="deliveryMessage" style="display:none;padding:12px;border-radius:10px;margin-bottom:18px;line-height:1.5;font-size:14px;"></div>
+<h3>
+📍 Στοιχεία παράδοσης
+</h3>
+
+<input
+id="customerArea"
+type="text"
+placeholder="Περιοχή / Χωριό *"
+style="
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+">
+
+<input
+id="customerAddress"
+type="text"
+placeholder="Διεύθυνση *"
+style="
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+">
+
+<input
+id="customerNumber"
+type="text"
+placeholder="Αριθμός *"
+style="
+width:100%;
+padding:12px;
+margin-bottom:20px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+">
 
 <h3>
 📝 Παρατηρήσεις
@@ -652,79 +1336,6 @@ renderCart();
 
 
 /* ================================= */
-/* ΕΛΕΓΧΟΣ ΔΙΑΝΟΜΗΣ */
-/* ================================= */
-
-function setMinDeliveryDate(){
-    const dateInput = document.getElementById("deliveryDate");
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, "0");
-    const d = String(now.getDate()).padStart(2, "0");
-    dateInput.min = `${y}-${m}-${d}`;
-}
-
-function checkDeliveryDate(){
-    const route = document.getElementById("deliveryRoute").value;
-    const dateValue = document.getElementById("deliveryDate").value;
-    const message = document.getElementById("deliveryMessage");
-
-    message.style.display = "none";
-    message.innerHTML = "";
-
-    if(!route || !dateValue) return;
-
-    const selected = new Date(dateValue + "T12:00:00");
-    const day = selected.getDay();
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    const isToday = selected.toDateString() === today.toDateString();
-
-    let routeDay = false;
-    let routeName = "";
-
-    if(route === "mytilene"){
-        routeDay = [2,4,5].includes(day);
-        routeName = "Μυτιλήνη";
-    }else if(route === "plomari"){
-        routeDay = [1,3,6].includes(day);
-        routeName = "Πλωμάρι";
-    }else if(route === "geras"){
-        routeDay = true;
-        routeName = "Γέρα";
-    }else{
-        message.style.display = "block";
-        message.style.background = "#fff8e1";
-        message.style.border = "1px solid #ead7a0";
-        message.innerHTML = "📞 Η παράδοση στην περιοχή σας γίνεται κατόπιν συνεννόησης. Θα επικοινωνήσουμε μαζί σας τηλεφωνικά για επιβεβαίωση.";
-        return;
-    }
-
-    if(!routeDay){
-        message.style.display = "block";
-        message.style.background = "#fff8e1";
-        message.style.border = "1px solid #ead7a0";
-        message.innerHTML = `⚠️ Η διαδρομή <strong>Μεσαγρός → ${routeName}</strong> δεν πραγματοποιείται τη συγκεκριμένη ημέρα. Παρακαλούμε επιλέξτε διαθέσιμη ημέρα ή επικοινωνήστε μαζί μας.`;
-        return;
-    }
-
-    if(isToday){
-        message.style.display = "block";
-        message.style.background = "#fff3cd";
-        message.style.border = "1px solid #e0b84c";
-        message.innerHTML = "⚠️ <strong>Προσοχή:</strong> Η παραγγελία σας αφορά παράδοση σήμερα. Ενδέχεται να μην είναι διαθέσιμα όλα τα προϊόντα. Θα ενημερωθείτε τηλεφωνικά για επιβεβαίωση της παραγγελίας.";
-    }else{
-        message.style.display = "block";
-        message.style.background = "#eef7ee";
-        message.style.border = "1px solid #b9d8b9";
-        message.innerHTML = route === "geras"
-            ? `✅ Η ημερομηνία είναι διαθέσιμη για τη διαδρομή <strong>Μεσαγρός → ${routeName}</strong>. Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία σας.`
-            : `✅ Η ημερομηνία είναι διαθέσιμη για τη διαδρομή <strong>Μεσαγρός → ${routeName}</strong> (15:00 – 17:00).`;
-    }
-}
-
-
-/* ================================= */
 /* ΑΠΟΣΤΟΛΗ ΣΤΟ GMAIL */
 /* ================================= */
 
@@ -761,19 +1372,6 @@ function sendOrder(){
     let customerNotes =
         document.getElementById("customerNotes").value.trim();
 
-    let deliveryRoute =
-        document.getElementById("deliveryRoute").value;
-
-    let deliveryDate =
-        document.getElementById("deliveryDate").value;
-
-    const routeNames = {
-        mytilene: "Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά",
-        plomari: "Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά",
-        geras: "Μεσαγρός → Γέρα / καθημερινά",
-        other: "Άλλη περιοχή — κατόπιν συνεννόησης"
-    };
-
 
     /* ================================= */
     /* ΕΛΕΓΧΟΣ ΥΠΟΧΡΕΩΤΙΚΩΝ ΠΕΔΙΩΝ */
@@ -784,28 +1382,13 @@ function sendOrder(){
         !customerPhone ||
         !customerArea ||
         !customerAddress ||
-        !customerNumber ||
-        !deliveryRoute ||
-        !deliveryDate
+        !customerNumber
     ){
 
         alert(
             "Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά στοιχεία."
         );
 
-        return;
-    }
-
-    const selectedDeliveryDate = new Date(deliveryDate + "T12:00:00");
-    const selectedDay = selectedDeliveryDate.getDay();
-
-    if(deliveryRoute === "mytilene" && ![2,4,5].includes(selectedDay)){
-        alert("Η διαδρομή Μεσαγρός → Μυτιλήνη πραγματοποιείται Τρίτη, Πέμπτη και Παρασκευή.");
-        return;
-    }
-
-    if(deliveryRoute === "plomari" && ![1,3,6].includes(selectedDay)){
-        alert("Η διαδρομή Μεσαγρός → Πλωμάρι πραγματοποιείται Δευτέρα, Τετάρτη και Σάββατο.");
         return;
     }
 
@@ -903,18 +1486,6 @@ function sendOrder(){
         customerNumber +
         "\n\n" +
 
-        "🚚 ΔΙΑΝΟΜΗ\n\n" +
-
-        "Διαδρομή: " +
-        routeNames[deliveryRoute] +
-        "\n" +
-
-        "Ημερομηνία: " +
-        new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") +
-        "\n" +
-
-        (deliveryRoute === "geras" ? "Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία.\n\n" : "Ώρες διανομής: 15:00 – 17:00\n\n") +
-
         "📝 ΠΑΡΑΤΗΡΗΣΕΙΣ\n\n" +
 
         (
@@ -952,36 +1523,40 @@ function sendOrder(){
         encodeURIComponent(body);
 
 
-    // Σε κινητό ανοίγουμε την εφαρμογή email/Gmail με έτοιμη την παραγγελία.
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    /*
+     * Υπολογιστής:
+     * ανοίγουμε το Gmail στον browser όπως πριν.
+     *
+     * Κινητό:
+     * χρησιμοποιούμε mailto ώστε το κινητό να ανοίξει
+     * την προεπιλεγμένη εφαρμογή email (π.χ. Gmail)
+     * με παραλήπτη, θέμα και έτοιμη παραγγελία.
+     */
+    const isMobile =
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    if(isAndroid){
-        /*
-         * Gmail για Android σε ορισμένες εκδόσεις κάνει μόνο ένα decode
-         * του mailto URI. Κάνουμε διπλή κωδικοποίηση ώστε το Gmail να
-         * εμφανίσει κανονικά τα ελληνικά, τα σύμβολα και τις αλλαγές γραμμής.
-         */
+    if(isMobile){
+
         const mailtoUrl =
             "mailto:mesagrosbakery@gmail.com" +
-            "?subject=" + encodeURIComponent(encodeURIComponent(subject)) +
-            "&body=" + encodeURIComponent(encodeURIComponent(body));
-
-        window.location.href = mailtoUrl;
-
-    }else if(isMobile){
-        const mailtoUrl =
-            "mailto:mesagrosbakery@gmail.com" +
-            "?subject=" + encodeURIComponent(subject) +
-            "&body=" + encodeURIComponent(body);
+            "?subject=" +
+            encodeURIComponent(subject) +
+            "&body=" +
+            encodeURIComponent(body);
 
         window.location.href = mailtoUrl;
 
     }else{
+
         window.open(gmailUrl, "_blank");
+
     }
 
-    // Αδειάζουμε το καλάθι μετά τη δημιουργία του email
+    /*
+     * Η παραγγελία έχει ήδη δημιουργηθεί.
+     * Καθαρίζουμε το καλάθι ώστε ο πελάτης να ξεκινήσει
+     * με άδειο καλάθι όταν επιστρέψει στο site.
+     */
     cart = [];
     localStorage.removeItem("mesagrosCart");
     renderCart();
@@ -992,9 +1567,7 @@ function sendOrder(){
 /* ΑΡΧΙΚΗ ΕΜΦΑΝΙΣΗ */
 /* ================================= */
 
-setMinDeliveryDate();
-document.getElementById("deliveryRoute").addEventListener("change", checkDeliveryDate);
-document.getElementById("deliveryDate").addEventListener("change", checkDeliveryDate);
+
 renderCart();
 
 </script>
