@@ -953,15 +953,30 @@ function sendOrder(){
 
 
     // Σε κινητό ανοίγουμε την εφαρμογή email/Gmail με έτοιμη την παραγγελία.
+    const isAndroid = /Android/i.test(navigator.userAgent);
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    if(isMobile){
+    if(isAndroid){
+        /*
+         * Gmail για Android σε ορισμένες εκδόσεις κάνει μόνο ένα decode
+         * του mailto URI. Κάνουμε διπλή κωδικοποίηση ώστε το Gmail να
+         * εμφανίσει κανονικά τα ελληνικά, τα σύμβολα και τις αλλαγές γραμμής.
+         */
+        const mailtoUrl =
+            "mailto:mesagrosbakery@gmail.com" +
+            "?subject=" + encodeURIComponent(encodeURIComponent(subject)) +
+            "&body=" + encodeURIComponent(encodeURIComponent(body));
+
+        window.location.href = mailtoUrl;
+
+    }else if(isMobile){
         const mailtoUrl =
             "mailto:mesagrosbakery@gmail.com" +
             "?subject=" + encodeURIComponent(subject) +
             "&body=" + encodeURIComponent(body);
 
         window.location.href = mailtoUrl;
+
     }else{
         window.open(gmailUrl, "_blank");
     }
