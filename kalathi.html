@@ -346,6 +346,34 @@ resize:vertical;
 class="email-button"
 onclick="sendOrder()"
 >
+
+<div id="paymentMethodBox" style="margin:20px 0;padding:16px;border:1px solid #ddd;border-radius:12px;">
+  <strong>Τρόπος πληρωμής</strong>
+  <div style="margin-top:10px;">
+    <label style="margin-right:18px;">
+      <input type="radio" name="paymentMethod" value="cash" checked onchange="toggleIrisPayment()">
+      💵 Μετρητά
+    </label>
+    <label>
+      <input type="radio" name="paymentMethod" value="iris" onchange="toggleIrisPayment()">
+      📱 IRIS
+    </label>
+  </div>
+  <div id="irisPaymentInfo" style="display:none;margin-top:15px;text-align:center;">
+    <div><strong>Πληρωμή με IRIS</strong></div>
+    <div style="margin-top:6px;">ΑΦΜ: <strong>132916704</strong></div>
+    <div>Κινητό: <strong>6906140660</strong></div>
+    <img src="iris-qr.png" alt="IRIS QR" style="display:block;width:220px;max-width:100%;height:auto;margin:14px auto 0;">
+  </div>
+</div>
+
+<script>
+function toggleIrisPayment() {
+  const selected = document.querySelector('input[name="paymentMethod"]:checked');
+  const info = document.getElementById('irisPaymentInfo');
+  if (info) info.style.display = selected && selected.value === 'iris' ? 'block' : 'none';
+}
+</script>
 📩 Αποστολή Παραγγελίας
 </button>
 
