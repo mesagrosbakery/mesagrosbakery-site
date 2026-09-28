@@ -236,6 +236,10 @@ width:85px
 15,00 € / κιλό
 </div>
 
+<div style="font-size:16px;margin:-10px auto 20px;color:#7a4b2a;font-weight:bold;">
+Η τιμή υπολογίζεται αυτόματα ανάλογα με τα γραμμάρια που επιλέγετε.
+</div>
+
 <h2>
 Επίλεξε γεύσεις
 </h2>
@@ -270,7 +274,27 @@ width:85px
 
 <div class="sizes">
 
-<button class="size active" onclick="setTotal(500,this)">
+<button class="size active" onclick="setTotal(50,this)">
+50 γρ.
+</button>
+
+<button class="size" onclick="setTotal(100,this)">
+100 γρ.
+</button>
+
+<button class="size" onclick="setTotal(150,this)">
+150 γρ.
+</button>
+
+<button class="size" onclick="setTotal(200,this)">
+200 γρ.
+</button>
+
+<button class="size" onclick="setTotal(250,this)">
+250 γρ.
+</button>
+
+<button class="size" onclick="setTotal(500,this)">
 500 γρ.
 </button>
 
@@ -366,7 +390,8 @@ width:85px
 
 
 <div class="total" id="total">
-Σύνολο: 0 / 500 γρ.
+Σύνολο: 0 / 50 γρ.<br>
+Τιμή: 0,75 €
 </div>
 
 <button
@@ -404,7 +429,7 @@ cursor:pointer;
 
 <script>
 
-let requiredTotal = 500;
+let requiredTotal = 50;
 
 
 function setTotal(amount,button){
@@ -436,13 +461,12 @@ total += Number(input.value) || 0;
 
 });
 
-
 let text = document.getElementById("total");
-
+let price = (requiredTotal / 1000) * 15;
 
 text.innerHTML =
-"Σύνολο: " + total + " / " + requiredTotal + " γρ.";
-
+"Σύνολο: " + total + " / " + requiredTotal + " γρ.<br>" +
+"Τιμή: " + price.toFixed(2).replace(".", ",") + " €";
 
 if(total === requiredTotal){
 
