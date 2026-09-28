@@ -350,12 +350,12 @@ onclick="sendOrder()"
 <div id="paymentMethodBox" style="margin:20px 0;padding:16px;border:1px solid #ddd;border-radius:12px;">
   <strong>Τρόπος πληρωμής</strong>
   <div style="margin-top:10px;">
-    <label style="margin-right:18px;">
-      <input type="radio" name="paymentMethod" value="cash" checked onchange="toggleIrisPayment()">
+    <label style="margin-right:18px;" onclick="event.stopPropagation()">
+      <input type="radio" name="paymentMethod" value="cash" checked onclick="event.stopPropagation(); toggleIrisPayment()">
       💵 Μετρητά
     </label>
     <label>
-      <input type="radio" name="paymentMethod" value="iris" onchange="toggleIrisPayment()">
+      <input type="radio" name="paymentMethod" value="iris" onclick="event.stopPropagation(); toggleIrisPayment()">
       📱 IRIS
     </label>
   </div>
