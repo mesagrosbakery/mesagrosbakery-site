@@ -303,6 +303,60 @@ cursor:pointer;
 <button class="cart-btn" onclick="addProductToCart('Ψωμί τοστ ολικής',2.4,event)">🛒 Προσθήκη στο καλάθι</button>
 </article>
 
+<article class="card">
+<div class="photo"><div style="font-size:72px;">🍞</div></div>
+<div class="body">
+<h3>Άρτος</h3>
+<div class="desc">Φρέσκος άρτος • 6,00 € / κιλό</div>
+</div>
+<div class="weight-box">
+<div class="weight-note">Επιλέξτε την ποσότητα σε γραμμάρια.</div>
+<select onchange="updateWeightPrice(this)">
+<option value="500">500 g — 3,00 €</option>
+<option value="750">750 g — 4,50 €</option>
+<option value="1000">1 kg — 6,00 €</option>
+</select>
+<button class="cart-btn" data-name="Άρτος" data-kilo-price="6.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
+</article>
+
+<article class="card">
+<div class="photo"><img src="artos-5plos.png" alt="Άρτος 5πλός"></div>
+<div class="body">
+<h3>Άρτος 5πλός</h3>
+<div class="desc">Περίπου 2,5 kg • 6,00 € / κιλό</div>
+</div>
+<div class="weight-box">
+<div class="weight-note">Η τελική τιμή υπολογίζεται βάσει του βάρους.</div>
+<select onchange="updateWeightPrice(this)">
+<option value="2400">2,4 kg — 14,40 €</option>
+<option value="2500" selected>2,5 kg — 15,00 €</option>
+<option value="2600">2,6 kg — 15,60 €</option>
+</select>
+<button class="cart-btn" data-name="Άρτος 5πλός" data-kilo-price="6.0" onclick="addWeightedProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+</div>
+</article>
+
+<article class="card">
+<div class="photo"><div style="font-size:72px;">🍞</div></div>
+<div class="body">
+<h3>Αρτάκι</h3>
+<div class="desc">Μικρός άρτος • περίπου 130 g</div>
+<div style="font-size:20px;font-weight:bold;margin-top:10px;">0,80 € / τεμάχιο</div>
+</div>
+<button class="cart-btn" onclick="addProductToCart('Αρτάκι',0.8,event)">🛒 Προσθήκη στο καλάθι</button>
+</article>
+
+<article class="card">
+<div class="photo"><img src="prosforo.png" alt="Πρόσφορο"></div>
+<div class="body">
+<h3>Πρόσφορο</h3>
+<div class="desc">Παραδοσιακό πρόσφορο</div>
+<div style="font-size:20px;font-weight:bold;margin-top:10px;">1,60 € / τεμάχιο</div>
+</div>
+<button class="cart-btn" onclick="addProductToCart('Πρόσφορο',1.6,event)">🛒 Προσθήκη στο καλάθι</button>
+</article>
+
 </div>
 </section>
   <section id="koulouria"><h2>🥨 Κουλούρια</h2><div class="grid">
