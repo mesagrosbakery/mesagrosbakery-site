@@ -81,6 +81,26 @@ footer{text-align:center;background:#2b2119;color:white;padding:25px 15px}.small
 </style>
 
 </style>
+<script>
+(function(){
+  const key = "mesagrosScrollY";
+  document.addEventListener("click", function(e){
+    const link = e.target.closest("a[href]");
+    if(!link) return;
+    const href = link.getAttribute("href");
+    if(href && href !== "#" && !href.startsWith("tel:") && !href.startsWith("mailto:") && !href.startsWith("javascript:")){
+      sessionStorage.setItem(key, String(window.scrollY));
+    }
+  });
+  window.addEventListener("pageshow", function(){
+    const y = sessionStorage.getItem(key);
+    if(y !== null){
+      sessionStorage.removeItem(key);
+      setTimeout(function(){ window.scrollTo(0, Number(y)); }, 50);
+    }
+  });
+})();
+</script>
 </head>
 <body>
 <header>
