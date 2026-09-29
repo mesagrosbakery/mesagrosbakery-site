@@ -674,7 +674,24 @@ cursor:pointer;
       </div>
     </article>
 
-    <article class="card"><div class="photo">🍫</div><div class="body"><h3>Βουτυρένια μπισκότα με σοκολάτα γάλακτος</h3></div></article>
+    <article class="card">
+      <div class="photo"><img src="voutyrenia-biskota-sokolata-galaktos.png" alt="Βουτυρένια μπισκότα με σοκολάτα γάλακτος"></div>
+      <div class="body">
+        <h3>Βουτυρένια μπισκότα με σοκολάτα γάλακτος</h3>
+        <div class="desc">Βουτυρένια μπισκότα με σοκολάτα γάλακτος</div>
+        <div style="font-size:20px;font-weight:bold;margin-top:10px;">12,00 € / κιλό</div>
+      </div>
+      <div class="weight-box">
+        <div class="weight-note">Επιλέξτε την ποσότητα σε γραμμάρια.</div>
+        <select onchange="updateWeightPrice(this)">
+          <option value="250">250 g — 3,00 €</option>
+          <option value="500">500 g — 6,00 €</option>
+          <option value="750">750 g — 9,00 €</option>
+          <option value="1000">1 kg — 12,00 €</option>
+        </select>
+        <button class="cart-btn" data-name="Βουτυρένια μπισκότα με σοκολάτα γάλακτος" data-kilo-price="12" onclick="addCookieProductToCart(this,event)">🛒 Προσθήκη στο καλάθι</button>
+      </div>
+    </article>
 
     <article class="card">
       <a href="kritsinia.html" style="text-decoration:none;color:inherit;display:block;">
