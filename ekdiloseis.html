@@ -372,34 +372,82 @@ footer {
 </footer>
 
 <script>
-document.getElementById("offerForm").addEventListener("submit", function(e) {
+document.getElementById("offerForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const form = e.currentTarget;
   const name = form.elements["name"].value.trim();
   const phone = form.elements["phone"].value.trim();
   const email = form.elements["email"].value.trim();
-  const event = form.elements["event"].value;
+  const eventType = form.elements["event"].value;
   const date = form.elements["date"].value;
   const quantity = form.elements["quantity"].value.trim();
   const message = form.elements["message"].value.trim();
 
-  const subject = "Αίτημα προσφοράς για εκδήλωση - " + event;
+  if (!name || !phone || !eventType) {
+    alert("Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.");
+    return;
+  }
+
+  const subject = "🎉 Νέο αίτημα προσφοράς - Αρτοποιείο Μεσαγρός";
 
   const body =
+    "🍞 ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ\n" +
     "ΝΕΟ ΑΙΤΗΜΑ ΠΡΟΣΦΟΡΑΣ\n\n" +
-    "Ονοματεπώνυμο: " + name + "\n" +
-    "Τηλέφωνο: " + phone + "\n" +
-    "Email: " + (email || "Δεν δόθηκε") + "\n" +
-    "Εκδήλωση: " + event + "\n" +
+    "━━━━━━━━━━━━━━━━━━━━\n\n" +
+    "🎉 ΕΚΔΗΛΩΣΗ\n\n" +
+    "Είδος: " + eventType + "\n" +
     "Ημερομηνία: " + (date || "Δεν δόθηκε") + "\n" +
     "Άτομα / τεμάχια: " + (quantity || "Δεν δόθηκε") + "\n\n" +
-    "Μήνυμα:\n" + (message || "Δεν δόθηκε");
+    "━━━━━━━━━━━━━━━━━━━━\n\n" +
+    "👤 ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ\n\n" +
+    "Ονοματεπώνυμο: " + name + "\n" +
+    "Τηλέφωνο: " + phone + "\n" +
+    "Email: " + (email || "Δεν δόθηκε") + "\n\n" +
+    "📝 ΜΗΝΥΜΑ\n\n" +
+    (message || "Δεν δόθηκε") + "\n\n" +
+    "━━━━━━━━━━━━━━━━━━━━\n\n" +
+    "Αρτοποιείο Μεσαγρός\n" +
+    "Μεσαγρός, Γέρας Λέσβου";
 
-  window.location.href =
-    "mailto:mesagrosbakery@gmail.com" +
-    "?subject=" + encodeURIComponent(subject) +
-    "&body=" + encodeURIComponent(body);
+  const submitButton = form.querySelector(".submit");
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Αποστολή...";
+  }
+
+  const formData = new FormData();
+  formData.append("access_key", "6252d037-67b8-4ea4-9fed-2d5a26c92d52");
+  formData.append("subject", subject);
+  formData.append("from_name", "Αρτοποιείο Μεσαγρός - Αίτημα προσφοράς");
+  formData.append("name", name);
+  formData.append("email", email || "mesagrosbakery@gmail.com");
+  formData.append("message", body);
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      form.reset();
+      alert("✅ Το αίτημά σας στάλθηκε με επιτυχία!\n\nΘα επικοινωνήσουμε μαζί σας για την προσφορά.");
+    } else {
+      alert("❌ Δεν στάλθηκε το αίτημα. Παρακαλώ δοκιμάστε ξανά.");
+      console.error("Web3Forms error:", result);
+    }
+  } catch (error) {
+    alert("❌ Παρουσιάστηκε πρόβλημα κατά την αποστολή. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.");
+    console.error("Web3Forms network error:", error);
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "📩 ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ";
+    }
+  }
 });
 </script>
 </body>
