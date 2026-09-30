@@ -374,7 +374,32 @@ footer {
 <script>
 document.getElementById("offerForm").addEventListener("submit", function(e) {
   e.preventDefault();
-  alert("Η φόρμα είναι έτοιμη. Το επόμενο βήμα είναι να συνδέσουμε την αποστολή της προσφοράς με το email του Αρτοποιείου.");
+
+  const form = e.currentTarget;
+  const name = form.elements["name"].value.trim();
+  const phone = form.elements["phone"].value.trim();
+  const email = form.elements["email"].value.trim();
+  const event = form.elements["event"].value;
+  const date = form.elements["date"].value;
+  const quantity = form.elements["quantity"].value.trim();
+  const message = form.elements["message"].value.trim();
+
+  const subject = "Αίτημα προσφοράς για εκδήλωση - " + event;
+
+  const body =
+    "ΝΕΟ ΑΙΤΗΜΑ ΠΡΟΣΦΟΡΑΣ\n\n" +
+    "Ονοματεπώνυμο: " + name + "\n" +
+    "Τηλέφωνο: " + phone + "\n" +
+    "Email: " + (email || "Δεν δόθηκε") + "\n" +
+    "Εκδήλωση: " + event + "\n" +
+    "Ημερομηνία: " + (date || "Δεν δόθηκε") + "\n" +
+    "Άτομα / τεμάχια: " + (quantity || "Δεν δόθηκε") + "\n\n" +
+    "Μήνυμα:\n" + (message || "Δεν δόθηκε");
+
+  window.location.href =
+    "mailto:mesagrosbakery@gmail.com" +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
 });
 </script>
 </body>
