@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ψιλικά & Συνοδευτικά | Αρτοποιείο Μεσαγρός</title>
+<style>
+:root{--ink:#2b2119;--cream:#fffaf1;--paper:#fff;--accent:#9a5b2d;--muted:#75675c}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
+header{padding:28px 18px;text-align:center;background:#f1dfc5;border-bottom:1px solid #e1c8a8}
+header h1{margin:0 0 6px;font-size:32px}
+header p{margin:0;font-size:17px}
+.container{max-width:1100px;margin:auto;padding:20px 15px 80px}
+.back{text-align:center;margin:5px 0 18px}
+.back a{display:inline-block;background:#f0e2d0;color:var(--ink);padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:bold}
+.hero-card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid #eee4d8;box-shadow:0 4px 15px #0000000a;margin-bottom:28px}
+.hero-card img{width:100%;height:360px;object-fit:cover;display:block}
+.hero-body{text-align:center;padding:16px}
+.hero-body h2{margin:0 0 7px;font-size:27px}
+.hero-body p{margin:0;color:var(--muted)}
+section{margin:28px 0}
+section h2{font-size:23px;border-bottom:2px solid #ead7bf;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.card{background:var(--paper);border-radius:15px;overflow:hidden;box-shadow:0 4px 15px #0000000a;border:1px solid #eee4d8}
+.card .body{padding:14px}
+.card h3{margin:0 0 6px;font-size:18px}
+.price{font-weight:800;margin-top:9px;color:var(--accent);font-size:19px}
+.cart-btn{width:calc(100% - 28px);margin:0 14px 14px;padding:11px;border:0;border-radius:10px;background:#9a5b2d;color:white;font-size:15px;font-weight:bold;cursor:pointer}
+footer{text-align:center;background:#2b2119;color:white;padding:22px 15px}
+.small{font-size:13px;color:#e7d9ca}
+@media(max-width:600px){
+  header h1{font-size:27px}
+  .hero-card img{height:230px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</h1>
+  <p>ΜΕΣΑΓΡΟΣ • ΓΕΡΑΣ • ΛΕΣΒΟΣ</p>
+</header>
+
+<main class="container">
+  <div class="back"><a href="index.html">← Επιστροφή στον κατάλογο</a></div>
+
+  <div class="hero-card">
+    <img src="psilika-synodeftika-kentriki.png" alt="Ψιλικά & Συνοδευτικά">
+    <div class="hero-body">
+      <h2>🛒 Ψιλικά & Συνοδευτικά</h2>
+      <p>Snacks • Ξηροί καρποί • Λουκούμια • Καφέδες • Ταχίνι</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>🥔 Πατατάκια & Snacks</h2>
+    <div class="grid">
+      <article class="card"><div class="body"><h3>Πατατάκια με αλάτι</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Πατατάκια με αλάτι',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Πατατάκια με ρίγανη</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Πατατάκια με ρίγανη',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Πατατάκια Barbeque</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Πατατάκια Barbeque',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Γαριδάκια με τυρί</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Γαριδάκια με τυρί',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Γαριδάρες με τυρί</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Γαριδάρες με τυρί',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Δραμακουλίνια</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Δραμακουλίνια',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Φουντούνια</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Φουντούνια',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Φουντούνια και φυστίκι</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Φουντούνια και φυστίκι',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Πακοτίνια</h3><div class="price">1,40 €</div></div><button class="cart-btn" onclick="addProductToCart('Πακοτίνια',1.40,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Ποπ-κορν κλασικά</h3><div class="price">1,50 €</div></div><button class="cart-btn" onclick="addProductToCart('Ποπ-κορν κλασικά',1.50,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Ποπ-κορν Barbeque</h3><div class="price">1,50 €</div></div><button class="cart-btn" onclick="addProductToCart('Ποπ-κορν Barbeque',1.50,this)">🛒 Προσθήκη στο καλάθι</button></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>🥜 Ξηροί καρποί – Νταλαμπέκη</h2>
+    <div class="grid">
+      <article class="card"><div class="body"><h3>Φιστίκι Αράπικο 110g</h3><div class="price">1,60 €</div></div><button class="cart-btn" onclick="addProductToCart('Φιστίκι Αράπικο 110g',1.60,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Φιστίκι Κελυφωτό 100g</h3><div class="price">4,60 €</div></div><button class="cart-btn" onclick="addProductToCart('Φιστίκι Κελυφωτό 100g',4.60,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Mix Καρπών & Snacks 110g</h3><div class="price">1,50 €</div></div><button class="cart-btn" onclick="addProductToCart('Mix Καρπών & Snacks 110g',1.50,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Χουανίτα & Snacks 95g</h3><div class="price">1,60 €</div></div><button class="cart-btn" onclick="addProductToCart('Χουανίτα & Snacks 95g',1.60,this)">🛒 Προσθήκη στο καλάθι</button></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>🍬 Λουκούμια</h2>
+    <div class="grid">
+      <article class="card"><div class="body"><h3>Λουκούμια ανάμεικτα 330g</h3><div class="price">3,90 €</div></div><button class="cart-btn" onclick="addProductToCart('Λουκούμια ανάμεικτα 330g',3.90,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Λουκούμια Μαστίχα 330g</h3><div class="price">3,90 €</div></div><button class="cart-btn" onclick="addProductToCart('Λουκούμια Μαστίχα 330g',3.90,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Λουκούμια Τριαντάφυλλο 330g</h3><div class="price">3,90 €</div></div><button class="cart-btn" onclick="addProductToCart('Λουκούμια Τριαντάφυλλο 330g',3.90,this)">🛒 Προσθήκη στο καλάθι</button></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>☕ Καφέδες</h2>
+    <div class="grid">
+      <article class="card"><div class="body"><h3>Ελληνικός καφές 100g</h3><div class="price">2,90 €</div></div><button class="cart-btn" onclick="addProductToCart('Ελληνικός καφές 100g',2.90,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Ελληνικός καφές 200g</h3><div class="price">4,90 €</div></div><button class="cart-btn" onclick="addProductToCart('Ελληνικός καφές 200g',4.90,this)">🛒 Προσθήκη στο καλάθι</button></article>
+      <article class="card"><div class="body"><h3>Ελληνικός καφές 500g</h3><div class="price">11,90 €</div></div><button class="cart-btn" onclick="addProductToCart('Ελληνικός καφές 500g',11.90,this)">🛒 Προσθήκη στο καλάθι</button></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>🥄 Ταχίνι</h2>
+    <div class="grid">
+      <article class="card"><div class="body"><h3>Ταχίνι Έδεσσας 350g</h3><div class="price">3,60 €</div></div><button class="cart-btn" onclick="addProductToCart('Ταχίνι Έδεσσας 350g',3.60,this)">🛒 Προσθήκη στο καλάθι</button></article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</strong>
+  <div class="small">Μεσαγρός Γέρας • Δευτέρα–Σάββατο 06:00–15:00 • Κυριακή κλειστά</div>
+</footer>
+
+<script>
+function addProductToCart(name, price, button){
+  let cart = JSON.parse(localStorage.getItem("mesagrosCart")) || [];
+  let existing = cart.find(item => item.name === name);
+  if(existing){ existing.quantity++; }
+  else{ cart.push({name:name, price:price, quantity:1}); }
+  localStorage.setItem("mesagrosCart", JSON.stringify(cart));
+  const oldText=button.innerHTML;
+  button.innerHTML="✓ Προστέθηκε!";
+  button.style.background="#4f7d3a";
+  setTimeout(function(){button.innerHTML=oldText;button.style.background="#9a5b2d";},1200);
+}
+</script>
+</body>
+</html>
