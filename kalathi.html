@@ -240,6 +240,8 @@ border-radius:8px;
 font-size:16px;
 ">
 
+<div id="deliveryDetails">
+
 <h3>
 📍 Στοιχεία παράδοσης
 </h3>
@@ -320,6 +322,8 @@ font-size:16px;
 
 <div id="deliveryMessage" style="display:none;padding:12px;border-radius:10px;margin-bottom:18px;line-height:1.5;font-size:14px;"></div>
 
+</div><!-- /deliveryDetails -->
+
 <h3>
 📝 Παρατηρήσεις
 </h3>
@@ -367,7 +371,34 @@ onclick="sendOrder()"
   </div>
 </div>
 
+<div id="pickupMethodBox" style="margin:20px 0;padding:16px;border:1px solid #ddd;border-radius:12px;">
+  <strong>Τρόπος παραλαβής</strong>
+  <div style="margin-top:10px;">
+    <label style="display:block;margin-bottom:10px;">
+      <input type="radio" name="fulfillmentMethod" value="delivery" checked onchange="toggleFulfillmentMethod()">
+      🚚 Παράδοση
+    </label>
+    <label style="display:block;">
+      <input type="radio" name="fulfillmentMethod" value="pickup" onchange="toggleFulfillmentMethod()">
+      🏪 Παραλαβή από το κατάστημα — Αρτοποιείο Μεσαγρός
+    </label>
+  </div>
+  <div id="pickupInfo" style="display:none;margin-top:12px;padding:10px;border-radius:8px;background:#eef7ee;">
+    📍 Παραλαβή από το κατάστημα: Αρτοποιείο Μεσαγρός, Μεσαγρός Γέρας Λέσβου.
+  </div>
+</div>
+
 <script>
+function toggleFulfillmentMethod() {
+  const selected = document.querySelector('input[name="fulfillmentMethod"]:checked');
+  const deliveryDetails = document.getElementById('deliveryDetails');
+  const pickupInfo = document.getElementById('pickupInfo');
+  const isPickup = selected && selected.value === 'pickup';
+
+  if (deliveryDetails) deliveryDetails.style.display = isPickup ? 'none' : 'block';
+  if (pickupInfo) pickupInfo.style.display = isPickup ? 'block' : 'none';
+} 
+
 function toggleIrisPayment() {
   const selected = document.querySelector('input[name="paymentMethod"]:checked');
   const info = document.getElementById('irisPaymentInfo');
@@ -795,6 +826,9 @@ async function sendOrder(){
     let deliveryDate =
         document.getElementById("deliveryDate").value;
 
+    let fulfillmentMethod =
+        document.querySelector('input[name="fulfillmentMethod"]:checked')?.value || "delivery";
+
     const routeNames = {
         mytilene: "Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά",
         plomari: "Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά",
@@ -807,34 +841,43 @@ async function sendOrder(){
     /* ΕΛΕΓΧΟΣ ΥΠΟΧΡΕΩΤΙΚΩΝ ΠΕΔΙΩΝ */
     /* ================================= */
 
-    if(
-        !customerName ||
-        !customerPhone ||
-        !customerArea ||
-        !customerAddress ||
-        !customerNumber ||
-        !deliveryRoute ||
-        !deliveryDate
-    ){
+    if(!customerName || !customerPhone){
 
         alert(
-            "Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά στοιχεία."
+            "Παρακαλώ συμπληρώστε το ονοματεπώνυμο και το τηλέφωνό σας."
         );
 
         return;
     }
 
-    const selectedDeliveryDate = new Date(deliveryDate + "T12:00:00");
-    const selectedDay = selectedDeliveryDate.getDay();
+    if(fulfillmentMethod === "delivery" && (
+        !customerArea ||
+        !customerAddress ||
+        !customerNumber ||
+        !deliveryRoute ||
+        !deliveryDate
+    )){
 
-    if(deliveryRoute === "mytilene" && ![2,4,5].includes(selectedDay)){
-        alert("Η διαδρομή Μεσαγρός → Μυτιλήνη πραγματοποιείται Τρίτη, Πέμπτη και Παρασκευή.");
+        alert(
+            "Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά στοιχεία παράδοσης."
+        );
+
         return;
     }
 
-    if(deliveryRoute === "plomari" && ![1,3,6].includes(selectedDay)){
-        alert("Η διαδρομή Μεσαγρός → Πλωμάρι πραγματοποιείται Δευτέρα, Τετάρτη και Σάββατο.");
-        return;
+    if(fulfillmentMethod === "delivery"){
+        const selectedDeliveryDate = new Date(deliveryDate + "T12:00:00");
+        const selectedDay = selectedDeliveryDate.getDay();
+
+        if(deliveryRoute === "mytilene" && ![2,4,5].includes(selectedDay)){
+            alert("Η διαδρομή Μεσαγρός → Μυτιλήνη πραγματοποιείται Τρίτη, Πέμπτη και Παρασκευή.");
+            return;
+        }
+
+        if(deliveryRoute === "plomari" && ![1,3,6].includes(selectedDay)){
+            alert("Η διαδρομή Μεσαγρός → Πλωμάρι πραγματοποιείται Δευτέρα, Τετάρτη και Σάββατο.");
+            return;
+        }
     }
 
 
@@ -899,6 +942,10 @@ async function sendOrder(){
             .replace(".",",") +
         " €\n\n" +
 
+        "Τρόπος παραλαβής: " +
+        (fulfillmentMethod === "pickup" ? "Παραλαβή από το κατάστημα" : "Παράδοση") +
+        "\n\n" +
+
         "━━━━━━━━━━━━━━━━━━━━\n\n";
 
 
@@ -917,31 +964,35 @@ async function sendOrder(){
         customerPhone +
         "\n\n" +
 
-        "📍 ΣΤΟΙΧΕΙΑ ΠΑΡΑΔΟΣΗΣ\n\n" +
+        (fulfillmentMethod === "pickup"
+            ? "🏪 ΠΑΡΑΛΑΒΗ ΑΠΟ ΤΟ ΚΑΤΑΣΤΗΜΑ\n\n" +
+              "Αρτοποιείο Μεσαγρός\n" +
+              "Μεσαγρός, Γέρας Λέσβου\n\n"
+            : "📍 ΣΤΟΙΧΕΙΑ ΠΑΡΑΔΟΣΗΣ\n\n" +
+              "Περιοχή / Χωριό: " +
+              customerArea +
+              "\n" +
 
-        "Περιοχή / Χωριό: " +
-        customerArea +
-        "\n" +
+              "Διεύθυνση: " +
+              customerAddress +
+              "\n" +
 
-        "Διεύθυνση: " +
-        customerAddress +
-        "\n" +
+              "Αριθμός: " +
+              customerNumber +
+              "\n\n" +
 
-        "Αριθμός: " +
-        customerNumber +
-        "\n\n" +
+              "🚚 ΔΙΑΝΟΜΗ\n\n" +
 
-        "🚚 ΔΙΑΝΟΜΗ\n\n" +
+              "Διαδρομή: " +
+              routeNames[deliveryRoute] +
+              "\n" +
 
-        "Διαδρομή: " +
-        routeNames[deliveryRoute] +
-        "\n" +
+              "Ημερομηνία: " +
+              new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") +
+              "\n" +
 
-        "Ημερομηνία: " +
-        new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") +
-        "\n" +
-
-        (deliveryRoute === "geras" ? "Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία.\n\n" : "Ώρες διανομής: 15:00 – 17:00\n\n") +
+              (deliveryRoute === "geras" ? "Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία.\n\n" : "Ώρες διανομής: 15:00 – 17:00\n\n")
+        ) +
 
         "📝 ΠΑΡΑΤΗΡΗΣΕΙΣ\n\n" +
 
