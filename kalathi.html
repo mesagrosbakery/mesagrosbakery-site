@@ -345,11 +345,6 @@ resize:vertical;
 </div>
 
 
-<button
-class="email-button"
-onclick="sendOrder()"
->
-
 <div id="paymentMethodBox" style="margin:20px 0;padding:16px;border:1px solid #ddd;border-radius:12px;">
   <strong>Τρόπος πληρωμής</strong>
   <div style="margin-top:10px;">
@@ -370,6 +365,10 @@ onclick="sendOrder()"
   </div>
 </div>
 
+<button
+class="email-button"
+onclick="sendOrder()"
+>
 
 📩 Αποστολή Παραγγελίας
 </button>
@@ -794,6 +793,15 @@ function checkDeliveryDate(){
 /* ================================= */
 
 
+
+function toggleIrisPayment(){
+    const selected = document.querySelector('input[name="paymentMethod"]:checked');
+    const info = document.getElementById("irisPaymentInfo");
+    if(info){
+        info.style.display = selected && selected.value === "iris" ? "block" : "none";
+    }
+}
+
 async function sendOrder(){
 
     if(cart.length === 0){
@@ -961,6 +969,9 @@ async function sendOrder(){
     /* ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ */
     /* ================================= */
 
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+    const paymentMethodText = paymentMethod && paymentMethod.value === "iris" ? "📱 IRIS" : "💵 Μετρητά";
+
     body +=
         "👤 ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ\n\n" +
 
@@ -984,6 +995,8 @@ async function sendOrder(){
               "Διαδρομή: " + routeNames[deliveryRoute] + "\n" +
               "Ημερομηνία: " + new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") + "\n" +
               (deliveryRoute === "geras" ? "Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία.\n\n" : "Ώρες διανομής: 15:00 – 17:00\n\n")) +
+
+        "💳 ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ: " + paymentMethodText + "\n\n" +
 
         "📝 ΠΑΡΑΤΗΡΗΣΕΙΣ\n\n" +
 
@@ -1054,7 +1067,6 @@ setMinDeliveryDate();
 document.getElementById("deliveryRoute").addEventListener("change", checkDeliveryDate);
 document.getElementById("deliveryDate").addEventListener("change", checkDeliveryDate);
 renderCart();
-togglePickupMethod();
 
 </script>
 
