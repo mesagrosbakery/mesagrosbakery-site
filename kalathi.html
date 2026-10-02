@@ -196,6 +196,8 @@ class="empty"
 </div>
 
 
+<div style="margin-top:10px;font-weight:bold;color:#b00020;" id="cartDiscount">🎉 Έκπτωση 10%: -0,00 €</div>
+
 <div
 class="total"
 id="cartTotal"
@@ -416,6 +418,13 @@ localStorage.getItem("mesagrosCart")
 /* ================================= */
 
 
+function getPromoDiscount(sum){
+    const today = new Date();
+    const start = new Date("2026-10-03T00:00:00");
+    const end = new Date("2026-10-17T23:59:59");
+    return (today >= start && today <= end) ? sum * 0.10 : 0;
+}
+
 function renderCart(){
 
 
@@ -433,6 +442,8 @@ box.className = "empty";
 
 box.innerHTML =
 "Το καλάθι είναι άδειο.";
+
+document.getElementById("cartDiscount").innerHTML = "🎉 Έκπτωση 10%: -0,00 €";
 
 total.innerHTML =
 "Σύνολο: 0,00 €";
@@ -553,11 +564,16 @@ onclick="removeItem(${index})"
 box.innerHTML = html;
 
 
+const discount = getPromoDiscount(sum);
+
+document.getElementById("cartDiscount").innerHTML =
+"🎉 Έκπτωση 10%: -" + discount.toFixed(2).replace(".",",") + " €";
+
 total.innerHTML =
 
 "Σύνολο: " +
 
-sum
+(sum - discount)
 .toFixed(2)
 .replace(".",",") +
 
@@ -916,11 +932,24 @@ async function sendOrder(){
     /* ΣΥΝΟΛΟ */
     /* ================================= */
 
+    const discount = getPromoDiscount(sum);
+    const finalTotal = sum - discount;
+
     body +=
         "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
 
-        "💰 ΣΥΝΟΛΟ: " +
+        "💰 ΑΡΧΙΚΟ ΣΥΝΟΛΟ: " +
         sum
+            .toFixed(2)
+            .replace(".",",") +
+        " €\n" +
+        "🎉 ΕΚΠΤΩΣΗ 10%: -" +
+        discount
+            .toFixed(2)
+            .replace(".",",") +
+        " €\n" +
+        "💰 ΣΥΝΟΛΟ ΜΕ ΕΚΠΤΩΣΗ: " +
+        finalTotal
             .toFixed(2)
             .replace(".",",") +
         " €\n\n" +
