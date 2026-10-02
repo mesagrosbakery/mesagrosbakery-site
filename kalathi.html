@@ -196,11 +196,10 @@ class="empty"
 </div>
 
 
-<div
-class="total"
-id="cartTotal"
->
-Σύνολο: 0,00 €
+<div id="cartSummary" style="text-align:right;margin:20px 0;line-height:1.7;">
+  <div id="cartSubtotal">Σύνολο προϊόντων: 0,00 €</div>
+  <div id="cartDiscount" style="color:#2f7d32;font-weight:bold;">🎉 Έκπτωση 10%: -0,00 €</div>
+  <div id="cartTotal" style="font-size:22px;font-weight:bold;">Τελικό σύνολο: 0,00 €</div>
 </div>
 
 <div style="
@@ -434,8 +433,9 @@ box.className = "empty";
 box.innerHTML =
 "Το καλάθι είναι άδειο.";
 
-total.innerHTML =
-"Σύνολο: 0,00 €";
+document.getElementById("cartSubtotal").innerHTML = "Σύνολο προϊόντων: 0,00 €";
+document.getElementById("cartDiscount").innerHTML = "🎉 Έκπτωση 10%: -0,00 €";
+total.innerHTML = "Τελικό σύνολο: 0,00 €";
 
 return;
 
@@ -553,15 +553,11 @@ onclick="removeItem(${index})"
 box.innerHTML = html;
 
 
-total.innerHTML =
-
-"Σύνολο: " +
-
-sum
-.toFixed(2)
-.replace(".",",") +
-
-" €";
+const discount = sum * 0.10;
+const finalTotal = sum - discount;
+document.getElementById("cartSubtotal").innerHTML = "Σύνολο προϊόντων: " + sum.toFixed(2).replace(".",",") + " €";
+document.getElementById("cartDiscount").innerHTML = "🎉 Έκπτωση 10%: -" + discount.toFixed(2).replace(".",",") + " €";
+total.innerHTML = "Τελικό σύνολο: " + finalTotal.toFixed(2).replace(".",",") + " €";
 
 }
 
@@ -910,10 +906,14 @@ async function sendOrder(){
     body +=
         "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
 
-        "💰 ΣΥΝΟΛΟ: " +
-        sum
-            .toFixed(2)
-            .replace(".",",") +
+        "💰 ΣΥΝΟΛΟ ΠΡΟΪΟΝΤΩΝ: " +
+        sum.toFixed(2).replace(".",",") +
+        " €\n" +
+        "🎉 ΕΚΠΤΩΣΗ 10%: -" +
+        (sum * 0.10).toFixed(2).replace(".",",") +
+        " €\n" +
+        "💳 ΤΕΛΙΚΟ ΣΥΝΟΛΟ: " +
+        (sum * 0.90).toFixed(2).replace(".",",") +
         " €\n\n" +
 
         "━━━━━━━━━━━━━━━━━━━━\n\n";
