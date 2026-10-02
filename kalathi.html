@@ -196,10 +196,11 @@ class="empty"
 </div>
 
 
-<div id="cartSummary" style="text-align:right;margin:20px 0;line-height:1.7;">
-  <div id="cartSubtotal">Σύνολο προϊόντων: 0,00 €</div>
-  <div id="cartDiscount" style="color:#2f7d32;font-weight:bold;">🎉 Έκπτωση 10%: -0,00 €</div>
-  <div id="cartTotal" style="font-size:22px;font-weight:bold;">Τελικό σύνολο: 0,00 €</div>
+<div
+class="total"
+id="cartTotal"
+>
+Σύνολο: 0,00 €
 </div>
 
 <div style="
@@ -433,9 +434,8 @@ box.className = "empty";
 box.innerHTML =
 "Το καλάθι είναι άδειο.";
 
-document.getElementById("cartSubtotal").innerHTML = "Σύνολο προϊόντων: 0,00 €";
-document.getElementById("cartDiscount").innerHTML = "🎉 Έκπτωση 10%: -0,00 €";
-total.innerHTML = "Τελικό σύνολο: 0,00 €";
+total.innerHTML =
+"Σύνολο: 0,00 €";
 
 return;
 
@@ -553,11 +553,15 @@ onclick="removeItem(${index})"
 box.innerHTML = html;
 
 
-const discount = sum * 0.10;
-const finalTotal = sum - discount;
-document.getElementById("cartSubtotal").innerHTML = "Σύνολο προϊόντων: " + sum.toFixed(2).replace(".",",") + " €";
-document.getElementById("cartDiscount").innerHTML = "🎉 Έκπτωση 10%: -" + discount.toFixed(2).replace(".",",") + " €";
-total.innerHTML = "Τελικό σύνολο: " + finalTotal.toFixed(2).replace(".",",") + " €";
+total.innerHTML =
+
+"Σύνολο: " +
+
+sum
+.toFixed(2)
+.replace(".",",") +
+
+" €";
 
 }
 
@@ -696,21 +700,24 @@ function checkDeliveryDate(){
 
     if(route === "store") {
         if(dateInput){
-            dateInput.value = "";
-            dateInput.disabled = true;
-            dateInput.required = false;
+            dateInput.disabled = false;
+            dateInput.required = true;
         }
-        if(dateLabel) dateLabel.style.opacity = "0.5";
+        if(dateLabel){
+            dateLabel.style.opacity = "1";
+            dateLabel.textContent = "📅 Ημερομηνία παραλαβής *";
+        }
         message.style.display = "block";
         message.style.background = "#eef7ee";
         message.style.border = "1px solid #b9d8b9";
-        message.innerHTML = "🏪 <strong>Παραλαβή από το κατάστημα — Αρτοποιείο Μεσαγρός.</strong> Δεν απαιτείται ημερομηνία παράδοσης.";
+        message.innerHTML = "🏪 <strong>Παραλαβή από το κατάστημα — Αρτοποιείο Μεσαγρός.</strong> Επιλέξτε την ημερομηνία που θέλετε να παραλάβετε την παραγγελία σας.";
         return;
     }
 
     if(dateInput){
         dateInput.disabled = false;
         dateInput.required = true;
+        if(dateLabel) dateLabel.textContent = "📅 Ημερομηνία παράδοσης *";
     }
     if(dateLabel) dateLabel.style.opacity = "1";
 
@@ -848,6 +855,12 @@ async function sendOrder(){
             alert("Η διαδρομή Μεσαγρός → Πλωμάρι πραγματοποιείται Δευτέρα, Τετάρτη και Σάββατο.");
             return;
         }
+    } else {
+        const selectedPickupDate = new Date(deliveryDate + "T12:00:00");
+        if(!deliveryDate || isNaN(selectedPickupDate.getTime())){
+            alert("Παρακαλώ επιλέξτε ημερομηνία παραλαβής από το κατάστημα.");
+            return;
+        }
     }
 
 
@@ -906,14 +919,10 @@ async function sendOrder(){
     body +=
         "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
 
-        "💰 ΣΥΝΟΛΟ ΠΡΟΪΟΝΤΩΝ: " +
-        sum.toFixed(2).replace(".",",") +
-        " €\n" +
-        "🎉 ΕΚΠΤΩΣΗ 10%: -" +
-        (sum * 0.10).toFixed(2).replace(".",",") +
-        " €\n" +
-        "💳 ΤΕΛΙΚΟ ΣΥΝΟΛΟ: " +
-        (sum * 0.90).toFixed(2).replace(".",",") +
+        "💰 ΣΥΝΟΛΟ: " +
+        sum
+            .toFixed(2)
+            .replace(".",",") +
         " €\n\n" +
 
         "━━━━━━━━━━━━━━━━━━━━\n\n";
@@ -936,7 +945,8 @@ async function sendOrder(){
 
         "📦 ΤΡΟΠΟΣ ΠΑΡΑΛΑΒΗΣ / ΔΙΑΝΟΜΗΣ\n\n" +
         (deliveryRoute === "store"
-            ? "🏪 Παραλαβή από το κατάστημα — Αρτοποιείο Μεσαγρός\n\n"
+            ? "🏪 Παραλαβή από το κατάστημα — Αρτοποιείο Μεσαγρός\n" +
+              "Ημερομηνία παραλαβής: " + new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") + "\n\n"
             : "🚚 Παράδοση\n\n" +
               "📍 ΣΤΟΙΧΕΙΑ ΠΑΡΑΔΟΣΗΣ\n\n" +
               "Περιοχή / Χωριό: " + customerArea + "\n" +
