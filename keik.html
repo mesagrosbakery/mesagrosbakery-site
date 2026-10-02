@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Κέικ - Αρτοποιείο Μεσαγρός</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f1e9;color:#2b2119}header{background:#2b2119;color:white;padding:25px 15px;text-align:center}header h1{font-size:34px;margin:0 0 8px;font-weight:800}header .sub{font-size:18px;font-weight:600}.site-logo{max-width:170px;margin-top:15px}.back{max-width:1100px;margin:18px auto 0;padding:0 15px}.back a{display:inline-block;background:#9a5b2d;color:white;text-decoration:none;padding:11px 18px;border-radius:10px;font-weight:bold}.container{max-width:1100px;margin:auto;padding:20px 15px 50px}h2{text-align:center;font-size:32px;margin:10px 0 30px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.12);padding-bottom:18px}.photo{height:220px;background:#eadfd2;display:flex;align-items:center;justify-content:center;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}.body{padding:16px}.body h3{font-size:23px;margin:0 0 8px}.price{font-size:20px;font-weight:bold;margin-top:10px}.choice{display:flex;gap:10px;align-items:center;padding:0 16px}.choice select{flex:1;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:16px}.cart-btn{margin:14px 16px 0;width:calc(100% - 32px);border:0;background:#9a5b2d;color:white;padding:12px;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}.cart-btn:active{transform:scale(.98)}.section-title{grid-column:1/-1;text-align:left;font-size:26px;margin:5px 0 -5px}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:550px){.grid{grid-template-columns:1fr}.photo{height:230px}}
+</style>
+</head>
+<body>
+<header>
+<h1>ΑΡΤΟΠΟΙΕΙΟ ΜΕΣΑΓΡΟΣ</h1>
+<div class="sub">ΜΕΣΑΓΡΟΣ • ΓΕΡΑΣ • ΛΕΣΒΟΣ</div>
+<img src="LOGO.png" alt="Αρτοποιείο Μεσαγρός" class="site-logo">
+</header>
+<div class="back"><a href="index.html">← Κατάλογος</a></div>
+<main class="container">
+<h2>🍰 Κέικ & Κεκάκια</h2>
+<div class="grid">
+<h3 class="section-title">🍰 Κέικ</h3>
+
+<article class="card"><div class="photo"><img src="keik-vanilias.png" alt="Κέικ Βανίλιας"></div><div class="body"><h3>Κέικ Βανίλιας</h3><div class="price">8,00 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κέικ Βανίλιας" data-price="8"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+<article class="card"><div class="photo"><img src="keik-anameikto.png" alt="Κέικ Ανάμεικτο"></div><div class="body"><h3>Κέικ Ανάμεικτο</h3><div class="price">8,00 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κέικ Ανάμεικτο" data-price="8"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+<article class="card"><div class="photo"><img src="keik-sokolatas.png" alt="Κέικ Σοκολάτας"></div><div class="body"><h3>Κέικ Σοκολάτας</h3><div class="price">8,50 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κέικ Σοκολάτας" data-price="8.5"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+<article class="card"><div class="photo"><img src="keik-sokolatas-nistisimo.png" alt="Κέικ Σοκολάτας Νηστίσιμο"></div><div class="body"><h3>Κέικ Σοκολάτας Νηστίσιμο</h3><div class="price">8,50 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κέικ Σοκολάτας Νηστίσιμο" data-price="8.5"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+
+<h3 class="section-title">🧁 Κεκάκια</h3>
+
+<article class="card"><div class="photo"><img src="kekakia-vanilias.png" alt="Κεκάκια Βανίλιας"></div><div class="body"><h3>Κεκάκια Βανίλιας</h3><div class="price">0,60 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κεκάκια Βανίλιας" data-price="0.6"><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+<article class="card"><div class="photo"><img src="kekakia-anameikta.png" alt="Κεκάκια Ανάμεικτα"></div><div class="body"><h3>Κεκάκια Ανάμεικτα</h3><div class="price">0,60 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κεκάκια Ανάμεικτα" data-price="0.6"><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+<article class="card"><div class="photo"><img src="kekakia-kakao.png" alt="Κεκάκια Κακάο"></div><div class="body"><h3>Κεκάκια Κακάο</h3><div class="price">0,60 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κεκάκια Κακάο" data-price="0.6"><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+<article class="card"><div class="photo"><img src="kekakia-sokolatas.png" alt="Κεκάκια Σοκολάτας"></div><div class="body"><h3>Κεκάκια Σοκολάτας</h3><div class="price">0,60 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κεκάκια Σοκολάτας" data-price="0.6"><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+<article class="card"><div class="photo"><img src="kekakia-sokolatas-nistisima.png" alt="Κεκάκια Σοκολάτας Νηστίσιμα"></div><div class="body"><h3>Κεκάκια Σοκολάτας Νηστίσιμα</h3><div class="price">0,60 € / τεμάχιο</div></div><div class="choice"><label>Ποσότητα:</label><select data-name="Κεκάκια Σοκολάτας Νηστίσιμα" data-price="0.6"><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select></div><button class="cart-btn" onclick="addProduct(this,event)">🛒 Προσθήκη στο καλάθι</button></article>
+</div>
+</main>
+<script>
+function addProduct(button,event){
+ event.preventDefault();
+ const select=button.parentElement.querySelector('select');
+ const name=select.dataset.name;
+ const price=Number(select.dataset.price);
+ const quantity=Number(select.value);
+ let cart=JSON.parse(localStorage.getItem('mesagrosCart'))||[];
+ const existing=cart.find(item=>item.name===name);
+ if(existing){existing.quantity+=quantity}else{cart.push({name:name,price:price,quantity:quantity})}
+ localStorage.setItem('mesagrosCart',JSON.stringify(cart));
+ const old=button.innerHTML;button.innerHTML='✓ Προστέθηκε!';button.style.background='#4f7d3a';
+ setTimeout(()=>{button.innerHTML=old;button.style.background='#9a5b2d'},1200);
+}
+</script>
+</body>
+</html>
