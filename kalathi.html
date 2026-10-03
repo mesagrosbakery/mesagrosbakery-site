@@ -196,13 +196,16 @@ class="empty"
 </div>
 
 
-<div style="margin-top:10px;font-weight:bold;color:#b00020;" id="cartDiscount">🎉 Έκπτωση 10%: -0,00 €</div>
+<div id="cartSummary" style="margin-top:10px;line-height:1.8;font-weight:bold;">
+<div id="cartSubtotal">Αξία καλαθιού: 0,00 €</div>
+<div id="cartDiscount" style="color:#b00020;">🎉 Έκπτωση 10%: -0,00 €</div>
+</div>
 
 <div
 class="total"
 id="cartTotal"
 >
-Σύνολο: 0,00 €
+ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ: 0,00 €
 </div>
 
 <div style="
@@ -442,10 +445,11 @@ box.className = "empty";
 box.innerHTML =
 "Το καλάθι είναι άδειο.";
 
+document.getElementById("cartSubtotal").innerHTML = "Αξία καλαθιού: 0,00 €";
 document.getElementById("cartDiscount").innerHTML = "🎉 Έκπτωση 10%: -0,00 €";
 
 total.innerHTML =
-"Σύνολο: 0,00 €";
+"ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ: 0,00 €";
 
 return;
 
@@ -565,12 +569,15 @@ box.innerHTML = html;
 
 const discount = getPromoDiscount(sum);
 
+document.getElementById("cartSubtotal").innerHTML =
+"Αξία καλαθιού: " + sum.toFixed(2).replace(".",",") + " €";
+
 document.getElementById("cartDiscount").innerHTML =
 "🎉 Έκπτωση 10%: -" + discount.toFixed(2).replace(".",",") + " €";
 
 total.innerHTML =
 
-"Σύνολο: " +
+"ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ: " +
 
 (sum - discount)
 .toFixed(2)
