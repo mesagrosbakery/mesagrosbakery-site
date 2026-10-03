@@ -108,6 +108,89 @@ padding:6px 9px;
 cursor:pointer;
 }
 
+
+.cart-main{
+display:grid;
+grid-template-columns:minmax(0,1.45fr) minmax(300px,0.75fr);
+gap:28px;
+align-items:start;
+}
+
+.cart-products{
+min-width:0;
+}
+
+.cart-summary-card{
+background:#f8f1e5;
+border-radius:18px;
+padding:18px;
+box-shadow:0 8px 22px rgba(80,50,20,0.10);
+position:sticky;
+top:18px;
+}
+
+.summary-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
+padding:18px 20px;
+border-radius:14px;
+margin-bottom:12px;
+font-weight:800;
+font-size:20px;
+line-height:1.2;
+}
+
+.summary-row strong{
+font-size:27px;
+white-space:nowrap;
+}
+
+.subtotal-row{
+background:#eadfd2;
+color:#3b2416;
+}
+
+.discount-row{
+background:#ffe8e8;
+color:#d00000;
+}
+
+.total-row{
+background:#e6f6e6;
+color:#116b2b;
+margin-bottom:0;
+}
+
+.total-row span{
+font-size:22px;
+}
+
+.total-row strong{
+font-size:34px;
+}
+
+@media (max-width:800px){
+.cart-main{
+grid-template-columns:1fr;
+gap:18px;
+}
+.cart-summary-card{
+position:static;
+}
+.summary-row{
+font-size:18px;
+padding:16px;
+}
+.summary-row strong{
+font-size:24px;
+}
+.total-row strong{
+font-size:30px;
+}
+}
+
 .total{
 text-align:right;
 font-size:22px;
@@ -182,11 +265,13 @@ class="logo"
 
 <div class="cart">
 
+<div class="cart-main">
+
+<div class="cart-products">
 
 <h2>
 Τα προϊόντα σας
 </h2>
-
 
 <div
 id="cartItems"
@@ -195,17 +280,23 @@ class="empty"
 Το καλάθι είναι άδειο.
 </div>
 
-
-<div id="cartSummary" style="margin-top:10px;line-height:1.8;font-weight:bold;">
-<div id="cartSubtotal">Αξία καλαθιού: 0,00 €</div>
-<div id="cartDiscount" style="color:#b00020;">🎉 Έκπτωση 10%: -0,00 €</div>
 </div>
 
-<div
-class="total"
-id="cartTotal"
->
-ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ: 0,00 €
+<div class="cart-summary-card" id="cartSummary">
+<div class="summary-row subtotal-row">
+<span>🛒 Αξία καλαθιού:</span>
+<strong id="cartSubtotal">0,00 €</strong>
+</div>
+<div class="summary-row discount-row">
+<span>🎉 Έκπτωση 10%:</span>
+<strong id="cartDiscount">-0,00 €</strong>
+</div>
+<div class="summary-row total-row">
+<span>ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ:</span>
+<strong id="cartTotal">0,00 €</strong>
+</div>
+</div>
+
 </div>
 
 <div style="
@@ -445,8 +536,8 @@ box.className = "empty";
 box.innerHTML =
 "Το καλάθι είναι άδειο.";
 
-document.getElementById("cartSubtotal").innerHTML = "Αξία καλαθιού: 0,00 €";
-document.getElementById("cartDiscount").innerHTML = "🎉 Έκπτωση 10%: -0,00 €";
+document.getElementById("cartSubtotal").innerHTML = "0,00 €";
+document.getElementById("cartDiscount").innerHTML = "-0,00 €";
 
 total.innerHTML =
 "ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ: 0,00 €";
@@ -570,19 +661,15 @@ box.innerHTML = html;
 const discount = getPromoDiscount(sum);
 
 document.getElementById("cartSubtotal").innerHTML =
-"Αξία καλαθιού: " + sum.toFixed(2).replace(".",",") + " €";
+sum.toFixed(2).replace(".",",") + " €";
 
 document.getElementById("cartDiscount").innerHTML =
-"🎉 Έκπτωση 10%: -" + discount.toFixed(2).replace(".",",") + " €";
+"-" + discount.toFixed(2).replace(".",",") + " €";
 
 total.innerHTML =
-
-"ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ: " +
-
 (sum - discount)
 .toFixed(2)
 .replace(".",",") +
-
 " €";
 
 }
