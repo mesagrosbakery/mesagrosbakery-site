@@ -425,6 +425,28 @@ border-radius:8px;
 font-size:16px;
 ">
 
+<div id="deliveryTimeBox" style="display:none;margin:8px 0 18px;">
+<label for="deliveryTime" style="display:block;margin:8px 0 6px;font-weight:bold;">🕒 Επιθυμητή ώρα παράδοσης *</label>
+<select id="deliveryTime" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:16px;background:white;">
+<option value="">Επιλέξτε χρονικό διάστημα *</option>
+<option value="07:00–07:30">07:00–07:30</option>
+<option value="07:30–08:00">07:30–08:00</option>
+<option value="08:00–08:30">08:00–08:30</option>
+<option value="08:30–09:00">08:30–09:00</option>
+<option value="09:00–09:30">09:00–09:30</option>
+<option value="09:30–10:00">09:30–10:00</option>
+<option value="10:00–10:30">10:00–10:30</option>
+<option value="10:30–11:00">10:30–11:00</option>
+<option value="11:00–11:30">11:00–11:30</option>
+<option value="11:30–12:00">11:30–12:00</option>
+<option value="12:00–12:30">12:00–12:30</option>
+<option value="12:30–13:00">12:30–13:00</option>
+<option value="13:00–13:30">13:00–13:30</option>
+<option value="13:30–14:00">13:30–14:00</option>
+<option value="14:00–14:30">14:00–14:30</option>
+</select>
+</div>
+
 <div id="deliveryMessage" style="display:none;padding:12px;border-radius:10px;margin-bottom:18px;line-height:1.5;font-size:14px;"></div>
 
 <h3>
@@ -806,7 +828,18 @@ function setMinDeliveryDate(){
     dateInput.min = `${y}-${m}-${d}`;
 }
 
+function updateDeliveryTimeVisibility(){
+    const route = document.getElementById("deliveryRoute").value;
+    const box = document.getElementById("deliveryTimeBox");
+    const select = document.getElementById("deliveryTime");
+    const show = route === "geras";
+    box.style.display = show ? "block" : "none";
+    select.required = show;
+    if(!show) select.value = "";
+}
+
 function checkDeliveryDate(){
+    updateDeliveryTimeVisibility();
     const route = document.getElementById("deliveryRoute").value;
     const dateValue = document.getElementById("deliveryDate").value;
     const message = document.getElementById("deliveryMessage");
@@ -944,6 +977,9 @@ async function sendOrder(){
     let deliveryDate =
         document.getElementById("deliveryDate").value;
 
+    let deliveryTime =
+        document.getElementById("deliveryTime").value;
+
     const routeNames = {
         mytilene: "Μεσαγρός → Μυτιλήνη / ενδιάμεσα χωριά",
         plomari: "Μεσαγρός → Πλωμάρι / ενδιάμεσα χωριά",
@@ -967,6 +1003,11 @@ async function sendOrder(){
             "Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά στοιχεία."
         );
 
+        return;
+    }
+
+    if(deliveryRoute === "geras" && !deliveryTime){
+        alert("Παρακαλώ επιλέξτε επιθυμητό χρονικό διάστημα παράδοσης για τη Γέρα.");
         return;
     }
 
@@ -1098,7 +1139,7 @@ async function sendOrder(){
               "Αριθμός: " + customerNumber + "\n\n" +
               "Διαδρομή: " + routeNames[deliveryRoute] + "\n" +
               "Ημερομηνία: " + new Date(deliveryDate + "T12:00:00").toLocaleDateString("el-GR") + "\n" +
-              (deliveryRoute === "geras" ? "Η παράδοση θα γίνει μόλις ετοιμαστεί η παραγγελία.\n\n" : "Ώρες διανομής: 15:00 – 17:00\n\n")) +
+              (deliveryRoute === "geras" ? "Επιθυμητή ώρα παράδοσης: " + deliveryTime + "\n\n" : "Ώρες διανομής: 15:00 – 17:00\n\n")) +
 
         "💳 ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ: " + paymentMethodText + "\n\n" +
 
