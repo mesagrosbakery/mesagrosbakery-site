@@ -160,11 +160,6 @@ background:#eadfd2;
 color:#3b2416;
 }
 
-.discount-row{
-background:#ffe8e8;
-color:#d00000;
-}
-
 .total-row{
 background:#e6f6e6;
 color:#116b2b;
@@ -296,10 +291,6 @@ class="empty"
 <div class="summary-row subtotal-row">
 <span>🛒 Αξία καλαθιού:</span>
 <strong id="cartSubtotal">0,00 €</strong>
-</div>
-<div class="summary-row discount-row">
-<span>🎉 Έκπτωση 10%:</span>
-<strong id="cartDiscount">-0,00 €</strong>
 </div>
 <div class="summary-row total-row">
 <span>ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ:</span>
@@ -543,13 +534,6 @@ localStorage.getItem("mesagrosCart")
 /* ================================= */
 
 
-function getPromoDiscount(sum){
-    const today = new Date();
-    const start = new Date("2026-10-03T00:00:00");
-    const end = new Date("2026-10-17T23:59:59");
-    return (today >= start && today <= end) ? sum * 0.10 : 0;
-}
-
 function renderCart(){
 
 
@@ -569,7 +553,6 @@ box.innerHTML =
 "Το καλάθι είναι άδειο.";
 
 document.getElementById("cartSubtotal").innerHTML = "0,00 €";
-document.getElementById("cartDiscount").innerHTML = "-0,00 €";
 
 total.innerHTML =
 "ΣΥΝΟΛΟ ΠΛΗΡΩΜΗΣ: 0,00 €";
@@ -690,16 +673,11 @@ onclick="removeItem(${index})"
 box.innerHTML = html;
 
 
-const discount = getPromoDiscount(sum);
-
 document.getElementById("cartSubtotal").innerHTML =
 sum.toFixed(2).replace(".",",") + " €";
 
-document.getElementById("cartDiscount").innerHTML =
-"-" + discount.toFixed(2).replace(".",",") + " €";
-
 total.innerHTML =
-(sum - discount)
+sum
 .toFixed(2)
 .replace(".",",") +
 " €";
@@ -1085,24 +1063,11 @@ async function sendOrder(){
     /* ΣΥΝΟΛΟ */
     /* ================================= */
 
-    const discount = getPromoDiscount(sum);
-    const finalTotal = sum - discount;
-
     body +=
         "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
 
-        "💰 ΑΡΧΙΚΟ ΣΥΝΟΛΟ: " +
+        "💰 ΣΥΝΟΛΟ ΠΑΡΑΓΓΕΛΙΑΣ: " +
         sum
-            .toFixed(2)
-            .replace(".",",") +
-        " €\n" +
-        "🎉 ΕΚΠΤΩΣΗ 10%: -" +
-        discount
-            .toFixed(2)
-            .replace(".",",") +
-        " €\n" +
-        "💰 ΣΥΝΟΛΟ ΜΕ ΕΚΠΤΩΣΗ: " +
-        finalTotal
             .toFixed(2)
             .replace(".",",") +
         " €\n\n" +
